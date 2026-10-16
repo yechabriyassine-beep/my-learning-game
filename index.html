@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -6,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>تحدي الكلمات: عربي – русский</title>
 <style>
-/* ============ BASE ============ */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --bg1:#0f1b3d; --bg2:#1d3b6e; --bg3:#2b1b56;
@@ -30,8 +28,6 @@ body::before{
 .ru{font-family:"Segoe UI",Roboto,Arial,sans-serif;direction:ltr;unicode-bidi:isolate;font-size:.72em;opacity:.85;display:block;font-weight:400}
 body.hide-ru .ru{display:none !important}
 #app{position:relative;max-width:1100px;margin:0 auto;padding:10px 12px 40px;z-index:2}
-
-/* ============ HEADER ============ */
 header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
 .logo{font-size:clamp(18px,4.4vw,30px);font-weight:800;line-height:1.3;
   background:linear-gradient(90deg,var(--gold),var(--pink),var(--blue));
@@ -42,8 +38,6 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;fl
   border-radius:14px;padding:8px 12px;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
 .icon-btn:hover{background:var(--card2);transform:translateY(-2px)}
 .icon-btn.off{opacity:.45}
-
-/* ============ CARDS & BUTTONS ============ */
 .card{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:16px;
   backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
 .btn{font-family:inherit;cursor:pointer;border:none;border-radius:18px;padding:12px 20px;font-size:clamp(15px,2.6vw,20px);
@@ -55,8 +49,6 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;fl
 .btn.danger{background:linear-gradient(180deg,#ff95a3,#ef4d63);color:#3b0712;box-shadow:0 6px 0 #a62436,0 10px 22px rgba(0,0,0,.3)}
 .btn.big{font-size:clamp(18px,3.4vw,26px);padding:16px 34px;width:100%;max-width:420px;margin:14px auto 0;display:block}
 .hidden{display:none !important}
-
-/* ============ TABS ============ */
 .tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .tab{flex:1;min-width:110px;background:var(--card);border:1px solid rgba(255,255,255,.15);color:var(--txt);
   border-radius:16px;padding:10px;font-family:inherit;font-size:clamp(14px,2.4vw,18px);font-weight:700;cursor:pointer;transition:.2s}
@@ -64,8 +56,6 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;fl
 .tabpane{display:none;animation:fade .3s}
 .tabpane.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-/* ============ TEAMS SETUP ============ */
 .team-row{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.07);border-radius:16px;padding:10px;margin-bottom:10px;flex-wrap:wrap}
 .emoji-pick{font-size:28px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:4px 10px;cursor:pointer}
 .team-row input[type=text]{flex:1;min-width:140px;font-family:inherit;font-size:18px;padding:10px;border-radius:12px;
@@ -76,8 +66,6 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;fl
 .emoji-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .emoji-grid span{font-size:24px;padding:4px 7px;border-radius:10px;background:rgba(0,0,0,.25);cursor:pointer}
 .emoji-grid span:hover{background:var(--gold)}
-
-/* ============ SETTINGS ============ */
 .set-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px dashed rgba(255,255,255,.15);flex-wrap:wrap}
 .set-row label{font-size:clamp(15px,2.5vw,19px);font-weight:700}
 input[type=range]{width:180px;accent-color:var(--gold)}
@@ -85,8 +73,6 @@ input[type=range]{width:180px;accent-color:var(--gold)}
   padding:7px 12px;border-radius:999px;cursor:pointer;font-size:15px;margin:3px}
 .pill input{accent-color:var(--gold);width:16px;height:16px}
 .pill.on{background:linear-gradient(180deg,#ffe489,var(--gold));color:#10203f;border-color:transparent;font-weight:700}
-
-/* ============ WORDS MANAGER ============ */
 .wordlist{max-height:330px;overflow:auto;border-radius:14px;background:rgba(0,0,0,.2);padding:6px;margin-top:10px}
 .word-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
 .word-item .ar{font-size:21px;font-weight:700;min-width:150px}
@@ -100,8 +86,6 @@ input[type=range]{width:180px;accent-color:var(--gold)}
 .add-form input,.add-form select,textarea{font-family:inherit;font-size:16px;padding:9px;border-radius:12px;
   border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:#fff}
 textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:12px}
-
-/* ============ GAME ============ */
 .gamebar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .turn-info{font-size:clamp(14px,2.4vw,18px);font-weight:700;background:var(--card);padding:8px 14px;border-radius:14px}
 #timerWrap{flex:1;min-width:160px;height:34px;background:rgba(0,0,0,.35);border-radius:999px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.18)}
@@ -128,7 +112,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .opt.wrong{background:linear-gradient(180deg,#ff8a9c,#d8384f);border-color:#fff;animation:shake .4s}
 .opt:disabled{cursor:default;opacity:.85}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-/* matching */
 .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .match-col{display:flex;flex-direction:column;gap:9px}
 .mcard{font-family:inherit;cursor:pointer;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;
@@ -137,7 +120,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .mcard.sel{background:var(--gold);color:#102;transform:scale(1.03)}
 .mcard.done{background:linear-gradient(180deg,#4fe08a,#1fa05b);opacity:.75;cursor:default}
 .mcard.bad{animation:shake .4s;background:rgba(255,90,110,.5)}
-/* scramble */
 .scram-slot{min-height:76px;border:3px dashed rgba(255,255,255,.35);border-radius:18px;display:flex;justify-content:center;
   align-items:center;gap:6px;font-size:clamp(28px,6vw,46px);font-weight:800;padding:8px;margin-bottom:12px;letter-spacing:2px}
 .letters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
@@ -145,7 +127,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
   background:rgba(255,255,255,.14);color:#fff;cursor:pointer;transition:.15s}
 .letter:hover{background:var(--gold);color:#102}
 .letter.used{opacity:.25;cursor:default}
-/* reveal */
 .reveal{margin-top:14px;text-align:center;border-radius:22px;padding:16px;animation:pop .35s}
 .reveal.ok{background:linear-gradient(180deg,rgba(46,204,113,.35),rgba(46,204,113,.12));border:2px solid #2ecc71}
 .reveal.no{background:linear-gradient(180deg,rgba(255,90,110,.32),rgba(255,90,110,.12));border:2px solid var(--red)}
@@ -153,12 +134,10 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .reveal .ans-ar{font-size:clamp(28px,6vw,48px);font-weight:800}
 .reveal .ans-ru{font-family:"Segoe UI",Arial;direction:ltr;font-size:clamp(20px,4vw,32px);color:#ffe489;font-weight:700}
 .pts{font-size:clamp(18px,3.6vw,26px);font-weight:800;color:var(--gold);margin-top:6px}
-/* buzz */
 .buzz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
 .buzz{font-family:inherit;cursor:pointer;border:none;border-radius:20px;padding:22px;font-size:clamp(20px,4vw,30px);font-weight:800;color:#101e3c;
   animation:glow 1.3s infinite alternate}
 @keyframes glow{from{box-shadow:0 0 0 rgba(255,255,255,0)}to{box-shadow:0 0 26px rgba(255,255,255,.75)}}
-/* wheel */
 .wheel-box{display:flex;flex-direction:column;align-items:center;gap:14px}
 .wheel-outer{position:relative;width:min(78vw,340px);height:min(78vw,340px)}
 .wheel{width:100%;height:100%;border-radius:50%;border:8px solid #ffd24a;position:relative;overflow:hidden;
@@ -166,7 +145,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .wseg{position:absolute;inset:0;display:flex;justify-content:center;padding-top:8%;font-size:clamp(11px,2.6vw,15px);font-weight:800;color:#0e1b38}
 .wseg span{display:block;width:46%;text-align:center;line-height:1.2}
 .pointer{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:40px;z-index:4;filter:drop-shadow(0 3px 6px #000)}
-/* end */
 .podium{display:flex;justify-content:center;align-items:flex-end;gap:10px;margin:20px 0;flex-wrap:wrap}
 .pod{border-radius:18px 18px 0 0;padding:12px;text-align:center;min-width:100px;font-weight:800;animation:rise .6s}
 @keyframes rise{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
@@ -197,7 +175,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
     </div>
   </header>
 
-  <!-- ===== START SCREEN ===== -->
   <section id="screen-start">
     <div class="tabs">
       <button class="tab active" data-tab="teams">👥 الفرق<span class="ru">Команды</span></button>
@@ -229,7 +206,7 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
           <input type="checkbox" id="sDuel" checked style="width:24px;height:24px;accent-color:#ffd24a"></div>
         <div style="padding:10px 0"><b>أنواع الأسئلة <span class="ru">Типы вопросов</span></b><div id="typesBox" style="margin-top:6px"></div></div>
         <div style="padding:10px 0"><b>فئات الكلمات <span class="ru">Категории слов</span></b>
-          <div style="font-size:13px;opacity:.7;margin-top:4px">✓ اختر المجالات التي تريد اختبار الطلاب فيها (اضغط لتفعيل/تعطيل)
+          <div style="font-size:13px;opacity:.7;margin-top:4px">✓ اختر المجالات التي تريد اختبار الطلاب فيها
             <span class="ru">Выберите категории для игры</span></div>
           <div id="catsBox" style="margin-top:6px"></div>
           <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
@@ -242,7 +219,7 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 
     <div class="tabpane" id="tab-words">
       <div class="card">
-        <h3>📚 بنك الكلمات <span class="ru">Банк слов — учитель может добавлять и удалять слова</span></h3>
+        <h3>📚 بنك الكلمات <span class="ru">Банк слов</span></h3>
         <div class="add-form">
           <select id="wType"><option value="n">اسم / Имя</option><option value="v">فعل / Глагол</option></select>
           <input id="wAr" placeholder="الاسم المفرد — مَدْرَسَة" style="min-width:150px">
@@ -266,7 +243,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
     </div>
   </section>
 
-  <!-- ===== GAME SCREEN ===== -->
   <section id="screen-game" class="hidden">
     <div class="gamebar">
       <div class="turn-info" id="qCounter"></div>
@@ -280,7 +256,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
     <button class="btn big hidden" id="nextBtn">التالي ◀<span class="ru">Далее</span></button>
   </section>
 
-  <!-- ===== END SCREEN ===== -->
   <section id="screen-end" class="hidden">
     <div class="card" style="text-align:center">
       <h2 id="winTitle" style="font-size:clamp(22px,5vw,38px)"></h2>
@@ -294,7 +269,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 
 <script>
 /* ===================== DATA ===================== */
-/* ✅ تعديل 1: CATS تُبنى تلقائياً من الكلمات المستوردة */
 const CATS={};
 const CAT_RU={
   places:"Места", school:"Школа, администрация, люди",
@@ -328,8 +302,32 @@ function syncCats(){
   saveSet();
 }
 
+/* ✅ ترجمة تلقائية لأي تنسيق JSON */
+function normalizeWord(w){
+  if(!w||typeof w!=="object")return null;
+  const out={};
+  const tp=String(w.t||w.type||"").toLowerCase();
+  if(tp==="v"||tp==="verb"||tp==="فعل")out.t="v";else out.t="n";
+  if(out.t==="v"){
+    out.past=w.past||w["الماضي"]||w.ar||"";
+    out.pres=w.pres||w["المضارع"]||"";
+    if(!out.past||!out.pres)return null;
+  }else{
+    out.ar=w.ar||w["عربي"]||w["الكلمة"]||"";
+    if(!out.ar)return null;
+  }
+  out.ru=w.ru||w["روسي"]||w["الترجمة"]||"";
+  if(!out.ru)return null;
+  out.c=w.c||w.cat||w["فئة"]||w["الفئة"]||"";
+  if(!out.c)return null;
+  const gg=String(w.g||w.gen||w["الجنس"]||"").toLowerCase();
+  if(gg==="f"||gg==="مؤنث"||gg==="ж.р."||gg==="female")out.g="f";
+  else if(gg==="m"||gg==="مذكر"||gg==="м.р."||gg==="male")out.g="m";
+  else out.g="";
+  return out;
+}
+
 const DEFAULT_WORDS=[
- /* ---- أماكن ---- */
  {t:"n",ar:"مَدْرَسَة",ru:"школа",g:"f",c:"places"},
  {t:"n",ar:"جَامِعَة",ru:"университет",g:"f",c:"places"},
  {t:"n",ar:"مَكْتَبَة",ru:"библиотека",g:"f",c:"places"},
@@ -344,7 +342,6 @@ const DEFAULT_WORDS=[
  {t:"n",ar:"حَدِيقَة",ru:"сад, парк",g:"f",c:"places"},
  {t:"n",ar:"مَلْعَب",ru:"стадион",g:"m",c:"places"},
  {t:"n",ar:"غُرْفَة",ru:"комната",g:"f",c:"places"},
- /* ---- مدرسة / إدارة / أشخاص ---- */
  {t:"n",ar:"مُدِير",ru:"директор (м.)",g:"m",c:"school"},
  {t:"n",ar:"مُدِيرَة",ru:"директор (ж.)",g:"f",c:"school"},
  {t:"n",ar:"مُعَلِّم",ru:"учитель",g:"m",c:"school"},
@@ -364,7 +361,6 @@ const DEFAULT_WORDS=[
  {t:"n",ar:"جَدْوَل",ru:"расписание",g:"m",c:"school"},
  {t:"n",ar:"عُطْلَة",ru:"каникулы, отпуск",g:"f",c:"school"},
  {t:"n",ar:"شَهَادَة",ru:"диплом, свидетельство",g:"f",c:"school"},
- /* ---- قراءة وكتابة ---- */
  {t:"n",ar:"كِتَاب",ru:"книга",g:"m",c:"read"},
  {t:"n",ar:"دَفْتَر",ru:"тетрадь",g:"m",c:"read"},
  {t:"n",ar:"قَلَم",ru:"ручка, карандаш",g:"m",c:"read"},
@@ -381,7 +377,6 @@ const DEFAULT_WORDS=[
  {t:"n",ar:"مَجَلَّة",ru:"журнал",g:"f",c:"read"},
  {t:"n",ar:"جَرِيدَة",ru:"газета",g:"f",c:"read"},
  {t:"n",ar:"سَبُّورَة",ru:"доска",g:"f",c:"read"},
- /* ---- أفعال ---- */
  {t:"v",past:"كَتَبَ",pres:"يَكْتُبُ",ru:"писать",c:"verbs"},
  {t:"v",past:"قَرَأَ",pres:"يَقْرَأُ",ru:"читать",c:"verbs"},
  {t:"v",past:"دَرَسَ",pres:"يَدْرُسُ",ru:"учиться, изучать",c:"verbs"},
@@ -420,7 +415,6 @@ const TYPES={
 const COLORS=["#ff6b6b","#4ab8ff","#2ecc71","#ffd24a","#ff7ad5","#a78bfa"];
 const EMOJIS=["🦁","🦅","🐯","🐬","🐼","🦊","🐝","🚀","⭐","🔥","🌙","⚽","🐪","🌴"];
 
-/* ===================== STATE ===================== */
 let words=[];
 let teams=[];
 let settings={time:25,total:14,wheel:true,duel:true,showRu:true,sound:true,
@@ -428,7 +422,6 @@ let settings={time:25,total:14,wheel:true,duel:true,showRu:true,sound:true,
 const S={qIndex:0,teamIdx:0,word:null,type:null,timer:null,timeLeft:0,total:0,answered:false,mult:1,
   pairs:[],sel:null,matched:0,built:"",target:"",stage:null,steal:false};
 
-/* ===================== UTIL ===================== */
 const $=id=>document.getElementById(id);
 const rnd=a=>a[Math.floor(Math.random()*a.length)];
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -437,9 +430,8 @@ const disp=w=>w.t==="v"?`${w.past} – ${w.pres}`:w.ar;
 const plain=w=>strip(w.t==="v"?w.past:w.ar).replace(/\s/g,"");
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function toast(msg){const d=document.createElement("div");d.className="toast";d.innerHTML=msg;document.body.appendChild(d);
-  setTimeout(()=>{d.style.opacity=0;d.style.transition=".4s";setTimeout(()=>d.remove(),400)},1300)}
+  setTimeout(()=>{d.style.opacity=0;d.style.transition=".4s";setTimeout(()=>d.remove(),400)},1600)}
 
-/* ===================== AUDIO ===================== */
 let actx=null;
 function ac(){if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}return actx}
 function tone(f,dur,type="sine",vol=.18,delay=0){
@@ -466,7 +458,6 @@ function speak(w){
   }catch(e){return false}
 }
 
-/* ===================== CONFETTI ===================== */
 const fx=$("fx"),ctx=fx.getContext("2d");let parts=[],fxOn=false;
 function resize(){fx.width=innerWidth;fx.height=innerHeight}resize();addEventListener("resize",resize);
 function confetti(n=70){
@@ -482,9 +473,16 @@ function loopFx(){
   if(parts.length)requestAnimationFrame(loopFx);else{fxOn=false;ctx.clearRect(0,0,fx.width,fx.height)}
 }
 
-/* ===================== STORAGE ===================== */
+/* ===================== STORAGE (مع التصحيح التلقائي) ===================== */
 function loadAll(){
-  try{const w=localStorage.getItem("arru_words");words=w?JSON.parse(w):DEFAULT_WORDS.slice()}catch(e){words=DEFAULT_WORDS.slice()}
+  try{
+    const w=localStorage.getItem("arru_words");
+    if(w){
+      const raw=JSON.parse(w);
+      const norm=(Array.isArray(raw)?raw:[]).map(normalizeWord).filter(Boolean);
+      words=norm.length?norm:DEFAULT_WORDS.slice();
+    } else words=DEFAULT_WORDS.slice();
+  }catch(e){words=DEFAULT_WORDS.slice()}
   try{const s=localStorage.getItem("arru_set");if(s)settings=Object.assign(settings,JSON.parse(s))}catch(e){}
   try{const t=localStorage.getItem("arru_teams");teams=t?JSON.parse(t):null}catch(e){teams=null}
   if(!teams||!teams.length)teams=[{name:"فريق الأسود",ru:"Львы",em:"🦁",col:COLORS[0],score:0},
@@ -494,7 +492,6 @@ const saveWords=()=>localStorage.setItem("arru_words",JSON.stringify(words));
 const saveSet=()=>localStorage.setItem("arru_set",JSON.stringify(settings));
 const saveTeams=()=>localStorage.setItem("arru_teams",JSON.stringify(teams));
 
-/* ===================== SETUP UI ===================== */
 function renderTeams(){
   const b=$("teamsBox");b.innerHTML="";
   teams.forEach((t,i)=>{
@@ -518,11 +515,18 @@ function renderSettings(){
   $("sWheel").checked=settings.wheel;$("sDuel").checked=settings.duel;
   $("typesBox").innerHTML=Object.keys(TYPES).map(k=>
     `<label class="pill ${settings.types.includes(k)?'on':''}"><input type="checkbox" data-t="${k}" ${settings.types.includes(k)?"checked":""}>${TYPES[k].ar}<span class="ru">${TYPES[k].ru}</span></label>`).join("");
-  /* ✅ عرض الفئات الديناميكية + عدد الكلمات في كل فئة */
-  $("catsBox").innerHTML=Object.keys(CATS).map(k=>{
-    const cnt=words.filter(w=>w.c===k).length;
-    return `<label class="pill ${settings.cats.includes(k)?'on':''}"><input type="checkbox" data-c="${k}" ${settings.cats.includes(k)?"checked":""}>${CATS[k].ar} <span style="opacity:.7;font-size:.85em">(${cnt})</span><span class="ru">${CATS[k].ru}</span></label>`;
-  }).join("");
+  /* ✅ رسالة عند عدم وجود فئات */
+  if(Object.keys(CATS).length===0){
+    $("catsBox").innerHTML=`<div style="padding:14px;background:rgba(255,90,110,.2);border-radius:12px;border:1px solid #ff5a6e;margin:8px 0">
+      ⚠️ لا توجد فئات. اذهب إلى تبويب <b>📚 الكلمات</b> واستورد كلماتك أولاً.
+      <span class="ru">Нет категорий. Импортируйте слова во вкладке «Слова».</span>
+    </div>`;
+  } else {
+    $("catsBox").innerHTML=Object.keys(CATS).map(k=>{
+      const cnt=words.filter(w=>w.c===k).length;
+      return `<label class="pill ${settings.cats.includes(k)?'on':''}"><input type="checkbox" data-c="${k}" ${settings.cats.includes(k)?"checked":""}>${CATS[k].ar} <span style="opacity:.7;font-size:.85em">(${cnt})</span><span class="ru">${CATS[k].ru}</span></label>`;
+    }).join("");
+  }
   $("typesBox").querySelectorAll("input").forEach(i=>i.onchange=()=>{
     const k=i.dataset.t;settings.types=i.checked?[...new Set([...settings.types,k])]:settings.types.filter(x=>x!==k);
     if(!settings.types.length)settings.types=["mcq_ar_ru"];saveSet();renderSettings()});
@@ -552,7 +556,6 @@ function renderWordList(){
   $("wordList").querySelectorAll(".del").forEach(b=>b.onclick=()=>{words.splice(+b.dataset.i,1);saveWords();renderWordList();renderSettings();sClick()});
 }
 
-/* ===================== SETUP EVENTS ===================== */
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   document.querySelectorAll(".tabpane").forEach(x=>x.classList.remove("active"));
@@ -565,8 +568,6 @@ $("sTime").oninput=e=>{settings.time=+e.target.value;$("sTimeV").textContent=set
 $("sQ").oninput=e=>{settings.total=+e.target.value;$("sQV").textContent=settings.total;saveSet()};
 $("sWheel").onchange=e=>{settings.wheel=e.target.checked;saveSet()};
 $("sDuel").onchange=e=>{settings.duel=e.target.checked;saveSet()};
-
-/* ✅ أزرار تحديد/إلغاء كل الفئات */
 $("catsAll").onclick=()=>{settings.cats=Object.keys(CATS);saveSet();renderSettings();sClick()};
 $("catsNone").onclick=()=>{settings.cats=[];saveSet();renderSettings();sClick()};
 
@@ -574,7 +575,6 @@ $("wType").onchange=e=>{
   const v=e.target.value==="v";
   $("wAr").classList.toggle("hidden",v);$("wGen").classList.toggle("hidden",v);
   $("wPast").classList.toggle("hidden",!v);$("wPres").classList.toggle("hidden",!v);
-  /* ✅ تعديل 5: اختيار فئة "أفعال" الصحيحة ديناميكياً */
   if(v){const vc=words.find(w=>w.t==="v");$("wCat").value=vc?vc.c:(Object.keys(CATS)[0]||"")}
 };
 $("addWord").onclick=()=>{
@@ -582,28 +582,32 @@ $("addWord").onclick=()=>{
   if(!ru)return toast("أدخل الترجمة الروسية ❗");
   if(!c)return toast("اختر فئة ❗");
   if(t==="v"){const p=$("wPast").value.trim(),pr=$("wPres").value.trim();
-    if(!p||!pr)return toast("أدخل الماضي والمضارع ❗ (كتب – يكتب)");
+    if(!p||!pr)return toast("أدخل الماضي والمضارع ❗");
     words.push({t:"v",past:p,pres:pr,ru,c});$("wPast").value="";$("wPres").value="";
   }else{const ar=$("wAr").value.trim();if(!ar)return toast("أدخل الاسم ❗");
     words.push({t:"n",ar,ru,g:$("wGen").value,c});$("wAr").value="";}
   $("wRu").value="";saveWords();
-  /* ✅ تحديث الفئات في حال أضاف المستخدم فئة جديدة */
   rebuildCATS();syncCats();renderWordUI();renderSettings();
   sCorrect();toast("✅ تمت الإضافة / Добавлено");
 };
 $("filterCat").onchange=renderWordList;
-/* ✅ تعديل 3: إعادة بناء الفئات عند استعادة الافتراضي */
 $("resetWords").onclick=()=>{if(confirm("استعادة قائمة الكلمات الافتراضية؟")){
   words=DEFAULT_WORDS.slice();saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();
   toast("✅ تمت الاستعادة")}};
 $("exportBtn").onclick=()=>{const b=$("ioBox");b.classList.remove("hidden");b.value=JSON.stringify(words,null,1);b.select()};
-/* ✅ تعديل 2: إعادة بناء الفئات بعد الاستيراد */
+/* ✅ الاستيراد مع التصحيح التلقائي */
 $("importBtn").onclick=()=>{const b=$("ioBox");
   if(b.classList.contains("hidden")){b.classList.remove("hidden");b.value="";b.focus();toast("الصق JSON ثم اضغط استيراد مرة أخرى")}
-  else{try{const a=JSON.parse(b.value);if(Array.isArray(a)&&a.length){
-    words=a;saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();
-    b.classList.add("hidden");toast("✅ تم الاستيراد / Импортировано")}
-    else toast("الملف فارغ ❗")}catch(e){toast("JSON غير صالح ❗")}}};
+  else{try{
+    const a=JSON.parse(b.value);
+    if(Array.isArray(a)&&a.length){
+      const norm=a.map(normalizeWord).filter(Boolean);
+      if(!norm.length){toast("❌ لا توجد كلمات صالحة في الملف");return}
+      words=norm;saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();
+      b.classList.add("hidden");
+      toast(`✅ تم الاستيراد (${norm.length} كلمة)`);
+    } else toast("الملف فارغ ❗");
+  }catch(e){toast("JSON غير صالح ❗")}}};
 $("ruToggle").onclick=()=>{settings.showRu=!settings.showRu;saveSet();applyRu();sClick()};
 function applyRu(){document.body.classList.toggle("hide-ru",!settings.showRu);
   $("ruToggle").innerHTML=settings.showRu?"🇷🇺 الترجمة الروسية: ظاهرة":"🇷🇺 الترجمة الروسية: مخفية";
@@ -612,12 +616,11 @@ $("sndToggle").onclick=()=>{settings.sound=!settings.sound;saveSet();
   $("sndToggle").innerHTML=settings.sound?"🔊 الصوت":"🔇 الصوت";$("sndToggle").classList.toggle("off",!settings.sound)};
 $("quitBtn").onclick=()=>{if(confirm("إنهاء اللعبة الآن؟"))endGame()};
 
-/* ===================== GAME FLOW ===================== */
 function pool(){const p=words.filter(w=>settings.cats.includes(w.c));return p.length>=4?p:words}
 function show(id){["screen-start","screen-game","screen-end"].forEach(s=>$(s).classList.toggle("hidden",s!==id));
   $("quitBtn").classList.toggle("hidden",id!=="screen-game")}
 $("startBtn").onclick=()=>{
-  if(pool().length<4)return toast("أضف ٤ كلمات على الأقل ❗ / Добавьте минимум 4 слова");
+  if(pool().length<4)return toast("أضف ٤ كلمات على الأقل ❗");
   ac();teams.forEach(t=>t.score=0);S.qIndex=0;show("screen-game");sCorrect();nextTurn();
 };
 $("againBtn").onclick=()=>{teams.forEach(t=>t.score=0);S.qIndex=0;show("screen-game");nextTurn()};
@@ -641,7 +644,6 @@ function nextTurn(){
   if(duelTurn)return startDuel();
   startQuestion(rnd(settings.types));
 }
-/* ---------- WHEEL ---------- */
 const WSEG=[{k:"mcq_ar_ru",l:"🎯 اختيار",c:"#ff6b6b"},{k:"scramble",l:"🔀 ترتيب حروف",c:"#4ab8ff"},
  {k:"listen",l:"🔊 استماع",c:"#2ecc71"},{k:"quick",l:"⚡ سؤال سريع",c:"#ffd24a"},
  {k:"match",l:"🔗 توصيل",c:"#ff7ad5"},{k:"x2",l:"✖️2 نقاط مضاعفة",c:"#a78bfa"}];
@@ -666,7 +668,6 @@ function showWheel(){
     },4400);
   };
 }
-/* ---------- TIMER ---------- */
 function startTimer(sec){
   stopTimer();S.total=sec;S.timeLeft=sec;updTimer();
   S.timer=setInterval(()=>{
@@ -684,7 +685,6 @@ function updTimer(){
 }
 function timeUp(){if(!S.answered)finish(false,"⏰ انتهى الوقت!","Время вышло!")}
 
-/* ---------- QUESTION BUILDERS ---------- */
 function startQuestion(type){
   S.type=type;S.answered=false;
   const t=teams[S.teamIdx];
@@ -740,7 +740,7 @@ function buildListen(head){
     <div><button class="icon-btn" id="showWord" style="margin-top:8px">👁 لا يوجد صوت؟ اعرض الكلمة للمعلم</button></div>`;
   $("answerArea").innerHTML=optionsHTML(opts.map(o=>disp(o)),false);
   const ok=speak(w);
-  $("playSnd").onclick=()=>{if(!speak(w))toast("المتصفح لا يدعم النطق — استخدم «اعرض الكلمة»")};
+  $("playSnd").onclick=()=>{if(!speak(w))toast("المتصفح لا يدعم النطق")};
   $("showWord").onclick=()=>{$("showWord").outerHTML=`<div class="prompt-ar" style="font-size:34px">${esc(disp(w))}</div>`};
   if(!ok)setTimeout(()=>toast("لا يوجد نطق عربي — استخدم زر «اعرض الكلمة»"),500);
   bindOpts(ci);
@@ -752,7 +752,7 @@ function buildQuick(head){
   const shown=trueQ?w.ru:other.ru;
   $("qCard").innerHTML=head+`<div class="prompt-ar">${esc(disp(w))}</div>
     <div class="prompt-ru" style="font-size:clamp(20px,4.6vw,34px)">= ${esc(shown)} ?</div>
-    <div class="sub">صح أم خطأ؟ (١٢ ثانية)<span class="ru">Верно или неверно? (12 сек)</span></div>`;
+    <div class="sub">صح أم خطأ؟ (١٢ ثانية)<span class="ru">Верно или неверно?</span></div>`;
   $("answerArea").innerHTML=`<div class="opts">
     <button class="opt" data-i="0">✅ صحيح<span class="ru">Верно</span></button>
     <button class="opt" data-i="1">❌ خطأ<span class="ru">Неверно</span></button></div>`;
@@ -807,7 +807,6 @@ function buildMatch(head){
     }
   });
 }
-/* ---------- DUEL ---------- */
 function startDuel(){
   S.type="duel";S.answered=false;S.steal=false;S.stage="buzz";
   const w=rnd(pool());S.word=w;
@@ -815,7 +814,7 @@ function startDuel(){
   $("turnBanner").innerHTML=`⚔️ تحدي بين الفرق!<span class="ru">Дуэль команд!</span>`;
   $("qCard").innerHTML=`<div class="qtype">⚔️ تحدي بين فريقين<span class="ru">Дуэль</span></div>
     <div class="prompt-ar">${esc(disp(w))}</div>
-    <div class="sub">مَن يعرف المعنى؟ اضغط زر فريقك أولاً!<span class="ru">Кто знает перевод? Нажмите кнопку своей команды!</span></div>
+    <div class="sub">مَن يعرف المعنى؟ اضغط زر فريقك أولاً!<span class="ru">Кто знает перевод?</span></div>
     <div class="sub">إجابة صحيحة = +15 نقطة<span class="ru">Правильный ответ = +15</span></div>`;
   $("answerArea").innerHTML=`<div class="buzz-grid">${teams.map((t,i)=>
     `<button class="buzz" data-i="${i}" style="background:${t.col}">${t.em} ${esc(t.name)}</button>`).join("")}</div>`;
@@ -826,7 +825,7 @@ function startDuel(){
 function duelAnswer(isSteal){
   S.steal=isSteal;S.stage="answer";
   const t=teams[S.teamIdx];
-  $("turnBanner").innerHTML=`${t.em} <span style="color:${t.col}">${esc(t.name)}</span> ${isSteal?"— فرصة السرقة!":"— أجب الآن!"}<span class="ru">${isSteal?"Шанс перехвата":"Отвечайте!"}</span>`;
+  $("turnBanner").innerHTML=`${t.em} <span style="color:${t.col}">${esc(t.name)}</span> ${isSteal?"— فرصة السرقة!":"— أجب الآن!"}`;
   $("answerArea").innerHTML=optionsHTML(S.duelOpts.map(o=>o.ru),true);
   bindOpts(S.duelCi,ok=>{
     if(ok){finish(true)}
@@ -845,7 +844,6 @@ function duelAnswer(isSteal){
   });
   startTimer(isSteal?12:15);
 }
-/* ---------- FINISH / REVEAL ---------- */
 function finish(ok,msgAr,msgRu){
   if(S.answered)return;S.answered=true;stopTimer();
   const t=teams[S.teamIdx];let pts=0,speed=false;
@@ -863,7 +861,7 @@ function finish(ok,msgAr,msgRu){
       <span class="ans-ru" style="font-size:clamp(16px,3vw,24px)"> = ${esc(p.ru)}</span></div>`).join("");
   }else{
     const g=w.g?`<span class="badge ${w.g}">${w.g==="f"?"مؤنث / ж.р.":"مذكر / м.р."}</span>`:"";
-    const vn=w.t==="v"?`<div class="sub">الصيغة: (الماضي – المضارع)<span class="ru">Форма: прош. – наст. время</span></div>`:"";
+    const vn=w.t==="v"?`<div class="sub">الصيغة: (الماضي – المضارع)<span class="ru">Форма: прош. – наст.</span></div>`:"";
     ansHTML=`<div class="ans-ar">${esc(disp(w))}</div><div class="ans-ru">= ${esc(w.ru)}</div>
       <div style="margin-top:6px">${g} <span class="badge">${CATS[w.c]?CATS[w.c].ar:""}</span></div>${vn}`;
   }
@@ -871,13 +869,12 @@ function finish(ok,msgAr,msgRu){
   r.innerHTML=`<div class="res">${ok?"🎉 إجابة صحيحة!":"❌ "+(msgAr||"إجابة غير صحيحة")}
       <span class="ru">${ok?"Правильно!":(msgRu||"Неверно")}</span></div>
     ${ansHTML}
-    <div class="pts">${ok?`${t.em} ${esc(t.name)} +${pts} نقطة ${speed?"⚡ مكافأة سرعة +5":""} ${S.mult>1?"✖️2":""}`:"0 نقطة"}
-      <span class="ru">${ok?"очков":"очков"}</span></div>`;
+    <div class="pts">${ok?`${t.em} ${esc(t.name)} +${pts} نقطة ${speed?"⚡ +5 سرعة":""} ${S.mult>1?"✖️2":""}`:"0 نقطة"}
+      <span class="ru">очков</span></div>`;
   r.classList.remove("hidden");
   $("nextBtn").classList.remove("hidden");
   $("nextBtn").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-/* ---------- END ---------- */
 function endGame(){
   stopTimer();show("screen-end");sWin();confetti(180);
   const sorted=teams.map((t,i)=>t).slice().sort((a,b)=>b.score-a.score);
@@ -893,11 +890,12 @@ function endGame(){
     `<div style="display:flex;justify-content:space-between;background:rgba(255,255,255,.08);margin:6px auto;max-width:430px;padding:10px 16px;border-radius:14px;border-right:6px solid ${t.col}">
       <span>${["🥇","🥈","🥉"][i]||"🎖"} ${t.em} ${esc(t.name)}</span><b>${t.score}</b></div>`).join("")}</div>`;
 }
+
 /* ===================== INIT ===================== */
-/* ✅ تعديل 4: ترتيب التهيئة الصحيح */
 loadAll();
 rebuildCATS();
 syncCats();
+saveWords();  /* ✅ يحفظ النسخة المُصحَّحة */
 applyRu();renderTeams();renderSettings();renderWordUI();
 $("sndToggle").innerHTML=settings.sound?"🔊 الصوت":"🔇 الصوت";
 if("speechSynthesis"in window){speechSynthesis.onvoiceschanged=()=>{}}
