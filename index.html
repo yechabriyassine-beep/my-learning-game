@@ -50,8 +50,8 @@ header{display:flex;align-items:center;justify-content:space-between;gap:10px;fl
 .btn.big{font-size:clamp(18px,3.4vw,26px);padding:16px 34px;width:100%;max-width:420px;margin:14px auto 0;display:block}
 .hidden{display:none !important}
 .tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.tab{flex:1;min-width:110px;background:var(--card);border:1px solid rgba(255,255,255,.15);color:var(--txt);
-  border-radius:16px;padding:10px;font-family:inherit;font-size:clamp(14px,2.4vw,18px);font-weight:700;cursor:pointer;transition:.2s}
+.tab{flex:1;min-width:100px;background:var(--card);border:1px solid rgba(255,255,255,.15);color:var(--txt);
+  border-radius:16px;padding:10px;font-family:inherit;font-size:clamp(13px,2.2vw,17px);font-weight:700;cursor:pointer;transition:.2s}
 .tab.active{background:linear-gradient(180deg,#ffe489,var(--gold));color:#10203f;border-color:transparent}
 .tabpane{display:none;animation:fade .3s}
 .tabpane.active{display:block}
@@ -104,7 +104,7 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .sub{font-size:clamp(13px,2.2vw,16px);opacity:.75;margin-top:6px}
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .opt{font-family:inherit;cursor:pointer;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;
-  border-radius:18px;padding:16px;font-size:clamp(19px,3.6vw,30px);font-weight:700;transition:.15s;min-height:66px}
+  border-radius:18px;padding:16px;font-size:clamp(17px,3.2vw,26px);font-weight:700;transition:.15s;min-height:66px}
 .opt .ru{font-size:.6em}
 .opt:hover:not(:disabled){background:rgba(255,255,255,.2);transform:translateY(-3px)}
 .opt.lat{font-family:"Segoe UI",Arial;direction:ltr}
@@ -152,10 +152,45 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 #fx{position:fixed;inset:0;pointer-events:none;z-index:50}
 .toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);padding:10px 22px;border-radius:999px;
   font-weight:800;z-index:60;font-size:18px;animation:pop .3s}
+/* TEXTS */
+.text-item{background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;padding:16px;margin-bottom:14px;position:relative}
+.text-item h4{font-size:clamp(17px,3vw,22px);color:var(--gold);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-left:180px}
+.text-item h4 .tnum{background:var(--gold);color:#102;font-size:.7em;
+  padding:2px 9px;border-radius:999px;font-weight:800}
+.text-item .tx-tools{position:absolute;top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap}
+.text-item .tx-tools button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.2);
+  color:#fff;border-radius:10px;padding:5px 10px;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
+.text-item .tx-tools button:hover{background:var(--gold);color:#102}
+.tx-body{font-size:clamp(16px,2.8vw,20px);line-height:2.1;color:#fff;white-space:pre-wrap;padding:8px 4px}
+.tx-body.dialog .line{margin:3px 0}
+.tx-body .speaker{color:var(--blue);font-weight:800;margin-left:6px}
+.tx-tr{margin-top:12px;padding-top:12px;border-top:1px dashed rgba(255,255,255,.2);
+  font-family:"Segoe UI",Arial;direction:ltr;text-align:left;
+  color:#cfe0ff;font-size:clamp(13px,2.3vw,16px);line-height:1.9;white-space:pre-wrap}
+.tx-tr.hidden{display:none}
+body.reading-mode .text-item{background:rgba(255,255,255,.04);border-color:transparent}
+body.reading-mode .text-item .tx-tr{display:none !important}
+body.reading-mode .text-item .tx-tools button[data-t="ru"]{display:none}
+.tx-quiz{margin-top:14px;padding-top:14px;border-top:1px dashed rgba(255,255,255,.25)}
+.tx-quiz .q-head{font-size:clamp(15px,2.5vw,19px);font-weight:800;color:var(--gold);margin-bottom:10px}
+.tx-quiz .q-text{font-size:clamp(17px,3vw,22px);font-weight:800;color:#fff;margin-bottom:10px}
+.tx-quiz .q-opts{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:10px}
+.tx-quiz .q-opt{font-family:inherit;cursor:pointer;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;
+  border-radius:14px;padding:12px 16px;font-size:clamp(15px,2.6vw,20px);font-weight:700;transition:.15s;text-align:right}
+.tx-quiz .q-opt:hover:not(:disabled){background:rgba(255,255,255,.18)}
+.tx-quiz .q-opt.correct{background:linear-gradient(180deg,#4fe08a,#1fa05b);border-color:#fff}
+.tx-quiz .q-opt.wrong{background:linear-gradient(180deg,#ff8a9c,#d8384f);border-color:#fff}
+.tx-quiz .q-opt:disabled{cursor:default;opacity:.9}
+.tx-quiz .q-progress{font-size:14px;opacity:.75;margin-bottom:6px}
+.tx-quiz .q-final{text-align:center;padding:20px}
+.tx-quiz .q-final .score{font-size:clamp(30px,7vw,52px);font-weight:800;color:var(--gold);margin:10px 0}
 @media(max-width:560px){
   .match-wrap{gap:6px}
   .letter{width:52px;height:52px;font-size:25px}
   .opts{grid-template-columns:1fr}
+  .text-item h4{padding-left:0;padding-top:36px}
 }
 </style>
 </head>
@@ -180,6 +215,7 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
       <button class="tab active" data-tab="teams">👥 الفرق<span class="ru">Команды</span></button>
       <button class="tab" data-tab="settings">⚙️ الإعدادات<span class="ru">Настройки</span></button>
       <button class="tab" data-tab="words">📚 الكلمات<span class="ru">Слова</span></button>
+      <button class="tab" data-tab="texts">📖 النصوص<span class="ru">Тексты</span></button>
     </div>
 
     <div class="tabpane active" id="tab-teams">
@@ -241,6 +277,21 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
         <div class="wordlist" id="wordList"></div>
       </div>
     </div>
+
+    <div class="tabpane" id="tab-texts">
+      <div class="card">
+        <h3>📖 النصوص والحوارات <span class="ru">Тексты и диалоги</span></h3>
+        <div style="font-size:13px;opacity:.75;margin-bottom:10px">
+          كل النصوص مبنية من كلمات اللعبة فقط. اضغط 🔊 للاستماع، و🇷🇺 لإظهار الترجمة، و🎯 لبدء أسئلة الفهم.
+          <span class="ru">Все тексты — только из слов игры.</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+          <button class="icon-btn" id="txToggleAll">🇷🇺 إظهار/إخفاء كل الترجمات</button>
+          <button class="icon-btn" id="txHideNonAr">👁 وضع القراءة فقط (عربي)</button>
+        </div>
+        <div id="textsBox"></div>
+      </div>
+    </div>
   </section>
 
   <section id="screen-game" class="hidden">
@@ -287,7 +338,22 @@ const CAT_RU={
   "الألبان":"Молочные продукты",
   "المشروبات":"Напитки",
   "اللحوم":"Мясо",
-  "السمك":"Рыба"
+  "السمك":"Рыба",
+  "الوقت":"Время",
+  "أفعال الوقت":"Глаголы времени",
+  "العمل والوظائف":"Работа и должности",
+  "المكتب وأدواته":"Офис и инструменты",
+  "الزملاء والرؤساء":"Коллеги и начальство",
+  "الاجتماعات والمراسلات":"Совещания и переписка",
+  "الراتب والحقوق":"Зарплата и права",
+  "المهام والمواعيد":"Задачи и сроки",
+  "أفعال العمل":"Глаголы работы",
+  "عبارات العمل اليومية":"Рабочие фразы",
+  "أدوات الاستفهام":"Вопросительные слова",
+  "أمثلة: المدرسة":"Примеры: школа",
+  "أمثلة: البيت":"Примеры: дом",
+  "أمثلة: الوقت":"Примеры: время",
+  "أمثلة: العمل":"Примеры: работа"
 };
 function rebuildCATS(){
   const c={};
@@ -301,8 +367,6 @@ function syncCats(){
   if(settings.cats.length===0) settings.cats=valid.slice();
   saveSet();
 }
-
-/* ✅ ترجمة تلقائية لأي تنسيق JSON */
 function normalizeWord(w){
   if(!w||typeof w!=="object")return null;
   const out={};
@@ -328,82 +392,266 @@ function normalizeWord(w){
 }
 
 const DEFAULT_WORDS=[
- {t:"n",ar:"مَدْرَسَة",ru:"школа",g:"f",c:"places"},
- {t:"n",ar:"جَامِعَة",ru:"университет",g:"f",c:"places"},
- {t:"n",ar:"مَكْتَبَة",ru:"библиотека",g:"f",c:"places"},
- {t:"n",ar:"بَيْت",ru:"дом",g:"m",c:"places"},
- {t:"n",ar:"سُوق",ru:"рынок",g:"m",c:"places"},
- {t:"n",ar:"مُسْتَشْفَى",ru:"больница",g:"m",c:"places"},
- {t:"n",ar:"مَطَار",ru:"аэропорт",g:"m",c:"places"},
- {t:"n",ar:"شَارِع",ru:"улица",g:"m",c:"places"},
- {t:"n",ar:"مَدِينَة",ru:"город",g:"f",c:"places"},
- {t:"n",ar:"قَرْيَة",ru:"деревня",g:"f",c:"places"},
- {t:"n",ar:"مَطْعَم",ru:"ресторан",g:"m",c:"places"},
- {t:"n",ar:"حَدِيقَة",ru:"сад, парк",g:"f",c:"places"},
- {t:"n",ar:"مَلْعَب",ru:"стадион",g:"m",c:"places"},
- {t:"n",ar:"غُرْفَة",ru:"комната",g:"f",c:"places"},
- {t:"n",ar:"مُدِير",ru:"директор (м.)",g:"m",c:"school"},
- {t:"n",ar:"مُدِيرَة",ru:"директор (ж.)",g:"f",c:"school"},
- {t:"n",ar:"مُعَلِّم",ru:"учитель",g:"m",c:"school"},
- {t:"n",ar:"مُعَلِّمَة",ru:"учительница",g:"f",c:"school"},
- {t:"n",ar:"طَالِب",ru:"студент",g:"m",c:"school"},
- {t:"n",ar:"طَالِبَة",ru:"студентка",g:"f",c:"school"},
- {t:"n",ar:"أُسْتَاذ",ru:"преподаватель",g:"m",c:"school"},
- {t:"n",ar:"مُوَظَّف",ru:"служащий",g:"m",c:"school"},
- {t:"n",ar:"مُوَظَّفَة",ru:"служащая",g:"f",c:"school"},
- {t:"n",ar:"زَمِيل",ru:"коллега, однокурсник",g:"m",c:"school"},
- {t:"n",ar:"إِدَارَة",ru:"администрация",g:"f",c:"school"},
- {t:"n",ar:"مَكْتَب",ru:"кабинет, стол",g:"m",c:"school"},
- {t:"n",ar:"فَصْل",ru:"класс",g:"m",c:"school"},
- {t:"n",ar:"دَرْس",ru:"урок",g:"m",c:"school"},
- {t:"n",ar:"وَاجِب",ru:"домашнее задание",g:"m",c:"school"},
- {t:"n",ar:"اِمْتِحَان",ru:"экзамен",g:"m",c:"school"},
- {t:"n",ar:"جَدْوَل",ru:"расписание",g:"m",c:"school"},
- {t:"n",ar:"عُطْلَة",ru:"каникулы, отпуск",g:"f",c:"school"},
- {t:"n",ar:"شَهَادَة",ru:"диплом, свидетельство",g:"f",c:"school"},
- {t:"n",ar:"كِتَاب",ru:"книга",g:"m",c:"read"},
- {t:"n",ar:"دَفْتَر",ru:"тетрадь",g:"m",c:"read"},
- {t:"n",ar:"قَلَم",ru:"ручка, карандаш",g:"m",c:"read"},
- {t:"n",ar:"قِرَاءَة",ru:"чтение",g:"f",c:"read"},
- {t:"n",ar:"كِتَابَة",ru:"письмо (процесс)",g:"f",c:"read"},
- {t:"n",ar:"رِسَالَة",ru:"письмо (послание)",g:"f",c:"read"},
- {t:"n",ar:"وَرَقَة",ru:"лист бумаги",g:"f",c:"read"},
- {t:"n",ar:"صَفْحَة",ru:"страница",g:"f",c:"read"},
- {t:"n",ar:"كَلِمَة",ru:"слово",g:"f",c:"read"},
- {t:"n",ar:"جُمْلَة",ru:"предложение",g:"f",c:"read"},
- {t:"n",ar:"حَرْف",ru:"буква",g:"m",c:"read"},
- {t:"n",ar:"نَصّ",ru:"текст",g:"m",c:"read"},
- {t:"n",ar:"قَامُوس",ru:"словарь",g:"m",c:"read"},
- {t:"n",ar:"مَجَلَّة",ru:"журнал",g:"f",c:"read"},
- {t:"n",ar:"جَرِيدَة",ru:"газета",g:"f",c:"read"},
- {t:"n",ar:"سَبُّورَة",ru:"доска",g:"f",c:"read"},
- {t:"v",past:"كَتَبَ",pres:"يَكْتُبُ",ru:"писать",c:"verbs"},
- {t:"v",past:"قَرَأَ",pres:"يَقْرَأُ",ru:"читать",c:"verbs"},
- {t:"v",past:"دَرَسَ",pres:"يَدْرُسُ",ru:"учиться, изучать",c:"verbs"},
- {t:"v",past:"عَلَّمَ",pres:"يُعَلِّمُ",ru:"преподавать",c:"verbs"},
- {t:"v",past:"فَهِمَ",pres:"يَفْهَمُ",ru:"понимать",c:"verbs"},
- {t:"v",past:"سَأَلَ",pres:"يَسْأَلُ",ru:"спрашивать",c:"verbs"},
- {t:"v",past:"أَجَابَ",pres:"يُجِيبُ",ru:"отвечать",c:"verbs"},
- {t:"v",past:"تَكَلَّمَ",pres:"يَتَكَلَّمُ",ru:"говорить",c:"verbs"},
- {t:"v",past:"سَمِعَ",pres:"يَسْمَعُ",ru:"слышать, слушать",c:"verbs"},
- {t:"v",past:"شَاهَدَ",pres:"يُشَاهِدُ",ru:"смотреть",c:"verbs"},
- {t:"v",past:"ذَهَبَ",pres:"يَذْهَبُ",ru:"идти, ходить",c:"verbs"},
- {t:"v",past:"رَجَعَ",pres:"يَرْجِعُ",ru:"возвращаться",c:"verbs"},
- {t:"v",past:"خَرَجَ",pres:"يَخْرُجُ",ru:"выходить",c:"verbs"},
- {t:"v",past:"دَخَلَ",pres:"يَدْخُلُ",ru:"входить",c:"verbs"},
- {t:"v",past:"جَلَسَ",pres:"يَجْلِسُ",ru:"сидеть, садиться",c:"verbs"},
- {t:"v",past:"عَمِلَ",pres:"يَعْمَلُ",ru:"работать",c:"verbs"},
- {t:"v",past:"سَكَنَ",pres:"يَسْكُنُ",ru:"жить, проживать",c:"verbs"},
- {t:"v",past:"أَكَلَ",pres:"يَأْكُلُ",ru:"есть, кушать",c:"verbs"},
- {t:"v",past:"شَرِبَ",pres:"يَشْرَبُ",ru:"пить",c:"verbs"},
- {t:"v",past:"حَفِظَ",pres:"يَحْفَظُ",ru:"учить наизусть",c:"verbs"},
- {t:"v",past:"فَتَحَ",pres:"يَفْتَحُ",ru:"открывать",c:"verbs"},
- {t:"v",past:"نَسِيَ",pres:"يَنْسَى",ru:"забывать",c:"verbs"},
- {t:"v",past:"عَرَفَ",pres:"يَعْرِفُ",ru:"знать",c:"verbs"},
- {t:"v",past:"سَافَرَ",pres:"يُسَافِرُ",ru:"путешествовать",c:"verbs"},
- {t:"v",past:"وَصَلَ",pres:"يَصِلُ",ru:"прибывать",c:"verbs"},
- {t:"v",past:"بَدَأَ",pres:"يَبْدَأُ",ru:"начинать",c:"verbs"}
+ {t:"n",ar:"مَدْرَسَة",ru:"школа",g:"f",c:"أماكن"},
+ {t:"n",ar:"جَامِعَة",ru:"университет",g:"f",c:"أماكن"},
+ {t:"n",ar:"مَكْتَبَة",ru:"библиотека",g:"f",c:"أماكن"},
+ {t:"n",ar:"بَيْت",ru:"дом",g:"m",c:"أماكن"},
+ {t:"n",ar:"سُوق",ru:"рынок",g:"m",c:"أماكن"},
+ {t:"n",ar:"مُسْتَشْفَى",ru:"больница",g:"m",c:"أماكن"},
+ {t:"n",ar:"مَطَار",ru:"аэропорт",g:"m",c:"أماكن"},
+ {t:"n",ar:"شَارِع",ru:"улица",g:"m",c:"أماكن"},
+ {t:"n",ar:"مَدِينَة",ru:"город",g:"f",c:"أماكن"},
+ {t:"n",ar:"قَرْيَة",ru:"деревня",g:"f",c:"أماكن"},
+ {t:"n",ar:"مَطْعَم",ru:"ресторан",g:"m",c:"أماكن"},
+ {t:"n",ar:"حَدِيقَة",ru:"сад, парк",g:"f",c:"أماكن"},
+ {t:"n",ar:"مَلْعَب",ru:"стадион",g:"m",c:"أماكن"},
+ {t:"n",ar:"غُرْفَة",ru:"комната",g:"f",c:"أماكن"},
+ {t:"n",ar:"مُدِير",ru:"директор (м.)",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُدِيرَة",ru:"директор (ж.)",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُعَلِّم",ru:"учитель",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُعَلِّمَة",ru:"учительница",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"طَالِب",ru:"студент",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"طَالِبَة",ru:"студентка",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"أُسْتَاذ",ru:"преподаватель",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُوَظَّف",ru:"служащий",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُوَظَّفَة",ru:"служащая",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"زَمِيل",ru:"коллега, однокурсник",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"إِدَارَة",ru:"администрация",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مَكْتَب",ru:"кабинет, стол",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"فَصْل",ru:"класс",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"دَرْس",ru:"урок",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"وَاجِب",ru:"домашнее задание",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"اِمْتِحَان",ru:"экзамен",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"جَدْوَل",ru:"расписание",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"عُطْلَة",ru:"каникулы, отпуск",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"شَهَادَة",ru:"диплом, свидетельство",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"كِتَاب",ru:"книга",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"دَفْتَر",ru:"тетрадь",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قَلَم",ru:"ручка, карандаш",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قِرَاءَة",ru:"чтение",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"كِتَابَة",ru:"письмо (процесс)",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"رِسَالَة",ru:"письмо (послание)",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"وَرَقَة",ru:"лист бумаги",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"صَفْحَة",ru:"страница",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"كَلِمَة",ru:"слово",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"جُمْلَة",ru:"предложение",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"حَرْف",ru:"буква",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"نَصّ",ru:"текст",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قَامُوس",ru:"словарь",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"مَجَلَّة",ru:"журнал",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"جَرِيدَة",ru:"газета",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"سَبُّورَة",ru:"доска",g:"f",c:"القراءة والكتابة"},
+ {t:"v",past:"كَتَبَ",pres:"يَكْتُبُ",ru:"писать",c:"أفعال"},
+ {t:"v",past:"قَرَأَ",pres:"يَقْرَأُ",ru:"читать",c:"أفعال"},
+ {t:"v",past:"دَرَسَ",pres:"يَدْرُسُ",ru:"учиться, изучать",c:"أفعال"},
+ {t:"v",past:"عَلَّمَ",pres:"يُعَلِّمُ",ru:"преподавать",c:"أفعال"},
+ {t:"v",past:"فَهِمَ",pres:"يَفْهَمُ",ru:"понимать",c:"أفعال"},
+ {t:"v",past:"سَأَلَ",pres:"يَسْأَلُ",ru:"спрашивать",c:"أفعال"},
+ {t:"v",past:"أَجَابَ",pres:"يُجِيبُ",ru:"отвечать",c:"أفعال"},
+ {t:"v",past:"تَكَلَّمَ",pres:"يَتَكَلَّمُ",ru:"говорить",c:"أفعال"},
+ {t:"v",past:"سَمِعَ",pres:"يَسْمَعُ",ru:"слышать, слушать",c:"أفعال"},
+ {t:"v",past:"شَاهَدَ",pres:"يُشَاهِدُ",ru:"смотреть",c:"أفعال"},
+ {t:"v",past:"ذَهَبَ",pres:"يَذْهَبُ",ru:"идти, ходить",c:"أفعال"},
+ {t:"v",past:"رَجَعَ",pres:"يَرْجِعُ",ru:"возвращаться",c:"أفعال"},
+ {t:"v",past:"خَرَجَ",pres:"يَخْرُجُ",ru:"выходить",c:"أفعال"},
+ {t:"v",past:"دَخَلَ",pres:"يَدْخُلُ",ru:"входить",c:"أفعال"},
+ {t:"v",past:"جَلَسَ",pres:"يَجْلِسُ",ru:"сидеть, садиться",c:"أفعال"},
+ {t:"v",past:"عَمِلَ",pres:"يَعْمَلُ",ru:"работать",c:"أفعال"},
+ {t:"v",past:"سَكَنَ",pres:"يَسْكُنُ",ru:"жить, проживать",c:"أفعال"},
+ {t:"v",past:"أَكَلَ",pres:"يَأْكُلُ",ru:"есть, кушать",c:"أفعال"},
+ {t:"v",past:"شَرِبَ",pres:"يَشْرَبُ",ru:"пить",c:"أفعال"},
+ {t:"v",past:"حَفِظَ",pres:"يَحْفَظُ",ru:"учить наизусть",c:"أفعال"},
+ {t:"v",past:"فَتَحَ",pres:"يَفْتَحُ",ru:"открывать",c:"أفعال"},
+ {t:"v",past:"نَسِيَ",pres:"يَنْسَى",ru:"забывать",c:"أفعال"},
+ {t:"v",past:"عَرَفَ",pres:"يَعْرِفُ",ru:"знать",c:"أفعال"},
+ {t:"v",past:"سَافَرَ",pres:"يُسَافِرُ",ru:"путешествовать",c:"أفعال"},
+ {t:"v",past:"وَصَلَ",pres:"يَصِلُ",ru:"прибывать",c:"أفعال"},
+ {t:"v",past:"بَدَأَ",pres:"يَبْدَأُ",ru:"начинать",c:"أفعال"}
 ];
+
+/* ===================== TEXTS + QUIZ ===================== */
+const TEXTS=[
+{
+  title:"حِوَار: فِي الصَّفّ",
+  type:"dialog",
+  body:[
+    ["المُعَلِّم:","صَبَاح الخَيْر."],
+    ["الطَّالِب:","صَبَاح الخَيْر."],
+    ["المُعَلِّم:","كَيْفَ حَالُك؟"],
+    ["الطَّالِب:","كُلُّ شَيْءٍ عَلَى مَا يُرَام. وَأَنْتَ؟"],
+    ["المُعَلِّم:","بِخَيْر، شُكْرًا."],
+    ["المُعَلِّم:","هَلْ فَهِمْتَ الدَّرْس؟"],
+    ["الطَّالِب:","نَعَمْ، فَهِمْتُ الدَّرْس."],
+    ["المُعَلِّم:","مَا هُوَ وَاجِبُ اليَوْم؟"],
+    ["الطَّالِب:","الوَاجِب: أَكْتُبُ الكَلِمَات، وَأَقْرَأُ النَّصّ."],
+    ["المُعَلِّم:","أَيْنَ الكِتَاب؟"],
+    ["الطَّالِب:","الكِتَابُ فِي الحَقِيبَة."],
+    ["المُعَلِّم:","مَتَى الامْتِحَان؟"],
+    ["الطَّالِب:","الامْتِحَانُ يَوْمَ الخَمِيس."],
+    ["المُعَلِّم:","يَوْم مُوَفَّق."],
+    ["الطَّالِب:","شُكْرًا. إِلَى اللِّقَاء."]
+  ],
+  translation:"Учитель: Доброе утро.\nУченик: Доброе утро.\nУчитель: Как дела?\nУченик: Всё хорошо. А ты?\nУчитель: Хорошо, спасибо.\nУчитель: Ты понял урок?\nУченик: Да, я понял урок.\nУчитель: Какое домашнее задание на сегодня?\nУченик: Задание: пишу слова и читаю текст.\nУчитель: Где книга?\nУченик: Книга в сумке.\nУчитель: Когда экзамен?\nУченик: Экзамен в четверг.\nУчитель: Удачного дня.\nУченик: Спасибо. До свидания.",
+  quiz:[
+    {q:"كَيْفَ حَالُ الطَّالِب؟",opts:["بِخَيْر","كُلُّ شَيْءٍ عَلَى مَا يُرَام","تَعْبَان","مَرِيض"],correct:1},
+    {q:"هَلْ فَهِمَ الطَّالِبُ الدَّرْس؟",opts:["لَا","نَعَمْ","أَحْيَانًا","لَا أَعْرِف"],correct:1},
+    {q:"أَيْنَ الكِتَاب؟",opts:["فِي المَكْتَبَة","عَلَى الطَّاوِلَة","فِي الحَقِيبَة","فِي المَكْتَب"],correct:2},
+    {q:"مَتَى الامْتِحَان؟",opts:["يَوْمَ السَّبْت","يَوْمَ الأَحَد","يَوْمَ الخَمِيس","يَوْمَ الجُمْعَة"],correct:2}
+  ]
+},
+{
+  title:"نَصّ: بَيْتِي",
+  type:"text",
+  body:[
+    ["","بَيْتِي فِيهِ غُرْفَة الجُلُوس، وَغُرْفَة النَّوْم، وَغُرْفَة الطَّعَام، وَمَطْبَخ، وَحَمَّام، وَشُرْفَة."],
+    ["","فِي غُرْفَة الجُلُوس: أَرِيكَة، وَسَجَّادَة، وَتِلْفَاز، وَمِصْبَاح."],
+    ["","فِي غُرْفَة النَّوْم: سِرِير، وَخِزَانَة، وَمِرْآة."],
+    ["","فِي المَطْبَخ: ثَلَّاجَة، وَفُرْن، وَمَغْسَلَة، وَطَاوِلَة، وَمِنْشَفَة المَطْبَخ."],
+    ["","فِي الحَمَّام: مَغْسَلَة، وَمِرْآة، وَمِنْشَفَة."],
+    ["","أُحِبُّ بَيْتِي."]
+  ],
+  translation:"В моём доме есть гостиная, спальня, столовая, кухня, ванная и балкон.\nВ гостиной: диван, ковёр, телевизор, лампа.\nВ спальне: кровать, шкаф, зеркало.\nНа кухне: холодильник, печь, раковина, стол, кухонное полотенце.\nВ ванной: раковина, зеркало, полотенце.\nЯ люблю свой дом.",
+  quiz:[
+    {q:"أَيْنَ التِّلْفَاز؟",opts:["فِي غُرْفَة النَّوْم","فِي غُرْفَة الجُلُوس","فِي المَطْبَخ","فِي الحَمَّام"],correct:1},
+    {q:"أَيْنَ الثَّلَّاجَة؟",opts:["فِي غُرْفَة الجُلُوس","فِي غُرْفَة النَّوْم","فِي المَطْبَخ","فِي الشُّرْفَة"],correct:2},
+    {q:"أَيْنَ السِّرِير؟",opts:["فِي غُرْفَة النَّوْم","فِي المَطْبَخ","فِي الحَمَّام","فِي غُرْفَة الطَّعَام"],correct:0},
+    {q:"مَاذَا فِي الحَمَّام؟",opts:["أَرِيكَة","ثَلَّاجَة","سِرِير","مِرْآة"],correct:3},
+    {q:"هَلْ يُحِبُّ بَيْتَه؟",opts:["لَا","نَعَمْ","أَحْيَانًا","لَا أَعْرِف"],correct:1}
+  ]
+},
+{
+  title:"حِوَار: فِي المَطْبَخ",
+  type:"dialog",
+  body:[
+    ["أ:","أَيْنَ الأَرُزّ؟"],
+    ["ب:","الأَرُزُّ فِي المَطْبَخ."],
+    ["أ:","وَأَيْنَ الطَّمَاطِم؟"],
+    ["ب:","الطَّمَاطِمُ فِي الثَّلَّاجَة."],
+    ["أ:","هَلْ عِنْدَكَ خُبْز؟"],
+    ["ب:","نَعَمْ، الخُبْزُ عَلَى الطَّاوِلَة."],
+    ["أ:","مَا هَذَا الطَّبَق؟"],
+    ["ب:","هَذَا أَرُزّ، وَسَمَك، وَسَلَطَة."],
+    ["أ:","مَاذَا تَشْرَب؟"],
+    ["ب:","أَشْرَبُ شَايًّا."],
+    ["أ:","هَلْ عِنْدَكَ حَلِيب؟"],
+    ["ب:","لَا، لَكِنْ عِنْدِي عَصِير بُرْتُقَال."]
+  ],
+  translation:"А: Где рис?\nБ: Рис на кухне.\nА: А где помидоры?\nБ: Помидоры в холодильнике.\nА: У тебя есть хлеб?\nБ: Да, хлеб на столе.\nА: Что это за блюдо?\nБ: Это рис, рыба и салат.\nА: Что ты пьёшь?\nБ: Я пью чай.\nА: У тебя есть молоко?\nБ: Нет, но у меня есть апельсиновый сок.",
+  quiz:[
+    {q:"أَيْنَ الأَرُزّ؟",opts:["فِي الثَّلَّاجَة","فِي المَطْبَخ","عَلَى الطَّاوِلَة","فِي الفُرْن"],correct:1},
+    {q:"أَيْنَ الطَّمَاطِم؟",opts:["فِي المَطْبَخ","فِي الثَّلَّاجَة","عَلَى الطَّاوِلَة","فِي الحَقِيبَة"],correct:1},
+    {q:"أَيْنَ الخُبْز؟",opts:["فِي الثَّلَّاجَة","فِي المَطْبَخ","عَلَى الطَّاوِلَة","فِي الفُرْن"],correct:2},
+    {q:"مَاذَا يَشْرَب؟",opts:["قَهْوَة","حَلِيب","مَاء","شَاي"],correct:3},
+    {q:"مَا عِنْدَهُ بَدَلَ الحَلِيب؟",opts:["عَصِير بُرْتُقَال","قَهْوَة","شَاي","مَاء"],correct:0}
+  ]
+},
+{
+  title:"نَصّ: يَوْمِي",
+  type:"text",
+  body:[
+    ["","أَنَا مُوَظَّف. أَسْتَيْقِظُ صَبَاحًا. أَشْرَبُ قَهْوَة، وَآكُلُ خُبْزًا وَجُبْنًا."],
+    ["","أَذْهَبُ إِلَى العَمَل. أَصِلُ إِلَى المَكْتَب. أَعْمَلُ مِنَ الثَّامِنَةِ إِلَى الرَّابِعَة."],
+    ["","فِي المَسَاء: أَرْجِعُ إِلَى البَيْت. آكُلُ العَشَاء مَعَ زَمِيلِي. أَقْرَأُ كِتَابًا. أَنَامُ فِي اللَّيْل."]
+  ],
+  translation:"Я сотрудник. Просыпаюсь утром. Пью кофе, ем хлеб и сыр.\nИду на работу. Прихожу в офис. Работаю с восьми до четырёх.\nВечером: возвращаюсь домой. Ужинаю с коллегой. Читаю книгу. Сплю ночью.",
+  quiz:[
+    {q:"مَا هِيَ مِهْنَتُه؟",opts:["مُعَلِّم","طَالِب","مُوَظَّف","مُدِير"],correct:2},
+    {q:"مَاذَا يَشْرَبُ صَبَاحًا؟",opts:["شَاي","قَهْوَة","عَصِير","حَلِيب"],correct:1},
+    {q:"مَتَى يَعْمَل؟",opts:["مِنَ الثَّامِنَةِ إِلَى الرَّابِعَة","مِنَ التَّاسِعَةِ إِلَى الخَامِسَة","صَبَاحًا","لَيْلًا"],correct:0},
+    {q:"مَعَ مَنْ يَأْكُلُ العَشَاء؟",opts:["مَعَ المُدِير","مَعَ زَمِيلِه","مَعَ أُسْتَاذِه","وَحْدَه"],correct:1},
+    {q:"مَاذَا يَقْرَأُ؟",opts:["جَرِيدَة","مَجَلَّة","كِتَابًا","رِسَالَة"],correct:2}
+  ]
+},
+{
+  title:"حِوَار: فِي العَمَل",
+  type:"dialog",
+  body:[
+    ["المُدِير:","صَبَاح الخَيْر."],
+    ["المُوَظَّف:","صَبَاح الخَيْر."],
+    ["المُدِير:","هَلْ لَدَيْكَ دَقِيقَة؟"],
+    ["المُوَظَّف:","نَعَمْ."],
+    ["المُدِير:","أَيْنَ التَّقْرِير؟"],
+    ["المُوَظَّف:","التَّقْرِير فِي المُسْتَنَدَات."],
+    ["المُدِير:","مَتَى يُسَلَّمُ المَشْرُوع؟"],
+    ["المُوَظَّف:","المَشْرُوعُ جَاهِزٌ اليَوْم."],
+    ["المُدِير:","شُكْرًا عَلَى تَعَاوُنِك."],
+    ["المُوَظَّف:","لَا شُكْرَ عَلَى وَاجِب."],
+    ["المُدِير:","سَأُرْسِلُ المِلَفّ فِي البَرِيد الإِلِكْتُرُونِيّ."],
+    ["المُوَظَّف:","بِكُلِّ سُرُور. مَعَ التَّحِيَّة."]
+  ],
+  translation:"Директор: Доброе утро.\nСотрудник: Доброе утро.\nДиректор: У тебя есть минутка?\nСотрудник: Да.\nДиректор: Где отчёт?\nСотрудник: Отчёт в документах.\nДиректор: Когда сдаётся проект?\nСотрудник: Проект готов сегодня.\nДиректор: Спасибо за сотрудничество.\nСотрудник: Не стоит благодарности.\nДиректор: Я отправлю файл по электронной почте.\nСотрудник: С удовольствием. С уважением.",
+  quiz:[
+    {q:"مَاذَا يُرِيدُ المُدِيرُ مِنَ المُوَظَّف؟",opts:["كِتَاب","دَقِيقَة","قَلَم","مِلَفّ"],correct:1},
+    {q:"أَيْنَ التَّقْرِير؟",opts:["فِي المُسْتَنَدَات","فِي البَرِيد","فِي المَكْتَب","فِي الحَاسُوب"],correct:0},
+    {q:"هَلْ المَشْرُوعُ جَاهِز؟",opts:["لَا","نَعَمْ، اليَوْم","غَدًا","لَا أَعْرِف"],correct:1},
+    {q:"كَيْفَ سَيُرْسِلُ المِلَفّ؟",opts:["فِي البَرِيد الإِلِكْتُرُونِيّ","فِي المَكْتَب","مَعَ الزَّمِيل","فِي الفَاكْس"],correct:0}
+  ]
+},
+{
+  title:"نَصّ: أُسْبُوعِي",
+  type:"text",
+  body:[
+    ["","يَوْمُ السَّبْت: أَذْهَبُ إِلَى السُّوق."],
+    ["","يَوْمُ الأَحَد: أَعْمَلُ فِي المَكْتَب."],
+    ["","يَوْمُ الِاثْنَيْن: أَدْرُسُ اللُّغَةَ العَرَبِيَّة."],
+    ["","يَوْمُ الثُّلَاثَاء: أَقْرَأُ كِتَابًا."],
+    ["","يَوْمُ الأَرْبِعَاء: أَجْتَمِعُ مَعَ الزُّمَلَاء."],
+    ["","يَوْمُ الخَمِيس: أُكْمِلُ المُهِمَّات."],
+    ["","يَوْمُ الجُمْعَة: يَوْمُ عُطْلَة. أَسْتَرِيحُ فِي البَيْت."]
+  ],
+  translation:"Суббота: иду на рынок.\nВоскресенье: работаю в офисе.\nПонедельник: изучаю арабский язык.\nВторник: читаю книгу.\nСреда: собираюсь с коллегами.\nЧетверг: завершаю задачи.\nПятница: выходной. Отдыхаю дома.",
+  quiz:[
+    {q:"مَتَى يَذْهَبُ إِلَى السُّوق؟",opts:["السَّبْت","الأَحَد","الِاثْنَيْن","الجُمْعَة"],correct:0},
+    {q:"مَتَى يَدْرُسُ اللُّغَةَ العَرَبِيَّة؟",opts:["الأَحَد","الِاثْنَيْن","الثُّلَاثَاء","الخَمِيس"],correct:1},
+    {q:"مَتَى يَجْتَمِعُ مَعَ الزُّمَلَاء؟",opts:["الِاثْنَيْن","الثُّلَاثَاء","الأَرْبِعَاء","الجُمْعَة"],correct:2},
+    {q:"مَتَى يَوْمُ العُطْلَة؟",opts:["الخَمِيس","الجُمْعَة","السَّبْت","الأَحَد"],correct:1}
+  ]
+},
+{
+  title:"حِوَار: فِي المَكْتَب",
+  type:"dialog",
+  body:[
+    ["الزَّمِيل:","مَا هِيَ مُهِمَّتُكَ اليَوْم؟"],
+    ["أَنَا:","أَكْتُبُ تَقْرِيرًا، وَأُرْسِلُ المِلَفّ."],
+    ["الزَّمِيل:","مَتَى الاجْتِمَاع؟"],
+    ["أَنَا:","الاجْتِمَاعُ فِي السَّاعَةِ التَّاسِعَة."],
+    ["الزَّمِيل:","أَيْنَ الاجْتِمَاع؟"],
+    ["أَنَا:","فِي قَاعَة الاجْتِمَاعَات."],
+    ["الزَّمِيل:","هَلْ أَنْتَ مُتَفَرِّغٌ الآن؟"],
+    ["أَنَا:","لَا، لَكِنْ بَعْدَ قَلِيل."],
+    ["الزَّمِيل:","سَنَتَحَدَّثُ لَاحِقًا."],
+    ["أَنَا:","بِكُلِّ سُرُور."]
+  ],
+  translation:"Коллега: Какая у тебя задача на сегодня?\nЯ: Пишу отчёт и отправляю файл.\nКоллега: Когда совещание?\nЯ: Совещание в девять часов.\nКоллега: Где совещание?\nЯ: В переговорной комнате.\nКоллега: Ты сейчас свободен?\nЯ: Нет, но через некоторое время.\nКоллега: Поговорим позже.\nЯ: С удовольствием.",
+  quiz:[
+    {q:"مَا مُهِمَّةُ المُتَكَلِّم؟",opts:["كِتَابَة تَقْرِير","قِرَاءَة كِتَاب","الاجْتِمَاع","الرَّاحَة"],correct:0},
+    {q:"مَتَى الاجْتِمَاع؟",opts:["فِي السَّاعَةِ الثَّامِنَة","فِي السَّاعَةِ التَّاسِعَة","فِي السَّاعَةِ العَاشِرَة","بَعْدَ الظُّهْر"],correct:1},
+    {q:"أَيْنَ الاجْتِمَاع؟",opts:["فِي المَكْتَب","فِي قَاعَة الاجْتِمَاعَات","فِي المَطْعَم","فِي الحَدِيقَة"],correct:1},
+    {q:"هَلْ هُوَ مُتَفَرِّغٌ الآن؟",opts:["نَعَمْ","لَا، بَعْدَ قَلِيل","دَائِمًا","أَحْيَانًا"],correct:1}
+  ]
+},
+{
+  title:"نَصّ: الطَّعَام",
+  type:"text",
+  body:[
+    ["","أَنَا أُحِبُّ الطَّعَام العَرَبِيّ."],
+    ["","الفَطُور: خُبْز، وَجُبْن، وَعَسَل، وَشَاي."],
+    ["","الغَدَاء: أَرُزّ، وَلَحْم دَجَاج، وَسَلَطَة، وَخُضَار."],
+    ["","العَشَاء: سَمَك مَشْوِيّ، وَبَطَاطِس، وَفَاكِهَة."],
+    ["","أَشْرَبُ مَاءً وَعَصِيرًا."],
+    ["","فِي المَطْبَخ: طَمَاطِم، وَخِيَار، وَبَصَل، وَجَزَر، وَتُفَّاح، وَمَوْز."]
+  ],
+  translation:"Я люблю арабскую еду.\nЗавтрак: хлеб, сыр, мёд и чай.\nОбед: рис, курица, салат и овощи.\nУжин: рыба на гриле, картофель и фрукты.\nПью воду и сок.\nНа кухне: помидоры, огурцы, лук, морковь, яблоки и бананы.",
+  quiz:[
+    {q:"مَاذَا يَأْكُلُ فِي الفَطُور؟",opts:["أَرُزّ","سَمَك","خُبْز وَجُبْن وَعَسَل","دَجَاج"],correct:2},
+    {q:"مَاذَا يَأْكُلُ فِي الغَدَاء؟",opts:["أَرُزّ وَلَحْم دَجَاج","سَمَك","خُبْز","بَيْض"],correct:0},
+    {q:"مَاذَا يَأْكُلُ فِي العَشَاء؟",opts:["كِبَاب","سَمَك مَشْوِيّ وَبَطَاطِس","شُورْبَة","جُبْن"],correct:1},
+    {q:"مَاذَا يَشْرَب؟",opts:["شَاي وَقَهْوَة","مَاء وَعَصِير","حَلِيب","مَشْرُوب غَازِيّ"],correct:1},
+    {q:"مَا الفَوَاكِهُ فِي المَطْبَخ؟",opts:["تُفَّاح وَمَوْز","بُرْتُقَال وَعِنَب","تَمْر وَتِين","رُمَّان"],correct:0}
+  ]
+}
+];
+
 const TYPES={
   mcq_ar_ru:{ar:"اختيار من متعدد (عربي ← روسي)",ru:"Выбор перевода"},
   mcq_ru_ar:{ar:"اختيار من متعدد (روسي ← عربي)",ru:"Выбор арабского слова"},
@@ -447,12 +695,11 @@ const sTick=()=>tone(1100,.05,"square",.05);
 const sBuzz=()=>{tone(880,.1,"square",.12);tone(1320,.14,"square",.12,.1)};
 const sSpin=()=>{for(let i=0;i<14;i++)tone(500+i*25,.05,"square",.06,i*.13)};
 const sWin=()=>[523,659,784,1047,784,1047,1319].forEach((f,i)=>tone(f,.35,"triangle",.2,i*.16));
-function speak(w){
+function speak(txt){
   if(!("speechSynthesis"in window))return false;
   try{
     speechSynthesis.cancel();
-    const txt=w.t==="v"?`${w.past} ، ${w.pres}`:w.ar;
-    const u=new SpeechSynthesisUtterance(txt);u.lang="ar-SA";u.rate=.75;
+    const u=new SpeechSynthesisUtterance(txt);u.lang="ar-SA";u.rate=.8;
     const v=speechSynthesis.getVoices().find(x=>/^ar/i.test(x.lang));if(v)u.voice=v;
     speechSynthesis.speak(u);return true;
   }catch(e){return false}
@@ -473,7 +720,6 @@ function loopFx(){
   if(parts.length)requestAnimationFrame(loopFx);else{fxOn=false;ctx.clearRect(0,0,fx.width,fx.height)}
 }
 
-/* ===================== STORAGE (مع التصحيح التلقائي) ===================== */
 function loadAll(){
   try{
     const w=localStorage.getItem("arru_words");
@@ -515,12 +761,10 @@ function renderSettings(){
   $("sWheel").checked=settings.wheel;$("sDuel").checked=settings.duel;
   $("typesBox").innerHTML=Object.keys(TYPES).map(k=>
     `<label class="pill ${settings.types.includes(k)?'on':''}"><input type="checkbox" data-t="${k}" ${settings.types.includes(k)?"checked":""}>${TYPES[k].ar}<span class="ru">${TYPES[k].ru}</span></label>`).join("");
-  /* ✅ رسالة عند عدم وجود فئات */
   if(Object.keys(CATS).length===0){
     $("catsBox").innerHTML=`<div style="padding:14px;background:rgba(255,90,110,.2);border-radius:12px;border:1px solid #ff5a6e;margin:8px 0">
       ⚠️ لا توجد فئات. اذهب إلى تبويب <b>📚 الكلمات</b> واستورد كلماتك أولاً.
-      <span class="ru">Нет категорий. Импортируйте слова во вкладке «Слова».</span>
-    </div>`;
+      <span class="ru">Нет категорий. Импортируйте слова во вкладке «Слова».</span></div>`;
   } else {
     $("catsBox").innerHTML=Object.keys(CATS).map(k=>{
       const cnt=words.filter(w=>w.c===k).length;
@@ -554,6 +798,125 @@ function renderWordList(){
       <span class="badge">${CATS[w.c]?CATS[w.c].ar:""}</span>
       <button class="del" data-i="${o.i}">🗑</button></div>`}).join("")||"<p style='padding:14px'>لا توجد كلمات</p>";
   $("wordList").querySelectorAll(".del").forEach(b=>b.onclick=()=>{words.splice(+b.dataset.i,1);saveWords();renderWordList();renderSettings();sClick()});
+}
+
+function renderTexts(){
+  const box=$("textsBox");
+  if(!box)return;
+  box.innerHTML=TEXTS.map((tx,i)=>{
+    const lines=tx.body.map(([sp,txt])=>{
+      const spHTML=sp?`<span class="speaker">${esc(sp)}</span>`:"";
+      return `<div class="line">${spHTML}${esc(txt)}</div>`;
+    }).join("");
+    return `<div class="text-item" data-i="${i}">
+      <div class="tx-tools">
+        <button data-t="speak" data-i="${i}" title="استمع">🔊</button>
+        <button data-t="ru" data-i="${i}" title="الترجمة">🇷🇺</button>
+        <button data-t="copy" data-i="${i}" title="نسخ">📋</button>
+      </div>
+      <h4><span class="tnum">${i+1}</span> ${esc(tx.title)}</h4>
+      <div class="tx-body ${tx.type==='dialog'?'dialog':''}">${lines}</div>
+      <div class="tx-tr hidden">${esc(tx.translation)}</div>
+      <div style="margin-top:12px;text-align:center">
+        <button class="btn sec" data-quiz="${i}" style="font-size:clamp(14px,2.4vw,18px);padding:10px 24px">
+          🎯 ابدأ أسئلة الفهم (${tx.quiz.length})
+          <span class="ru">Начать вопросы</span>
+        </button>
+      </div>
+    </div>`;
+  }).join("");
+  box.querySelectorAll('.tx-tools button').forEach(b=>{
+    b.onclick=()=>{
+      const i=+b.dataset.i,t=b.dataset.t,item=box.querySelector(`.text-item[data-i="${i}"]`);
+      if(t==="speak"){
+        sClick();
+        const tx=TEXTS[i];
+        const full=tx.body.map(([sp,txt])=>`${sp} ${txt}`).join(" . ");
+        speak(full);
+      }else if(t==="ru"){
+        sClick();
+        item.querySelector('.tx-tr').classList.toggle('hidden');
+      }else if(t==="copy"){
+        sClick();
+        const tx=TEXTS[i];
+        const full=tx.body.map(([sp,txt])=>`${sp} ${txt}`).join("\n");
+        navigator.clipboard.writeText(full).then(()=>toast("📋 تم النسخ")).catch(()=>toast("تعذّر النسخ"));
+      }
+    };
+  });
+  box.querySelectorAll('[data-quiz]').forEach(b=>{
+    b.onclick=()=>{sClick();startQuiz(+b.dataset.quiz)};
+  });
+}
+
+function startQuiz(i){
+  const tx=TEXTS[i];
+  if(!tx||!tx.quiz||!tx.quiz.length)return;
+  const item=document.querySelector(`.text-item[data-i="${i}"]`);
+  const body=item.querySelector('.tx-body');
+  const tr=item.querySelector('.tx-tr');
+  const tools=item.querySelector('.tx-tools');
+  const btnRow=item.querySelector('div[style*="text-align:center"]');
+  const originalHTML=item.innerHTML;
+
+  let qi=0,score=0;
+
+  function renderQ(){
+    if(qi>=tx.quiz.length){
+      const pct=Math.round(score/tx.quiz.length*100);
+      const msg=pct>=80?"🎉 مُمْتَاز!":pct>=50?"👏 جَيِّد!":"📚 حَاوِلْ مَرَّةً أُخْرَى";
+      body.parentElement.querySelectorAll('.tx-quiz').forEach(x=>x.remove());
+      body.classList.add('hidden');
+      tr.classList.add('hidden');
+      tools.style.display='none';
+      btnRow.style.display='none';
+      const div=document.createElement('div');
+      div.className='tx-quiz';
+      div.innerHTML=`<div class="q-final">
+        <div style="font-size:48px">${pct>=80?"🏆":pct>=50?"🎖":"📖"}</div>
+        <div style="font-size:22px;margin:8px 0">${msg}</div>
+        <div class="score">${score} / ${tx.quiz.length}</div>
+        <div style="margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+          <button class="btn sec" data-act="retry">🔁 أعِد المحاولة</button>
+          <button class="btn" data-act="back">↩ عودة إلى النص</button>
+        </div>
+      </div>`;
+      body.parentElement.appendChild(div);
+      div.querySelector('[data-act="retry"]').onclick=()=>{sClick();restart()};
+      div.querySelector('[data-act="back"]').onclick=()=>{sClick();item.innerHTML=originalHTML;renderTexts()};
+      if(pct>=80){confetti(80);sWin();}else if(pct>=50){sCorrect();}else{sWrong();}
+      return;
+    }
+    const q=tx.quiz[qi];
+    body.classList.add('hidden');
+    tr.classList.add('hidden');
+    tools.style.display='none';
+    btnRow.style.display='none';
+    body.parentElement.querySelectorAll('.tx-quiz').forEach(x=>x.remove());
+    const div=document.createElement('div');
+    div.className='tx-quiz';
+    div.innerHTML=`
+      <div class="q-progress">سؤال ${qi+1} من ${tx.quiz.length} — النتيجة: ${score}</div>
+      <div class="q-text">${esc(q.q)}</div>
+      <div class="q-opts">${q.opts.map((o,j)=>`<button class="q-opt" data-j="${j}">${esc(o)}</button>`).join("")}</div>`;
+    body.parentElement.appendChild(div);
+    div.querySelectorAll('.q-opt').forEach(btn=>{
+      btn.onclick=()=>{
+        const j=+btn.dataset.j,ok=j===q.correct;
+        div.querySelectorAll('.q-opt').forEach((x,k)=>{
+          x.disabled=true;
+          if(k===q.correct)x.classList.add('correct');
+          else if(k===j&&!ok)x.classList.add('wrong');
+        });
+        if(ok){score++;sCorrect();}else{sWrong();}
+        setTimeout(()=>{qi++;renderQ()},1200);
+      };
+    });
+    // Scroll
+    div.scrollIntoView({behavior:"smooth",block:"start"});
+  }
+  function restart(){qi=0;score=0;renderQ()}
+  renderQ();
 }
 
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
@@ -595,7 +958,6 @@ $("resetWords").onclick=()=>{if(confirm("استعادة قائمة الكلما�
   words=DEFAULT_WORDS.slice();saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();
   toast("✅ تمت الاستعادة")}};
 $("exportBtn").onclick=()=>{const b=$("ioBox");b.classList.remove("hidden");b.value=JSON.stringify(words,null,1);b.select()};
-/* ✅ الاستيراد مع التصحيح التلقائي */
 $("importBtn").onclick=()=>{const b=$("ioBox");
   if(b.classList.contains("hidden")){b.classList.remove("hidden");b.value="";b.focus();toast("الصق JSON ثم اضغط استيراد مرة أخرى")}
   else{try{
@@ -615,6 +977,20 @@ function applyRu(){document.body.classList.toggle("hide-ru",!settings.showRu);
 $("sndToggle").onclick=()=>{settings.sound=!settings.sound;saveSet();
   $("sndToggle").innerHTML=settings.sound?"🔊 الصوت":"🔇 الصوت";$("sndToggle").classList.toggle("off",!settings.sound)};
 $("quitBtn").onclick=()=>{if(confirm("إنهاء اللعبة الآن؟"))endGame()};
+
+/* ===== أزرار النصوص ===== */
+$("txToggleAll").onclick=()=>{
+  sClick();
+  const trs=document.querySelectorAll(".tx-tr");
+  const allHidden=[...trs].every(t=>t.classList.contains("hidden"));
+  trs.forEach(t=>t.classList.toggle("hidden",!allHidden));
+};
+$("txHideNonAr").onclick=()=>{
+  sClick();
+  document.body.classList.toggle("reading-mode");
+  $("txHideNonAr").classList.toggle("off",document.body.classList.contains("reading-mode"));
+  toast(document.body.classList.contains("reading-mode")?"👁 وضع القراءة فقط":"↩ عادي");
+};
 
 function pool(){const p=words.filter(w=>settings.cats.includes(w.c));return p.length>=4?p:words}
 function show(id){["screen-start","screen-game","screen-end"].forEach(s=>$(s).classList.toggle("hidden",s!==id));
@@ -739,10 +1115,10 @@ function buildListen(head){
     <div class="sub" style="margin-top:8px">اختر الكلمة التي سمعتها<span class="ru">Выберите услышанное слово</span></div>
     <div><button class="icon-btn" id="showWord" style="margin-top:8px">👁 لا يوجد صوت؟ اعرض الكلمة للمعلم</button></div>`;
   $("answerArea").innerHTML=optionsHTML(opts.map(o=>disp(o)),false);
-  const ok=speak(w);
-  $("playSnd").onclick=()=>{if(!speak(w))toast("المتصفح لا يدعم النطق")};
+  const txt=w.t==="v"?`${w.past} ، ${w.pres}`:w.ar;
+  speak(txt);
+  $("playSnd").onclick=()=>{if(!speak(txt))toast("المتصفح لا يدعم النطق")};
   $("showWord").onclick=()=>{$("showWord").outerHTML=`<div class="prompt-ar" style="font-size:34px">${esc(disp(w))}</div>`};
-  if(!ok)setTimeout(()=>toast("لا يوجد نطق عربي — استخدم زر «اعرض الكلمة»"),500);
   bindOpts(ci);
 }
 function buildQuick(head){
@@ -895,8 +1271,8 @@ function endGame(){
 loadAll();
 rebuildCATS();
 syncCats();
-saveWords();  /* ✅ يحفظ النسخة المُصحَّحة */
-applyRu();renderTeams();renderSettings();renderWordUI();
+saveWords();
+applyRu();renderTeams();renderSettings();renderWordUI();renderTexts();
 $("sndToggle").innerHTML=settings.sound?"🔊 الصوت":"🔇 الصوت";
 if("speechSynthesis"in window){speechSynthesis.onvoiceschanged=()=>{}}
 document.addEventListener("keydown",e=>{
