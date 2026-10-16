@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🔐 مشفّر اللعبة</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,sans-serif;background:#1a2b5c;color:#fff;padding:14px}
+h1{color:#ffd24a;text-align:center;font-size:20px;margin-bottom:10px}
+.card{background:rgba(255,255,255,.1);border-radius:14px;padding:14px;margin-bottom:12px}
+label{display:block;margin-bottom:6px;font-weight:bold;font-size:14px}
+textarea{width:100%;padding:8px;border-radius:10px;border:1px solid #555;
+  background:#000;color:#fff;font-size:11px;font-family:monospace;min-height:80px}
+input{width:100%;padding:10px;border-radius:10px;border:1px solid #555;
+  background:#000;color:#fff;font-size:14px}
+button{padding:12px 18px;border-radius:12px;border:none;font-size:15px;
+  font-weight:bold;background:#ffd24a;color:#000;margin:6px 4px 0 0}
+button.sec{background:#4ab8ff}
+.status{padding:10px;border-radius:10px;margin-top:10px;text-align:center;font-weight:bold}
+.ok{background:#2ecc71;color:#000}.err{background:#ff5a6e}.info{background:#4ab8ff}
+</style></head><body>
+<h1>🔐 مشفّر اللعبة</h1>
+<div class="card">
+<label>1️⃣ الصق محتوى index.html هنا:</label>
+<textarea id="src" placeholder="الصق هنا..."></textarea>
+<button class="sec" onclick="document.getElementById('file').click()">📁 من الملف</button>
+<input type="file" id="file" style="display:none" onchange="ld(event)">
+</div>
+<div class="card">
+<label>2️⃣ كلمة المرور:</label>
+<input type="password" id="pwd" placeholder="اختر كلمة قوية">
+</div>
+<div class="card">
+<button onclick="enc()">🔒 تشفير الآن</button>
+<div id="st"></div>
+</div>
+<div class="card" id="outC" style="display:none">
+<label>3️⃣ الملف المشفر - انسخه:</label>
+<textarea id="out" style="min-height:140px"></textarea>
+<button onclick="cp()">📋 نسخ</button>
+<button onclick="dl()">💾 تحميل</button>
+</div>
+<script>
+function S(c,m){var s=document.getElementById('st');s.className='status '+c;s.textContent=m}
+function ld(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();
+  r.onload=function(v){document.getElementById('src').value=v.target.result;S('ok','✅ تم')};
+  r.readAsText(f,'UTF-8')}
+function b64(b){var y=new Uint8Array(b),s='';for(var i=0;i<y.length;i++)s+=String.fromCharCode(y[i]);return btoa(s)}
+function b2b(s){var x=atob(s),b=new Uint8Array(x.length);for(var i=0;i<x.length;i++)b[i]=x.charCodeAt(i);return b}
+async function dk(p,sa){var e=new TextEncoder();
+  var k=await crypto.subtle.importKey('raw',e.encode(p),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt:sa,iterations:150000,hash:'SHA-256'},
+    k,{name:'AES-GCM',length:256},false,['encrypt'])}
+async function enc(){
+  var src=document.getElementById('src').value,p=document.getElementById('pwd').value;
+  if(!src.trim())return S('err','❌ الصق الكود أولاً');
+  if(p.length<4)return S('err','❌ كلمة المرور قصيرة');
+  S('info','⏳ جاري التشفير...');
+  try{
+    var sa=crypto.getRandomValues(new Uint8Array(16));
+    var iv=crypto.getRandomValues(new Uint8Array(12));
+    var k=await dk(p,sa);
+    var ct=await crypto.subtle.encrypt({name:'AES-GCM',iv:iv},k,new TextEncoder().encode(src));
+    var h='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8">'
+      +'<meta name="viewport" content="width=device-width,initial-scale=1.0">'
+      +'<title>🔐 محمي</title><style>*{box-sizing:border-box;margin:0;padding:0}'
+      +'body{font-family:Tahoma,sans-serif;background:linear-gradient(135deg,#0f1b3d,#2b1b56);'
+      +'color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}'
+      +'.g{background:rgba(255,255,255,.1);border-radius:22px;padding:28px;max-width:380px;width:100%;text-align:center}'
+      +'.l{font-size:56px;margin-bottom:12px}h1{color:#ffd24a;font-size:22px;margin-bottom:8px}'
+      +'.s{font-size:14px;color:#cfe0ff;margin-bottom:18px}'
+      +'input{width:100%;padding:14px;border-radius:12px;border:1px solid #555;background:#000;'
+      +'color:#fff;font-size:16px;text-align:center;margin-bottom:12px}'
+      +'button{width:100%;padding:14px;border-radius:12px;border:none;font-size:16px;font-weight:bold;'
+      +'background:#ffd24a;color:#000}'
+      +'.e{color:#ff5a6e;font-weight:bold;margin-top:10px;min-height:20px}'
+      +'</style></head><body><div class="g"><div class="l">🔐</div>'
+      +'<h1>محتوى محمي</h1><div class="s">أدخل كلمة المرور</div>'
+      +'<input type="password" id="p" autofocus placeholder="كلمة المرور">'
+      +'<button id="b">🚀 دخول</button><div class="e" id="e"></div></div>'
+      +'<script>(function(){var S="'+b64(sa)+'",I="'+b64(iv)+'",C="'+b64(ct)+'";'
+      +'function bd(x){var y=atob(x),b=new Uint8Array(y.length);'
+      +'for(var i=0;i<y.length;i++)b[i]=y.charCodeAt(i);return b}'
+      +'async function dk(p,s){var e=new TextEncoder();'
+      +'var k=await crypto.subtle.importKey("raw",e.encode(p),"PBKDF2",false,["deriveKey"]);'
+      +'return crypto.subtle.deriveKey({name:"PBKDF2",salt:s,iterations:150000,hash:"SHA-256"},'
+      +'k,{name:"AES-GCM",length:256},false,["decrypt"])}'
+      +'async function u(){var p=document.getElementById("p").value;'
+      +'var er=document.getElementById("e"),b=document.getElementById("b");'
+      +'if(!p){er.textContent="أدخل الكلمة";return}'
+      +'b.disabled=true;b.textContent="جاري...";er.textContent="";'
+      +'try{var k=await dk(p,bd(S));'
+      +'var pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:bd(I)},k,bd(C));'
+      +'document.open();document.write(new TextDecoder().decode(pt));document.close()}'
+      +'catch(x){er.textContent="❌ كلمة خاطئة";b.disabled=false;b.textContent="🚀 دخول"}}'
+      +'document.getElementById("b").onclick=u;'
+      +'document.getElementById("p").addEventListener("keydown",function(v){if(v.key==="Enter")u()})})();'
+      +'<\/script></body></html>';
+    document.getElementById('out').value=h;
+    document.getElementById('outC').style.display='block';
+    S('ok','✅ تم التشفير! انسخ الملف');
+    document.getElementById('outC').scrollIntoView();
+  }catch(e){S('err','❌ فشل: '+e.message)}
+}
+function cp(){var t=document.getElementById('out');t.select();
+  try{navigator.clipboard.writeText(t.value);S('ok','📋 تم النسخ')}
+  catch(e){document.execCommand('copy');S('ok','📋 تم النسخ')}}
+function dl(){var b=new Blob([document.getElementById('out').value],{type:'text/html'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='index.html';
+  a.click();S('ok','💾 تم التحميل')}
+</script></body></html>
