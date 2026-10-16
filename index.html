@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -180,10 +181,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 }
 </style>
 </head>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2e7d32">
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="shortcut icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -231,7 +228,15 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
         <div class="set-row"><label>⚔️ تحدي بين فريقين <span class="ru">Дуэль команд</span></label>
           <input type="checkbox" id="sDuel" checked style="width:24px;height:24px;accent-color:#ffd24a"></div>
         <div style="padding:10px 0"><b>أنواع الأسئلة <span class="ru">Типы вопросов</span></b><div id="typesBox" style="margin-top:6px"></div></div>
-        <div style="padding:10px 0"><b>فئات الكلمات <span class="ru">Категории слов</span></b><div id="catsBox" style="margin-top:6px"></div></div>
+        <div style="padding:10px 0"><b>فئات الكلمات <span class="ru">Категории слов</span></b>
+          <div style="font-size:13px;opacity:.7;margin-top:4px">✓ اختر المجالات التي تريد اختبار الطلاب فيها (اضغط لتفعيل/تعطيل)
+            <span class="ru">Выберите категории для игры</span></div>
+          <div id="catsBox" style="margin-top:6px"></div>
+          <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+            <button class="icon-btn" id="catsAll">✅ تحديد الكل</button>
+            <button class="icon-btn" id="catsNone">❌ إلغاء الكل</button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -289,12 +294,40 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 
 <script>
 /* ===================== DATA ===================== */
-const CATS={
-  places:{ar:"أماكن",ru:"Места"},
-  school:{ar:"المدرسة والإدارة والأشخاص",ru:"Школа, администрация, люди"},
-  read:{ar:"القراءة والكتابة",ru:"Чтение и письмо"},
-  verbs:{ar:"أفعال (ماضٍ – مضارع)",ru:"Глаголы (прош. – наст.)"}
+/* ✅ تعديل 1: CATS تُبنى تلقائياً من الكلمات المستوردة */
+const CATS={};
+const CAT_RU={
+  places:"Места", school:"Школа, администрация, люди",
+  read:"Чтение и письмо", verbs:"Глаголы",
+  "أماكن":"Места",
+  "المدرسة والإدارة":"Школа и администрация",
+  "القراءة والكتابة":"Чтение и письмо",
+  "مواد دراسية":"Учебные предметы",
+  "أفعال":"Глаголы",
+  "البيت ومكوناته":"Дом и его части",
+  "أفعال البيت":"Глаголы дома",
+  "المطبخ":"Кухня",
+  "أنواع الطعام":"Виды еды",
+  "الخضروات":"Овощи",
+  "الفواكه":"Фрукты",
+  "الألبان":"Молочные продукты",
+  "المشروبات":"Напитки",
+  "اللحوم":"Мясо",
+  "السمك":"Рыба"
 };
+function rebuildCATS(){
+  const c={};
+  words.forEach(w=>{ if(w.c && !c[w.c]) c[w.c]={ar:w.c, ru:CAT_RU[w.c]||w.c}; });
+  Object.keys(CATS).forEach(k=>delete CATS[k]);
+  Object.assign(CATS, c);
+}
+function syncCats(){
+  const valid=Object.keys(CATS);
+  settings.cats=(settings.cats||[]).filter(c=>valid.includes(c));
+  if(settings.cats.length===0) settings.cats=valid.slice();
+  saveSet();
+}
+
 const DEFAULT_WORDS=[
  /* ---- أماكن ---- */
  {t:"n",ar:"مَدْرَسَة",ru:"школа",g:"f",c:"places"},
@@ -391,7 +424,7 @@ const EMOJIS=["🦁","🦅","🐯","🐬","🐼","🦊","🐝","🚀","⭐","�
 let words=[];
 let teams=[];
 let settings={time:25,total:14,wheel:true,duel:true,showRu:true,sound:true,
-  types:Object.keys(TYPES),cats:Object.keys(CATS)};
+  types:Object.keys(TYPES),cats:[]};
 const S={qIndex:0,teamIdx:0,word:null,type:null,timer:null,timeLeft:0,total:0,answered:false,mult:1,
   pairs:[],sel:null,matched:0,built:"",target:"",stage:null,steal:false};
 
@@ -485,14 +518,17 @@ function renderSettings(){
   $("sWheel").checked=settings.wheel;$("sDuel").checked=settings.duel;
   $("typesBox").innerHTML=Object.keys(TYPES).map(k=>
     `<label class="pill ${settings.types.includes(k)?'on':''}"><input type="checkbox" data-t="${k}" ${settings.types.includes(k)?"checked":""}>${TYPES[k].ar}<span class="ru">${TYPES[k].ru}</span></label>`).join("");
-  $("catsBox").innerHTML=Object.keys(CATS).map(k=>
-    `<label class="pill ${settings.cats.includes(k)?'on':''}"><input type="checkbox" data-c="${k}" ${settings.cats.includes(k)?"checked":""}>${CATS[k].ar}<span class="ru">${CATS[k].ru}</span></label>`).join("");
+  /* ✅ عرض الفئات الديناميكية + عدد الكلمات في كل فئة */
+  $("catsBox").innerHTML=Object.keys(CATS).map(k=>{
+    const cnt=words.filter(w=>w.c===k).length;
+    return `<label class="pill ${settings.cats.includes(k)?'on':''}"><input type="checkbox" data-c="${k}" ${settings.cats.includes(k)?"checked":""}>${CATS[k].ar} <span style="opacity:.7;font-size:.85em">(${cnt})</span><span class="ru">${CATS[k].ru}</span></label>`;
+  }).join("");
   $("typesBox").querySelectorAll("input").forEach(i=>i.onchange=()=>{
     const k=i.dataset.t;settings.types=i.checked?[...new Set([...settings.types,k])]:settings.types.filter(x=>x!==k);
     if(!settings.types.length)settings.types=["mcq_ar_ru"];saveSet();renderSettings()});
   $("catsBox").querySelectorAll("input").forEach(i=>i.onchange=()=>{
     const k=i.dataset.c;settings.cats=i.checked?[...new Set([...settings.cats,k])]:settings.cats.filter(x=>x!==k);
-    if(!settings.cats.length)settings.cats=Object.keys(CATS);saveSet();renderSettings()});
+    if(!settings.cats.length)settings.cats=[k];saveSet();renderSettings()});
 }
 function renderWordUI(){
   const opts=Object.keys(CATS).map(k=>`<option value="${k}">${CATS[k].ar}</option>`).join("");
@@ -513,7 +549,7 @@ function renderWordList(){
       ${w.g?`<span class="badge ${w.g}">${w.g==="f"?"مؤنث ж.р.":"مذكر м.р."}</span>`:""}
       <span class="badge">${CATS[w.c]?CATS[w.c].ar:""}</span>
       <button class="del" data-i="${o.i}">🗑</button></div>`}).join("")||"<p style='padding:14px'>لا توجد كلمات</p>";
-  $("wordList").querySelectorAll(".del").forEach(b=>b.onclick=()=>{words.splice(+b.dataset.i,1);saveWords();renderWordList();sClick()});
+  $("wordList").querySelectorAll(".del").forEach(b=>b.onclick=()=>{words.splice(+b.dataset.i,1);saveWords();renderWordList();renderSettings();sClick()});
 }
 
 /* ===================== SETUP EVENTS ===================== */
@@ -529,28 +565,45 @@ $("sTime").oninput=e=>{settings.time=+e.target.value;$("sTimeV").textContent=set
 $("sQ").oninput=e=>{settings.total=+e.target.value;$("sQV").textContent=settings.total;saveSet()};
 $("sWheel").onchange=e=>{settings.wheel=e.target.checked;saveSet()};
 $("sDuel").onchange=e=>{settings.duel=e.target.checked;saveSet()};
+
+/* ✅ أزرار تحديد/إلغاء كل الفئات */
+$("catsAll").onclick=()=>{settings.cats=Object.keys(CATS);saveSet();renderSettings();sClick()};
+$("catsNone").onclick=()=>{settings.cats=[];saveSet();renderSettings();sClick()};
+
 $("wType").onchange=e=>{
   const v=e.target.value==="v";
   $("wAr").classList.toggle("hidden",v);$("wGen").classList.toggle("hidden",v);
   $("wPast").classList.toggle("hidden",!v);$("wPres").classList.toggle("hidden",!v);
-  if(v)$("wCat").value="verbs";
+  /* ✅ تعديل 5: اختيار فئة "أفعال" الصحيحة ديناميكياً */
+  if(v){const vc=words.find(w=>w.t==="v");$("wCat").value=vc?vc.c:(Object.keys(CATS)[0]||"")}
 };
 $("addWord").onclick=()=>{
   const t=$("wType").value,ru=$("wRu").value.trim(),c=$("wCat").value;
   if(!ru)return toast("أدخل الترجمة الروسية ❗");
+  if(!c)return toast("اختر فئة ❗");
   if(t==="v"){const p=$("wPast").value.trim(),pr=$("wPres").value.trim();
     if(!p||!pr)return toast("أدخل الماضي والمضارع ❗ (كتب – يكتب)");
     words.push({t:"v",past:p,pres:pr,ru,c});$("wPast").value="";$("wPres").value="";
   }else{const ar=$("wAr").value.trim();if(!ar)return toast("أدخل الاسم ❗");
     words.push({t:"n",ar,ru,g:$("wGen").value,c});$("wAr").value="";}
-  $("wRu").value="";saveWords();renderWordList();sCorrect();toast("✅ تمت الإضافة / Добавлено");
+  $("wRu").value="";saveWords();
+  /* ✅ تحديث الفئات في حال أضاف المستخدم فئة جديدة */
+  rebuildCATS();syncCats();renderWordUI();renderSettings();
+  sCorrect();toast("✅ تمت الإضافة / Добавлено");
 };
 $("filterCat").onchange=renderWordList;
-$("resetWords").onclick=()=>{if(confirm("استعادة قائمة الكلمات الافتراضية؟")){words=DEFAULT_WORDS.slice();saveWords();renderWordList()}};
+/* ✅ تعديل 3: إعادة بناء الفئات عند استعادة الافتراضي */
+$("resetWords").onclick=()=>{if(confirm("استعادة قائمة الكلمات الافتراضية؟")){
+  words=DEFAULT_WORDS.slice();saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();
+  toast("✅ تمت الاستعادة")}};
 $("exportBtn").onclick=()=>{const b=$("ioBox");b.classList.remove("hidden");b.value=JSON.stringify(words,null,1);b.select()};
+/* ✅ تعديل 2: إعادة بناء الفئات بعد الاستيراد */
 $("importBtn").onclick=()=>{const b=$("ioBox");
   if(b.classList.contains("hidden")){b.classList.remove("hidden");b.value="";b.focus();toast("الصق JSON ثم اضغط استيراد مرة أخرى")}
-  else{try{const a=JSON.parse(b.value);if(Array.isArray(a)&&a.length){words=a;saveWords();renderWordList();b.classList.add("hidden");toast("✅ تم الاستيراد")}}catch(e){toast("JSON غير صالح ❗")}}};
+  else{try{const a=JSON.parse(b.value);if(Array.isArray(a)&&a.length){
+    words=a;saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();
+    b.classList.add("hidden");toast("✅ تم الاستيراد / Импортировано")}
+    else toast("الملف فارغ ❗")}catch(e){toast("JSON غير صالح ❗")}}};
 $("ruToggle").onclick=()=>{settings.showRu=!settings.showRu;saveSet();applyRu();sClick()};
 function applyRu(){document.body.classList.toggle("hide-ru",!settings.showRu);
   $("ruToggle").innerHTML=settings.showRu?"🇷🇺 الترجمة الروسية: ظاهرة":"🇷🇺 الترجمة الروسية: مخفية";
@@ -564,7 +617,7 @@ function pool(){const p=words.filter(w=>settings.cats.includes(w.c));return p.le
 function show(id){["screen-start","screen-game","screen-end"].forEach(s=>$(s).classList.toggle("hidden",s!==id));
   $("quitBtn").classList.toggle("hidden",id!=="screen-game")}
 $("startBtn").onclick=()=>{
-  if(pool().length<4)return toast("أضف ٤ كلمات على الأقل ❗");
+  if(pool().length<4)return toast("أضف ٤ كلمات على الأقل ❗ / Добавьте минимум 4 слова");
   ac();teams.forEach(t=>t.score=0);S.qIndex=0;show("screen-game");sCorrect();nextTurn();
 };
 $("againBtn").onclick=()=>{teams.forEach(t=>t.score=0);S.qIndex=0;show("screen-game");nextTurn()};
@@ -841,7 +894,11 @@ function endGame(){
       <span>${["🥇","🥈","🥉"][i]||"🎖"} ${t.em} ${esc(t.name)}</span><b>${t.score}</b></div>`).join("")}</div>`;
 }
 /* ===================== INIT ===================== */
-loadAll();applyRu();renderTeams();renderSettings();renderWordUI();
+/* ✅ تعديل 4: ترتيب التهيئة الصحيح */
+loadAll();
+rebuildCATS();
+syncCats();
+applyRu();renderTeams();renderSettings();renderWordUI();
 $("sndToggle").innerHTML=settings.sound?"🔊 الصوت":"🔇 الصوت";
 if("speechSynthesis"in window){speechSynthesis.onvoiceschanged=()=>{}}
 document.addEventListener("keydown",e=>{
