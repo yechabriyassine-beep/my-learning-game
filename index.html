@@ -153,13 +153,17 @@ body.reading-mode .text-item .tx-tools button[data-t="ru"]{display:none}
 <link rel="icon" type="image/png" href="icon.png">
 <body>
   <script>
-  // 🛑 غيّر كلمة المرور من هنا (بين العلامتين "")
-  var sitePassword = "Lugha2025!";
+  var sitePassword = "Lugha2025!"; // 🔑 غيّر كلمة المرور هنا
 
   var userPassword = prompt("🔐 الرجاء إدخال كلمة المرور لدخول اللعبة:");
-  
-  if (userPassword !== sitePassword) {
-    document.body.innerHTML = "<div style='text-align:center; margin-top: 50px; font-family: Tahoma; color: #ff5a6e;'><h1>🚫 كلمة المرور غير صحيحة</h1><p>قم بتحديث الصفحة للمحاولة مرة أخرى.</p></div>";
+
+  // حلقة لا تنتهي: لن تفتح اللعبة حتى تُدخل الكلمة الصحيحة
+  while (userPassword !== sitePassword) {
+    if (userPassword === null) {
+      // إذا ضغط المستخدم على "إلغاء" سيخرج من الصفحة
+      window.location.href = "https://www.google.com";
+    }
+    userPassword = prompt("❌ كلمة المرور غير صحيحة!\nحاول مرة أخرى:");
   }
 </script>
 <canvas id="fx"></canvas>
