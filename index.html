@@ -5,87 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>تحدي الكلمات: عربي – русский</title>
 <style>
-/* ============ BASE ============ */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --bg1:#0f1b3d; --bg2:#1d3b6e; --bg3:#2b1b56;
-  --card:rgba(255,255,255,.08);
-  --card2:rgba(255,255,255,.14);
-  --gold:#ffd24a; --green:#2ecc71; --red:#ff5a6e; --blue:#4ab8ff; --pink:#ff7ad5;
-  --txt:#f6f8ff;
-}
+:root{--bg1:#0f1b3d; --bg2:#1d3b6e; --bg3:#2b1b56; --card:rgba(255,255,255,.08); --card2:rgba(255,255,255,.14); --gold:#ffd24a; --green:#2ecc71; --red:#ff5a6e; --blue:#4ab8ff; --pink:#ff7ad5; --txt:#f6f8ff;}
 html,body{height:100%}
-body{
-  font-family:"Noto Naskh Arabic","Amiri","Scheherazade New","Traditional Arabic","Segoe UI",Tahoma,sans-serif;
-  background:linear-gradient(135deg,var(--bg1),var(--bg3) 45%,var(--bg2));
-  background-attachment:fixed;
-  color:var(--txt); min-height:100%; overflow-x:hidden;
-}
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;
-  background:radial-gradient(circle at 15% 10%,rgba(255,210,74,.14),transparent 45%),
-             radial-gradient(circle at 85% 80%,rgba(255,122,213,.14),transparent 45%);
-}
+body{font-family:"Noto Naskh Arabic","Amiri","Scheherazade New","Traditional Arabic","Segoe UI",Tahoma,sans-serif;background:linear-gradient(135deg,var(--bg1),var(--bg3) 45%,var(--bg2));background-attachment:fixed;color:var(--txt);min-height:100%;overflow-x:hidden;}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 10%,rgba(255,210,74,.14),transparent 45%),radial-gradient(circle at 85% 80%,rgba(255,122,213,.14),transparent 45%);}
 .ru{font-family:"Segoe UI",Roboto,Arial,sans-serif;direction:ltr;unicode-bidi:isolate;font-size:.72em;opacity:.85;display:block;font-weight:400}
 body.hide-ru .ru{display:none !important}
 #app{position:relative;max-width:1100px;margin:0 auto;padding:10px 12px 40px;z-index:2}
-
-/* ============ HEADER ============ */
 header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.logo{font-size:clamp(18px,4.4vw,30px);font-weight:800;line-height:1.3;
-  background:linear-gradient(90deg,var(--gold),var(--pink),var(--blue));
-  -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.logo{font-size:clamp(18px,4.4vw,30px);font-weight:800;line-height:1.3;background:linear-gradient(90deg,var(--gold),var(--pink),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 14px rgba(0,0,0,.35)}
 .logo small{display:block;font-size:.5em;color:#cfe0ff;background:none;-webkit-text-fill-color:#cfe0ff}
 .hdr-btns{display:flex;gap:8px;flex-wrap:wrap}
-.icon-btn{background:var(--card);border:1px solid rgba(255,255,255,.18);color:var(--txt);
-  border-radius:14px;padding:8px 12px;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
+.icon-btn{background:var(--card);border:1px solid rgba(255,255,255,.18);color:var(--txt);border-radius:14px;padding:8px 12px;font-size:14px;cursor:pointer;font-family:inherit;transition:.2s}
 .icon-btn:hover{background:var(--card2);transform:translateY(-2px)}
-.icon-btn.off{opacity:.45}
-
-/* ============ CARDS & BUTTONS ============ */
-.card{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:16px;
-  backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.btn{font-family:inherit;cursor:pointer;border:none;border-radius:18px;padding:12px 20px;font-size:clamp(15px,2.6vw,20px);
-  font-weight:700;color:#10203f;background:linear-gradient(180deg,#ffe489,var(--gold));
-  box-shadow:0 6px 0 #c99b14,0 10px 22px rgba(0,0,0,.3);transition:.12s;line-height:1.25}
+.icon-btn.off{opacity:.45}.card{background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:22px;padding:16px;backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.btn{font-family:inherit;cursor:pointer;border:none;border-radius:18px;padding:12px 20px;font-size:clamp(15px,2.6vw,20px);font-weight:700;color:#10203f;background:linear-gradient(180deg,#ffe489,var(--gold));box-shadow:0 6px 0 #c99b14,0 10px 22px rgba(0,0,0,.3);transition:.12s;line-height:1.25}
 .btn:active{transform:translateY(4px);box-shadow:0 2px 0 #c99b14}
 .btn.sec{background:linear-gradient(180deg,#6fd1ff,#2f9ce0);color:#07243a;box-shadow:0 6px 0 #1a6c9e,0 10px 22px rgba(0,0,0,.3)}
 .btn.sec:active{box-shadow:0 2px 0 #1a6c9e}
 .btn.danger{background:linear-gradient(180deg,#ff95a3,#ef4d63);color:#3b0712;box-shadow:0 6px 0 #a62436,0 10px 22px rgba(0,0,0,.3)}
 .btn.big{font-size:clamp(18px,3.4vw,26px);padding:16px 34px;width:100%;max-width:420px;margin:14px auto 0;display:block}
 .hidden{display:none !important}
-
-/* ============ TABS ============ */
 .tabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.tab{flex:1;min-width:110px;background:var(--card);border:1px solid rgba(255,255,255,.15);color:var(--txt);
-  border-radius:16px;padding:10px;font-family:inherit;font-size:clamp(14px,2.4vw,18px);font-weight:700;cursor:pointer;transition:.2s}
+.tab{flex:1;min-width:110px;background:var(--card);border:1px solid rgba(255,255,255,.15);color:var(--txt);border-radius:16px;padding:10px;font-family:inherit;font-size:clamp(14px,2.4vw,18px);font-weight:700;cursor:pointer;transition:.2s}
 .tab.active{background:linear-gradient(180deg,#ffe489,var(--gold));color:#10203f;border-color:transparent}
 .tabpane{display:none;animation:fade .3s}
 .tabpane.active{display:block}
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-
-/* ============ TEAMS SETUP ============ */
 .team-row{display:flex;gap:10px;align-items:center;background:rgba(255,255,255,.07);border-radius:16px;padding:10px;margin-bottom:10px;flex-wrap:wrap}
 .emoji-pick{font-size:28px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:4px 10px;cursor:pointer}
-.team-row input[type=text]{flex:1;min-width:140px;font-family:inherit;font-size:18px;padding:10px;border-radius:12px;
-  border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:#fff}
+.team-row input[type=text]{flex:1;min-width:140px;font-family:inherit;font-size:18px;padding:10px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:#fff}
 .chip-colors{display:flex;gap:4px}
 .dot{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid transparent}
 .dot.sel{border-color:#fff;transform:scale(1.15)}
 .emoji-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .emoji-grid span{font-size:24px;padding:4px 7px;border-radius:10px;background:rgba(0,0,0,.25);cursor:pointer}
 .emoji-grid span:hover{background:var(--gold)}
-
-/* ============ SETTINGS ============ */
 .set-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px dashed rgba(255,255,255,.15);flex-wrap:wrap}
 .set-row label{font-size:clamp(15px,2.5vw,19px);font-weight:700}
 input[type=range]{width:180px;accent-color:var(--gold)}
-.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);
-  padding:7px 12px;border-radius:999px;cursor:pointer;font-size:15px;margin:3px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.2);padding:7px 12px;border-radius:999px;cursor:pointer;font-size:15px;margin:3px}
 .pill input{accent-color:var(--gold);width:16px;height:16px}
 .pill.on{background:linear-gradient(180deg,#ffe489,var(--gold));color:#10203f;border-color:transparent;font-weight:700}
-
-/* ============ WORDS MANAGER ============ */
 .wordlist{max-height:330px;overflow:auto;border-radius:14px;background:rgba(0,0,0,.2);padding:6px;margin-top:10px}
 .word-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
 .word-item .ar{font-size:21px;font-weight:700;min-width:150px}
@@ -96,11 +58,8 @@ input[type=range]{width:180px;accent-color:var(--gold)}
 .badge.m{background:rgba(46,204,113,.3)}
 .del{background:rgba(255,90,110,.25);border:none;color:#ffbfc8;border-radius:10px;padding:5px 10px;cursor:pointer;font-family:inherit}
 .add-form{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.add-form input,.add-form select,textarea{font-family:inherit;font-size:16px;padding:9px;border-radius:12px;
-  border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:#fff}
+.add-form input,.add-form select,textarea{font-family:inherit;font-size:16px;padding:9px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:#fff}
 textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:12px}
-
-/* ============ GAME ============ */
 .gamebar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
 .turn-info{font-size:clamp(14px,2.4vw,18px);font-weight:700;background:var(--card);padding:8px 14px;border-radius:14px}
 #timerWrap{flex:1;min-width:160px;height:34px;background:rgba(0,0,0,.35);border-radius:999px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.18)}
@@ -118,8 +77,7 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .prompt-ru{font-family:"Segoe UI",Arial;direction:ltr;font-size:clamp(26px,6vw,48px);font-weight:700;color:#ffe489}
 .sub{font-size:clamp(13px,2.2vw,16px);opacity:.75;margin-top:6px}
 .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.opt{font-family:inherit;cursor:pointer;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;
-  border-radius:18px;padding:16px;font-size:clamp(19px,3.6vw,30px);font-weight:700;transition:.15s;min-height:66px}
+.opt{font-family:inherit;cursor:pointer;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;border-radius:18px;padding:16px;font-size:clamp(19px,3.6vw,30px);font-weight:700;transition:.15s;min-height:66px}
 .opt .ru{font-size:.6em}
 .opt:hover:not(:disabled){background:rgba(255,255,255,.2);transform:translateY(-3px)}
 .opt.lat{font-family:"Segoe UI",Arial;direction:ltr}
@@ -127,24 +85,18 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .opt.wrong{background:linear-gradient(180deg,#ff8a9c,#d8384f);border-color:#fff;animation:shake .4s}
 .opt:disabled{cursor:default;opacity:.85}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-/* matching */
-.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .match-col{display:flex;flex-direction:column;gap:9px}
-.mcard{font-family:inherit;cursor:pointer;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;
-  border-radius:16px;padding:13px;font-size:clamp(17px,3.2vw,26px);font-weight:700;transition:.15s}
+.mcard{font-family:inherit;cursor:pointer;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;border-radius:16px;padding:13px;font-size:clamp(17px,3.2vw,26px);font-weight:700;transition:.15s}
 .mcard.lat{font-family:"Segoe UI",Arial;direction:ltr}
 .mcard.sel{background:var(--gold);color:#102;transform:scale(1.03)}
 .mcard.done{background:linear-gradient(180deg,#4fe08a,#1fa05b);opacity:.75;cursor:default}
 .mcard.bad{animation:shake .4s;background:rgba(255,90,110,.5)}
-/* scramble */
-.scram-slot{min-height:76px;border:3px dashed rgba(255,255,255,.35);border-radius:18px;display:flex;justify-content:center;
-  align-items:center;gap:6px;font-size:clamp(28px,6vw,46px);font-weight:800;padding:8px;margin-bottom:12px;letter-spacing:2px}
+.scram-slot{min-height:76px;border:3px dashed rgba(255,255,255,.35);border-radius:18px;display:flex;justify-content:center;align-items:center;gap:6px;font-size:clamp(28px,6vw,46px);font-weight:800;padding:8px;margin-bottom:12px;letter-spacing:2px}
 .letters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.letter{font-family:inherit;width:62px;height:62px;font-size:30px;font-weight:800;border-radius:16px;border:2px solid rgba(255,255,255,.25);
-  background:rgba(255,255,255,.14);color:#fff;cursor:pointer;transition:.15s}
+.letter{font-family:inherit;width:62px;height:62px;font-size:30px;font-weight:800;border-radius:16px;border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.14);color:#fff;cursor:pointer;transition:.15s}
 .letter:hover{background:var(--gold);color:#102}
 .letter.used{opacity:.25;cursor:default}
-/* reveal */
 .reveal{margin-top:14px;text-align:center;border-radius:22px;padding:16px;animation:pop .35s}
 .reveal.ok{background:linear-gradient(180deg,rgba(46,204,113,.35),rgba(46,204,113,.12));border:2px solid #2ecc71}
 .reveal.no{background:linear-gradient(180deg,rgba(255,90,110,.32),rgba(255,90,110,.12));border:2px solid var(--red)}
@@ -152,38 +104,24 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
 .reveal .ans-ar{font-size:clamp(28px,6vw,48px);font-weight:800}
 .reveal .ans-ru{font-family:"Segoe UI",Arial;direction:ltr;font-size:clamp(20px,4vw,32px);color:#ffe489;font-weight:700}
 .pts{font-size:clamp(18px,3.6vw,26px);font-weight:800;color:var(--gold);margin-top:6px}
-/* buzz */
 .buzz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
-.buzz{font-family:inherit;cursor:pointer;border:none;border-radius:20px;padding:22px;font-size:clamp(20px,4vw,30px);font-weight:800;color:#101e3c;
-  animation:glow 1.3s infinite alternate}
+.buzz{font-family:inherit;cursor:pointer;border:none;border-radius:20px;padding:22px;font-size:clamp(20px,4vw,30px);font-weight:800;color:#101e3c;animation:glow 1.3s infinite alternate}
 @keyframes glow{from{box-shadow:0 0 0 rgba(255,255,255,0)}to{box-shadow:0 0 26px rgba(255,255,255,.75)}}
-/* wheel */
 .wheel-box{display:flex;flex-direction:column;align-items:center;gap:14px}
 .wheel-outer{position:relative;width:min(78vw,340px);height:min(78vw,340px)}
-.wheel{width:100%;height:100%;border-radius:50%;border:8px solid #ffd24a;position:relative;overflow:hidden;
-  box-shadow:0 0 34px rgba(255,210,74,.5);transition:transform 4.2s cubic-bezier(.17,.67,.17,1)}
+.wheel{width:100%;height:100%;border-radius:50%;border:8px solid #ffd24a;position:relative;overflow:hidden;box-shadow:0 0 34px rgba(255,210,74,.5);transition:transform 4.2s cubic-bezier(.17,.67,.17,1)}
 .wseg{position:absolute;inset:0;display:flex;justify-content:center;padding-top:8%;font-size:clamp(11px,2.6vw,15px);font-weight:800;color:#0e1b38}
 .wseg span{display:block;width:46%;text-align:center;line-height:1.2}
 .pointer{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:40px;z-index:4;filter:drop-shadow(0 3px 6px #000)}
-/* end */
 .podium{display:flex;justify-content:center;align-items:flex-end;gap:10px;margin:20px 0;flex-wrap:wrap}
 .pod{border-radius:18px 18px 0 0;padding:12px;text-align:center;min-width:100px;font-weight:800;animation:rise .6s}
 @keyframes rise{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
 .pod .em{font-size:40px}
 #fx{position:fixed;inset:0;pointer-events:none;z-index:50}
-.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);padding:10px 22px;border-radius:999px;
-  font-weight:800;z-index:60;font-size:18px;animation:pop .3s}
-@media(max-width:560px){
-  .match-wrap{gap:6px}
-  .letter{width:52px;height:52px;font-size:25px}
-  .opts{grid-template-columns:1fr}
-}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.8);padding:10px 22px;border-radius:999px;font-weight:800;z-index:60;font-size:18px;animation:pop .3s}
+@media(max-width:560px){.match-wrap{gap:6px}.letter{width:52px;height:52px;font-size:25px}.opts{grid-template-columns:1fr}}
 </style>
 </head>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2e7d32">
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="apple-touch-icon" href="icon.png">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="shortcut icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -199,15 +137,12 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
       <button class="icon-btn hidden" id="quitBtn">⏹ إنهاء<span class="ru">Стоп</span></button>
     </div>
   </header>
-
-  <!-- ===== START SCREEN ===== -->
   <section id="screen-start">
     <div class="tabs">
       <button class="tab active" data-tab="teams">👥 الفرق<span class="ru">Команды</span></button>
       <button class="tab" data-tab="settings">⚙️ الإعدادات<span class="ru">Настройки</span></button>
       <button class="tab" data-tab="words">📚 الكلمات<span class="ru">Слова</span></button>
     </div>
-
     <div class="tabpane active" id="tab-teams">
       <div class="card">
         <h3 style="margin-bottom:10px">اختر أسماء الفرق ورموزها <span class="ru">Выберите названия и символы команд</span></h3>
@@ -219,25 +154,18 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
         <button class="btn big" id="startBtn">▶ ابدأ اللعب<span class="ru">Начать игру</span></button>
       </div>
     </div>
-
     <div class="tabpane" id="tab-settings">
       <div class="card">
-        <div class="set-row"><label>⏱ زمن السؤال <span class="ru">Время на вопрос</span></label>
-          <div><input type="range" id="sTime" min="15" max="40" step="5" value="25"> <b id="sTimeV">25 ث</b></div></div>
-        <div class="set-row"><label>🔢 عدد الأسئلة <span class="ru">Количество вопросов</span></label>
-          <div><input type="range" id="sQ" min="6" max="40" step="2" value="14"> <b id="sQV">14</b></div></div>
-        <div class="set-row"><label>🎡 عجلة عشوائية كل ٤ أسئلة <span class="ru">Колесо каждые 4 вопроса</span></label>
-          <input type="checkbox" id="sWheel" checked style="width:24px;height:24px;accent-color:#ffd24a"></div>
-        <div class="set-row"><label>⚔️ تحدي بين فريقين <span class="ru">Дуэль команд</span></label>
-          <input type="checkbox" id="sDuel" checked style="width:24px;height:24px;accent-color:#ffd24a"></div>
+        <div class="set-row"><label>⏱ زمن السؤال <span class="ru">Время на вопрос</span></label><div><input type="range" id="sTime" min="15" max="40" step="5" value="25"> <b id="sTimeV">25 ث</b></div></div>
+        <div class="set-row"><label>🔢 عدد الأسئلة <span class="ru">Количество вопросов</span></label><div><input type="range" id="sQ" min="6" max="40" step="2" value="14"> <b id="sQV">14</b></div></div>
+        <div class="set-row"><label>🎡 عجلة عشوائية كل ٤ أسئلة <span class="ru">Колесо каждые 4 вопроса</span></label><input type="checkbox" id="sWheel" checked style="width:24px;height:24px;accent-color:#ffd24a"></div>
+        <div class="set-row"><label>⚔️ تحدي بين فريقين <span class="ru">Дуэль команд</span></label><input type="checkbox" id="sDuel" checked style="width:24px;height:24px;accent-color:#ffd24a"></div>
         <div style="padding:10px 0"><b>أنواع الأسئلة <span class="ru">Типы вопросов</span></b><div id="typesBox" style="margin-top:6px"></div></div>
         <div style="padding:10px 0"><b>فئات الكلمات <span class="ru">Категории слов</span></b><div id="catsBox" style="margin-top:6px"></div></div>
       </div>
     </div>
-
     <div class="tabpane" id="tab-words">
-      <div class="card">
-        <h3>📚 بنك الكلمات <span class="ru">Банк слов — учитель может добавлять и удалять слова</span></h3>
+      <div class="card"><h3>📚 بنك الكلمات <span class="ru">Банк слов — учитель может добавлять и удалять слова</span></h3>
         <div class="add-form">
           <select id="wType"><option value="n">اسم / Имя</option><option value="v">فعل / Глагол</option></select>
           <input id="wAr" placeholder="الاسم المفرد — مَدْرَسَة" style="min-width:150px">
@@ -260,8 +188,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
       </div>
     </div>
   </section>
-
-  <!-- ===== GAME SCREEN ===== -->
   <section id="screen-game" class="hidden">
     <div class="gamebar">
       <div class="turn-info" id="qCounter"></div>
@@ -274,8 +200,6 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
     <div id="reveal" class="reveal hidden"></div>
     <button class="btn big hidden" id="nextBtn">التالي ◀<span class="ru">Далее</span></button>
   </section>
-
-  <!-- ===== END SCREEN ===== -->
   <section id="screen-end" class="hidden">
     <div class="card" style="text-align:center">
       <h2 id="winTitle" style="font-size:clamp(22px,5vw,38px)"></h2>
@@ -286,689 +210,370 @@ textarea{width:100%;height:110px;direction:ltr;font-family:monospace;font-size:1
     </div>
   </section>
 </div>
-
 <script>
+// حماية بكلمة مرور
+(function(){
+  var pass = "Lugha2025!"; 
+  var input = prompt("🔐 الرجاء إدخال كلمة المرور لدخول اللعبة:");
+  while(input !== pass){
+    if(input === null) { window.location.href = "https://www.google.com"; break; }
+    input = prompt("❌ كلمة المرور غير صحيحة!\nحاول مرة أخرى:");
+  }
+})();
+
 /* ===================== DATA ===================== */
-const CATS={
-  places:{ar:"أماكن",ru:"Места"},
-  school:{ar:"المدرسة والإدارة والأشخاص",ru:"Школа, администрация, люди"},
-  read:{ar:"القراءة والكتابة",ru:"Чтение и письмо"},
-  verbs:{ar:"أفعال (ماضٍ – مضارع)",ru:"Глаголы (прош. – наст.)"}
+const CATS={};
+const CAT_RU={
+  "أماكن":"Места", "المدرسة والإدارة":"Школа и администрация",
+  "القراءة والكتابة":"Чтение и письмо", "مواد دراسية":"Учебные предметы",
+  "أفعال":"Глаголы", "البيت ومكوناته":"Дом и его части",
+  "أفعال البيت":"Глаголы дома", "المطبخ":"Кухня",
+  "أنواع الطعام":"Виды еды", "الخضروات":"Овощи",
+  "الفواكه":"Фрукты", "الألبان":"Молочные продукты",
+  "المشروبات":"Напитки", "اللحوم":"Мясо", "السمك":"Рыба",
+  "الوقت":"Время", "أفعال الوقت":"Глаголы времени",
+  "العمل والوظائف":"Работа и должности", "المكتب وأدواته":"Офис и инструменты",
+  "الزملاء والرؤساء":"Коллеги и начальство", "الاجتماعات والمراسلات":"Совещания и переписка",
+  "الراتب والحقوق":"Зарплата и права", "المهام والمواعيد":"Задачи и сроки",
+  "أفعال العمل":"Глаголы работы", "عبارات العمل اليومية":"Рабочие фразы",
+  "أدوات الاستفهام":"Вопросительные слова", "أمثلة: المدرسة":"Примеры: школа",
+  "أمثلة: البيت":"Примеры: дом", "أمثلة: الوقت":"Примеры: время",
+  "أمثلة: العمل":"Примеры: работа", "الأرقام":"Цифры", "أدوات":"Указательные слова",
+  "السوق والتسوق":"Рынок и покупки", "الطبيب والصحة":"Врач и здоровье",
+  "السفر والمواصلات":"Путешествие и транспорт"
 };
+function rebuildCATS(){
+  const c={};
+  words.forEach(w=>{ if(w.c && !c[w.c]) c[w.c]={ar:w.c, ru:CAT_RU[w.c]||w.c}; });
+  Object.keys(CATS).forEach(k=>delete CATS[k]);
+  Object.assign(CATS, c);
+}
+function syncCats(){
+  const valid=Object.keys(CATS);
+  settings.cats=(settings.cats||[]).filter(c=>valid.includes(c));
+  if(settings.cats.length===0) settings.cats=valid.slice();
+  saveSet();
+}
+function normalizeWord(w){
+  if(!w||typeof w!=="object")return null;
+  const out={};
+  const tp=String(w.t||w.type||"").toLowerCase();
+  if(tp==="v"||tp==="verb"||tp==="فعل")out.t="v";else out.t="n";
+  if(out.t==="v"){
+    out.past=w.past||w["الماضي"]||w.ar||"";
+    out.pres=w.pres||w["المضارع"]||"";
+    if(!out.past||!out.pres)return null;
+  }else{
+    out.ar=w.ar||w["عربي"]||w["الكلمة"]||"";
+    if(!out.ar)return null;
+  }
+  out.ru=w.ru||w["روسي"]||w["الترجمة"]||"";
+  if(!out.ru)return null;
+  out.c=w.c||w.cat||w["فئة"]||w["الفئة"]||"";
+  if(!out.c)return null;
+  const gg=String(w.g||w.gen||w["الجنس"]||"").toLowerCase();
+  if(gg==="f"||gg==="مؤنث"||gg==="ж.р."||gg==="female")out.g="f";
+  else if(gg==="m"||gg==="مذكر"||gg==="м.р."||gg==="male")out.g="m";
+  else out.g="";
+  return out;
+}
+
 const DEFAULT_WORDS=[
- /* ---- أماكن ---- */
- {t:"n",ar:"مَدْرَسَة",ru:"школа",g:"f",c:"places"},
- {t:"n",ar:"جَامِعَة",ru:"университет",g:"f",c:"places"},
- {t:"n",ar:"مَكْتَبَة",ru:"библиотека",g:"f",c:"places"},
- {t:"n",ar:"بَيْت",ru:"дом",g:"m",c:"places"},
- {t:"n",ar:"سُوق",ru:"рынок",g:"m",c:"places"},
- {t:"n",ar:"مُسْتَشْفَى",ru:"больница",g:"m",c:"places"},
- {t:"n",ar:"مَطَار",ru:"аэропорт",g:"m",c:"places"},
- {t:"n",ar:"شَارِع",ru:"улица",g:"m",c:"places"},
- {t:"n",ar:"مَدِينَة",ru:"город",g:"f",c:"places"},
- {t:"n",ar:"قَرْيَة",ru:"деревня",g:"f",c:"places"},
- {t:"n",ar:"مَطْعَم",ru:"ресторан",g:"m",c:"places"},
- {t:"n",ar:"حَدِيقَة",ru:"сад, парк",g:"f",c:"places"},
- {t:"n",ar:"مَلْعَب",ru:"стадион",g:"m",c:"places"},
- {t:"n",ar:"غُرْفَة",ru:"комната",g:"f",c:"places"},
- /* ---- مدرسة / إدارة / أشخاص ---- */
- {t:"n",ar:"مُدِير",ru:"директор (м.)",g:"m",c:"school"},
- {t:"n",ar:"مُدِيرَة",ru:"директор (ж.)",g:"f",c:"school"},
- {t:"n",ar:"مُعَلِّم",ru:"учитель",g:"m",c:"school"},
- {t:"n",ar:"مُعَلِّمَة",ru:"учительница",g:"f",c:"school"},
- {t:"n",ar:"طَالِب",ru:"студент",g:"m",c:"school"},
- {t:"n",ar:"طَالِبَة",ru:"студентка",g:"f",c:"school"},
- {t:"n",ar:"أُسْتَاذ",ru:"преподаватель",g:"m",c:"school"},
- {t:"n",ar:"مُوَظَّف",ru:"служащий",g:"m",c:"school"},
- {t:"n",ar:"مُوَظَّفَة",ru:"служащая",g:"f",c:"school"},
- {t:"n",ar:"زَمِيل",ru:"коллега, однокурсник",g:"m",c:"school"},
- {t:"n",ar:"إِدَارَة",ru:"администрация",g:"f",c:"school"},
- {t:"n",ar:"مَكْتَب",ru:"кабинет, стол",g:"m",c:"school"},
- {t:"n",ar:"فَصْل",ru:"класс",g:"m",c:"school"},
- {t:"n",ar:"دَرْس",ru:"урок",g:"m",c:"school"},
- {t:"n",ar:"وَاجِب",ru:"домашнее задание",g:"m",c:"school"},
- {t:"n",ar:"اِمْتِحَان",ru:"экзамен",g:"m",c:"school"},
- {t:"n",ar:"جَدْوَل",ru:"расписание",g:"m",c:"school"},
- {t:"n",ar:"عُطْلَة",ru:"каникулы, отпуск",g:"f",c:"school"},
- {t:"n",ar:"شَهَادَة",ru:"диплом, свидетельство",g:"f",c:"school"},
- /* ---- قراءة وكتابة ---- */
- {t:"n",ar:"كِتَاب",ru:"книга",g:"m",c:"read"},
- {t:"n",ar:"دَفْتَر",ru:"тетрадь",g:"m",c:"read"},
- {t:"n",ar:"قَلَم",ru:"ручка, карандаш",g:"m",c:"read"},
- {t:"n",ar:"قِرَاءَة",ru:"чтение",g:"f",c:"read"},
- {t:"n",ar:"كِتَابَة",ru:"письмо (процесс)",g:"f",c:"read"},
- {t:"n",ar:"رِسَالَة",ru:"письмо (послание)",g:"f",c:"read"},
- {t:"n",ar:"وَرَقَة",ru:"лист бумаги",g:"f",c:"read"},
- {t:"n",ar:"صَفْحَة",ru:"страница",g:"f",c:"read"},
- {t:"n",ar:"كَلِمَة",ru:"слово",g:"f",c:"read"},
- {t:"n",ar:"جُمْلَة",ru:"предложение",g:"f",c:"read"},
- {t:"n",ar:"حَرْف",ru:"буква",g:"m",c:"read"},
- {t:"n",ar:"نَصّ",ru:"текст",g:"m",c:"read"},
- {t:"n",ar:"قَامُوس",ru:"словарь",g:"m",c:"read"},
- {t:"n",ar:"مَجَلَّة",ru:"журнал",g:"f",c:"read"},
- {t:"n",ar:"جَرِيدَة",ru:"газета",g:"f",c:"read"},
- {t:"n",ar:"سَبُّورَة",ru:"доска",g:"f",c:"read"},
- /* ---- أفعال ---- */
- {t:"v",past:"كَتَبَ",pres:"يَكْتُبُ",ru:"писать",c:"verbs"},
- {t:"v",past:"قَرَأَ",pres:"يَقْرَأُ",ru:"читать",c:"verbs"},
- {t:"v",past:"دَرَسَ",pres:"يَدْرُسُ",ru:"учиться, изучать",c:"verbs"},
- {t:"v",past:"عَلَّمَ",pres:"يُعَلِّمُ",ru:"преподавать",c:"verbs"},
- {t:"v",past:"فَهِمَ",pres:"يَفْهَمُ",ru:"понимать",c:"verbs"},
- {t:"v",past:"سَأَلَ",pres:"يَسْأَلُ",ru:"спрашивать",c:"verbs"},
- {t:"v",past:"أَجَابَ",pres:"يُجِيبُ",ru:"отвечать",c:"verbs"},
- {t:"v",past:"تَكَلَّمَ",pres:"يَتَكَلَّمُ",ru:"говорить",c:"verbs"},
- {t:"v",past:"سَمِعَ",pres:"يَسْمَعُ",ru:"слышать, слушать",c:"verbs"},
- {t:"v",past:"شَاهَدَ",pres:"يُشَاهِدُ",ru:"смотреть",c:"verbs"},
- {t:"v",past:"ذَهَبَ",pres:"يَذْهَبُ",ru:"идти, ходить",c:"verbs"},
- {t:"v",past:"رَجَعَ",pres:"يَرْجِعُ",ru:"возвращаться",c:"verbs"},
- {t:"v",past:"خَرَجَ",pres:"يَخْرُجُ",ru:"выходить",c:"verbs"},
- {t:"v",past:"دَخَلَ",pres:"يَدْخُلُ",ru:"входить",c:"verbs"},
- {t:"v",past:"جَلَسَ",pres:"يَجْلِسُ",ru:"сидеть, садиться",c:"verbs"},
- {t:"v",past:"عَمِلَ",pres:"يَعْمَلُ",ru:"работать",c:"verbs"},
- {t:"v",past:"سَكَنَ",pres:"يَسْكُنُ",ru:"жить, проживать",c:"verbs"},
- {t:"v",past:"أَكَلَ",pres:"يَأْكُلُ",ru:"есть, кушать",c:"verbs"},
- {t:"v",past:"شَرِبَ",pres:"يَشْرَبُ",ru:"пить",c:"verbs"},
- {t:"v",past:"حَفِظَ",pres:"يَحْفَظُ",ru:"учить наизусть",c:"verbs"},
- {t:"v",past:"فَتَحَ",pres:"يَفْتَحُ",ru:"открывать",c:"verbs"},
- {t:"v",past:"نَسِيَ",pres:"يَنْسَى",ru:"забывать",c:"verbs"},
- {t:"v",past:"عَرَفَ",pres:"يَعْرِفُ",ru:"знать",c:"verbs"},
- {t:"v",past:"سَافَرَ",pres:"يُسَافِرُ",ru:"путешествовать",c:"verbs"},
- {t:"v",past:"وَصَلَ",pres:"يَصِلُ",ru:"прибывать",c:"verbs"},
- {t:"v",past:"بَدَأَ",pres:"يَبْدَأُ",ru:"начинать",c:"verbs"}
-,
-{t:"n",ar:"سِعْر",ru:"цена",g:"m",c:"السوق والتسوق"},
-{t:"n",ar:"نُقُود",ru:"деньги",g:"f",c:"السوق والتسوق"},
-{t:"n",ar:"دِينَار",ru:"динар",g:"m",c:"السوق والتسوق"},
-{t:"n",ar:"كِيلُو",ru:"килограмм",g:"m",c:"السوق والتسوق"},
-{t:"n",ar:"غَالِي",ru:"дорогой",g:"m",c:"السوق والتسوق"},
-{t:"n",ar:"رَخِيص",ru:"дешёвый",g:"m",c:"السوق والتسوق"},
-{t:"n",ar:"كِيس",ru:"пакет",g:"m",c:"السوق والتسوق"},
-{t:"v",past:"يَبِيع",pres:"يَبِيعُ",ru:"продавать",c:"السوق والتسوق"},
-{t:"v",past:"يَشْتَرِي",pres:"يَشْتَرِي",ru:"покупать",c:"السوق والتسوق"},
-{t:"v",past:"يَدْفَع",pres:"يَدْفَعُ",ru:"платить",c:"السوق والتسوق"},
-{t:"n",ar:"طَبِيب",ru:"врач",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"طَبِيبَة",ru:"врач (ж.)",g:"f",c:"الطبيب والصحة"},
-{t:"n",ar:"مَرِيض",ru:"больной",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"مَرَض",ru:"болезнь",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"صِحَّة",ru:"здоровье",g:"f",c:"الطبيب والصحة"},
-{t:"n",ar:"دَوَاء",ru:"лекарство",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"صَيْدَلِيَّة",ru:"аптека",g:"f",c:"الطبيب والصحة"},
-{t:"n",ar:"وَجَع",ru:"боль",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"رَأْس",ru:"голова",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"بَطْن",ru:"живот",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"حَرَارَة",ru:"температура",g:"f",c:"الطبيب والصحة"},
-{t:"n",ar:"سُعَال",ru:"кашель",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"زُكَام",ru:"простуда",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"تَعْبَان",ru:"усталый",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"فَحْص",ru:"обследование",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"وَصْفَة طِبِّيَّة",ru:"рецепт",g:"f",c:"الطبيب والصحة"},
-{t:"n",ar:"عِلَاج",ru:"лечение",g:"m",c:"الطبيب والصحة"},
-{t:"n",ar:"مُعَافَى",ru:"выздоровевший",g:"m",c:"الطبيب والصحة"},
-{t:"v",past:"شَعَرَ",pres:"يَشْعُرُ",ru:"чувствовать",c:"الطبيب والصحة"},
-{t:"v",past:"مَرِضَ",pres:"يَمْرَضُ",ru:"болеть",c:"الطبيب والصحة"},
-{t:"v",past:"شُفِيَ",pres:"يَشْفَى",ru:"выздоравливать",c:"الطبيب والصحة"},
-{t:"n",ar:"سَفَر",ru:"путешествие",g:"m",c:"السفر والمواصلات"},
-{t:"n",ar:"رِحْلَة",ru:"поездка",g:"f",c:"السفر والمواصلات"},
-{t:"n",ar:"مُسَافِر",ru:"путешественник",g:"m",c:"السفر والمواصلات"},
-{t:"n",ar:"حَقِيبَة سَفَر",ru:"чемодан",g:"f",c:"السفر والمواصلات"},
-{t:"n",ar:"جَوَاز سَفَر",ru:"паспорт",g:"m",c:"السفر والمواصلات"},
-{t:"n",ar:"تَذْكِرَة",ru:"билет",g:"f",c:"السفر والمواصلات"},
-{t:"n",ar:"فُنْدُق",ru:"отель",g:"m",c:"السفر والمواصلات"},
-{t:"n",ar:"سَيَّارَة",ru:"машина",g:"f",c:"السفر والمواصلات"},
-{t:"n",ar:"حَافِلَة",ru:"автобус",g:"f",c:"السفر والمواصلات"},
-{t:"n",ar:"قِطَار",ru:"поезд",g:"m",c:"السفر والمواصلات"},
-{t:"n",ar:"طَائِرَة",ru:"самолёт",g:"f",c:"السفر والمواصلات"},
-{t:"n",ar:"تَاكْسِي",ru:"такси",g:"m",c:"السفر والمواصلات"},
-{t:"n",ar:"مَحَطَّة",ru:"станция",g:"f",c:"السفر والمواصلات"},
-{t:"n",ar:"تَأْشِيرَة",ru:"виза",g:"f",c:"السفر والمواصلات"},
-{t:"v",past:"حَجَزَ",pres:"يَحْجِزُ",ru:"бронировать",c:"السفر والمواصلات"},
-{t:"v",past:"رَكِبَ",pres:"يَرْكَبُ",ru:"садиться (в транспорт)",c:"السفر والمواصلات"},
-{t:"v",past:"طَارَ",pres:"يَطِيرُ",ru:"летать",c:"السفر والمواصلات"}
-{"t":"n","ar":"مَدْرَسَة","ru":"школа","c":"أماكن","g":"f"},
-{"t":"n","ar":"جَامِعَة","ru":"университет","c":"أماكن","g":"f"},
-{"t":"n","ar":"كُلِّيَّة","ru":"факультет","c":"أماكن","g":"f"},
-{"t":"n","ar":"مَعْهَد","ru":"институт","c":"أماكن","g":"m"},
-{"t":"n","ar":"صَفّ","ru":"класс","c":"أماكن","g":"m"},
-{"t":"n","ar":"قَاعَة","ru":"аудитория","c":"أماكن","g":"f"},
-{"t":"n","ar":"مَكْتَبَة","ru":"библиотека","c":"أماكن","g":"f"},
-{"t":"n","ar":"مُخْتَبَر","ru":"лаборатория","c":"أماكن","g":"m"},
-{"t":"n","ar":"مَلْعَب","ru":"стадион","c":"أماكن","g":"m"},
-{"t":"n","ar":"مَقْصَف","ru":"столовая","c":"أماكن","g":"m"},
-{"t":"n","ar":"سَاحَة","ru":"площадь","c":"أماكن","g":"f"},
-{"t":"n","ar":"مَمَرّ","ru":"коридор","c":"أماكن","g":"m"},
-{"t":"n","ar":"حَمَّام","ru":"туалет","c":"أماكن","g":"m"},
-{"t":"n","ar":"مُدِيرِيَّة","ru":"администрация","c":"أماكن","g":"f"},
-{"t":"n","ar":"غُرْفَة المُعَلِّمِين","ru":"учительская","c":"أماكن","g":"f"},
-{"t":"n","ar":"مَكْتَب المُدِير","ru":"кабинет директора","c":"أماكن","g":"m"},
-{"t":"n","ar":"قَاعَة الرِّيَاضَة","ru":"спортивный зал","c":"أماكن","g":"f"},
-{"t":"n","ar":"قَاعَة الحَاسُوب","ru":"компьютерный класс","c":"أماكن","g":"f"},
-{"t":"n","ar":"مَقْعَد","ru":"парта","c":"أماكن","g":"m"},
-{"t":"n","ar":"سَبُّورَة","ru":"доска","c":"أماكن","g":"f"},
-{"t":"n","ar":"طَاوِلَة","ru":"стол","c":"أماكن","g":"f"},
-{"t":"n","ar":"كُرْسِيّ","ru":"стул","c":"أماكن","g":"m"},
-{"t":"n","ar":"بَاب","ru":"дверь","c":"أماكن","g":"m"},
-{"t":"n","ar":"نَافِذَة","ru":"окно","c":"أماكن","g":"f"},
-{"t":"n","ar":"مِفْتَاح","ru":"ключ","c":"أماكن","g":"m"},
-{"t":"n","ar":"مِصْبَاح","ru":"лампа","c":"أماكن","g":"m"},
-{"t":"n","ar":"سَاعَة","ru":"часы","c":"أماكن","g":"f"},
-{"t":"n","ar":"خَرِيطَة","ru":"карта","c":"أماكن","g":"f"},
-{"t":"n","ar":"مُدِير","ru":"директор","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"مُدِيرَة","ru":"директриса","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"مُعَلِّم","ru":"учитель","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"مُعَلِّمَة","ru":"учительница","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"أُسْتَاذ","ru":"преподаватель","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"أُسْتَاذَة","ru":"преподавательница","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"طَالِب","ru":"студент","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"طَالِبَة","ru":"студентка","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"تِلْمِيذ","ru":"ученик","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"تِلْمِيذَة","ru":"ученица","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"إِدَارِيّ","ru":"администратор","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"مُوَظَّف","ru":"сотрудник","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"سِكْرِتِير","ru":"секретарь","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"سِكْرِتِيرَة","ru":"секретарь (ж)","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"حَارِس","ru":"охранник","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"مُشْرِف","ru":"supervisor","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"مُرْشِد","ru":"консультант","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"مُنَسِّق","ru":"координатор","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"لَجْنَة","ru":"комитет","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"اجْتِمَاع","ru":"собрание","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"جَدْوَل","ru":"расписание","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"حِصَّة","ru":"урок","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"دَرْس","ru":"урок","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"امْتِحَان","ru":"экзамен","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"اخْتِبَار","ru":"тест","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"عَلَامَة","ru":"оценка","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"دَرَجَة","ru":"балл","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"شَهَادَة","ru":"сертификат","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"دِبْلُوم","ru":"диплом","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"مِلَفّ","ru":"файл","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"تَقْرِير","ru":"отчёт","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"اسْتِمَارَة","ru":"анкета","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"طَلَب","ru":"заявление","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"قَائِمَة","ru":"список","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"تَسْجِيل","ru":"регистрация","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"حُضُور","ru":"посещаемость","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"غِيَاب","ru":"отсутствие","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"إِجَازَة","ru":"отпуск","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"عُطْلَة","ru":"каникулы","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"فَصْل دِرَاسِيّ","ru":"семестр","c":"المدرسة والإدارة","g":"m"},
-{"t":"n","ar":"سَنَة دِرَاسِيَّة","ru":"учебный год","c":"المدرسة والإدارة","g":"f"},
-{"t":"n","ar":"كِتَاب","ru":"книга","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"دَفْتَر","ru":"тетрадь","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"قَلَم","ru":"ручка","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"قَلَم رَصَاص","ru":"карандаш","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"مِمْحَاة","ru":"ластик","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"مِسْطَرَة","ru":"линейка","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"حَقِيبَة","ru":"сумка","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"مِحْفَظَة","ru":"пенал","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"وَرَقَة","ru":"бумага","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"صَفْحَة","ru":"страница","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"سَطْر","ru":"строка","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"فِقْرَة","ru":"абзац","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"نَصّ","ru":"текст","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"كَلِمَة","ru":"слово","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"جُمْلَة","ru":"предложение","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"حَرْف","ru":"буква","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"رَقْم","ru":"цифра","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"عُنْوَان","ru":"заголовок","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"قِصَّة","ru":"рассказ","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"رِوَايَة","ru":"роман","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"شِعْر","ru":"поэзия","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"قَصِيدَة","ru":"стихотворение","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"مَقَال","ru":"статья","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"خَبَر","ru":"новость","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"مَجَلَّة","ru":"журнал","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"صَحِيفَة","ru":"газета","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"قَامُوس","ru":"словарь","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"مُعْجَم","ru":"словарь","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"قَارِئ","ru":"читатель","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"كَاتِب","ru":"писатель","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"كَاتِبَة","ru":"писательница","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"قِرَاءَة","ru":"чтение","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"كِتَابَة","ru":"письмо","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"إِمْلَاء","ru":"диктант","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"خَطّ","ru":"почерк","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"لُغَة","ru":"язык","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"قَوَاعِد","ru":"грамматика","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"مُفْرَدَات","ru":"лексика","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"تَرْجَمَة","ru":"перевод","c":"القراءة والكتابة","g":"f"},
-{"t":"n","ar":"مَعْنَى","ru":"значение","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"شَرْح","ru":"объяснение","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"سُؤَال","ru":"вопрос","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"جَوَاب","ru":"ответ","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"تَمْرِين","ru":"упражнение","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"وَاجِب","ru":"домашнее задание","c":"القراءة والكتابة","g":"m"},
-{"t":"n","ar":"رِيَاضِيَّات","ru":"математика","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"اللُّغَة العَرَبِيَّة","ru":"арабский язык","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"اللُّغَة الرُّوسِيَّة","ru":"русский язык","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"اللُّغَة الإِنْجِلِيزِيَّة","ru":"английский язык","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"تَارِيخ","ru":"история","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"جُغْرَافِيَا","ru":"география","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"عُلُوم","ru":"наука","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"فِيزْيَاء","ru":"физика","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"كِيمْيَاء","ru":"химия","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"أَحْيَاء","ru":"биология","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"فَلْسَفَة","ru":"философия","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"اقْتِصَاد","ru":"экономика","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"قَانُون","ru":"право","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"طِبّ","ru":"медицина","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"هَنْدَسَة","ru":"инженерия","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"حَاسُوب","ru":"информатика","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"فُنُون","ru":"искусство","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"رِيَاضَة","ru":"физкультура","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"مُوسِيقَى","ru":"музыка","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"آلَة حَاسِبَة","ru":"калькулятор","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"طَابِعَة","ru":"принтер","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"شَاشَة","ru":"экран","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"لَوْحَة مَفَاتِيح","ru":"клавиатура","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"فَأْرَة","ru":"мышь","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"سَمَّاعَة","ru":"наушники","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"مِيكْرُوفُون","ru":"микрофон","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"كَامِيرَا","ru":"камера","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"مِقَصّ","ru":"ножницы","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"لَاصِق","ru":"клей","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"دَبَّاسَة","ru":"степлер","c":"مواد دراسية","g":"f"},
-{"t":"n","ar":"مِشْبَك","ru":"скрепка","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"حِبْر","ru":"чернила","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"طَبَاشِير","ru":"мел","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"قَلَم تَحْدِيد","ru":"маркер","c":"مواد دراسية","g":"m"},
-{"t":"n","ar":"فُرْشَاة","ru":"кисть","c":"مواد دراسية","g":"f"},
-{"t":"v","past":"كَتَبَ","pres":"يَكْتُبُ","ru":"писать","c":"أفعال"},
-{"t":"v","past":"قَرَأَ","pres":"يَقْرَأُ","ru":"читать","c":"أفعال"},
-{"t":"v","past":"دَرَسَ","pres":"يَدْرُسُ","ru":"учить, изучать","c":"أفعال"},
-{"t":"v","past":"عَلَّمَ","pres":"يُعَلِّمُ","ru":"преподавать","c":"أفعال"},
-{"t":"v","past":"فَهِمَ","pres":"يَفْهَمُ","ru":"понимать","c":"أفعال"},
-{"t":"v","past":"سَأَلَ","pres":"يَسْأَلُ","ru":"спрашивать","c":"أفعال"},
-{"t":"v","past":"أَجَابَ","pres":"يُجِيبُ","ru":"отвечать","c":"أفعال"},
-{"t":"v","past":"تَكَلَّمَ","pres":"يَتَكَلَّمُ","ru":"говорить","c":"أفعال"},
-{"t":"v","past":"سَمِعَ","pres":"يَسْمَعُ","ru":"слышать, слушать","c":"أفعال"},
-{"t":"v","past":"شَاهَدَ","pres":"يُشَاهِدُ","ru":"смотреть","c":"أفعال"},
-{"t":"v","past":"ذَهَبَ","pres":"يَذْهَبُ","ru":"идти, ходить","c":"أفعال"},
-{"t":"v","past":"رَجَعَ","pres":"يَرْجِعُ","ru":"возвращаться","c":"أفعال"},
-{"t":"v","past":"خَرَجَ","pres":"يَخْرُجُ","ru":"выходить","c":"أفعال"},
-{"t":"v","past":"دَخَلَ","pres":"يَدْخُلُ","ru":"входить","c":"أفعال"},
-{"t":"v","past":"جَلَسَ","pres":"يَجْلِسُ","ru":"сидеть, садиться","c":"أفعال"},
-{"t":"v","past":"عَمِلَ","pres":"يَعْمَلُ","ru":"работать","c":"أفعال"},
-{"t":"v","past":"سَكَنَ","pres":"يَسْكُنُ","ru":"жить, проживать","c":"أفعال"},
-{"t":"v","past":"أَكَلَ","pres":"يَأْكُلُ","ru":"есть, кушать","c":"أفعال"},
-{"t":"v","past":"شَرِبَ","pres":"يَشْرَبُ","ru":"пить","c":"أفعال"},
-{"t":"v","past":"حَفِظَ","pres":"يَحْفَظُ","ru":"учить наизусть","c":"أفعال"},
-{"t":"v","past":"فَتَحَ","pres":"يَفْتَحُ","ru":"открывать","c":"أفعال"},
-{"t":"v","past":"نَسِيَ","pres":"يَنْسَى","ru":"забывать","c":"أفعال"},
-{"t":"v","past":"عَرَفَ","pres":"يَعْرِفُ","ru":"знать","c":"أفعال"},
-{"t":"v","past":"سَافَرَ","pres":"يُسَافِرُ","ru":"путешествовать","c":"أفعال"},
-{"t":"v","past":"وَصَلَ","pres":"يَصِلُ","ru":"прибывать","c":"أفعال"},
-{"t":"v","past":"بَدَأَ","pres":"يَبْدَأُ","ru":"начинать","c":"أفعال"},
-{"t":"n","ar":"بَيْت","ru":"дом","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"شَقَّة","ru":"квартира","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"غُرْفَة","ru":"комната","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"غُرْفَة النَّوْم","ru":"спальня","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"غُرْفَة الجُلُوس","ru":"гостиная","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"غُرْفَة الطَّعَام","ru":"столовая","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"مَطْبَخ","ru":"кухня","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"حَمَّام","ru":"ванная","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"مِرْحَاض","ru":"туалет","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"شُرْفَة","ru":"балкон","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"سَاحَة","ru":"двор","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"حَدِيقَة","ru":"сад","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"مَدْخَل","ru":"вход","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"مَخْرَج","ru":"выход","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"سُلَّم","ru":"лестница","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"مِصْعَد","ru":"лифт","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"بَاب","ru":"дверь","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"نَافِذَة","ru":"окно","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"جِدَار","ru":"стена","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"سَقْف","ru":"потолок","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"أَرْضِيَّة","ru":"пол","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"طَابِق","ru":"этаж","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"سَطْح","ru":"крыша","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"قَبْو","ru":"подвал","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"غَارَاج","ru":"гараж","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"سِرِير","ru":"кровать","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"خِزَانَة","ru":"шкаф","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"طَاوِلَة","ru":"стол","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"كُرْسِيّ","ru":"стул","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"أَرِيكَة","ru":"диван","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"مِرْآة","ru":"зеркало","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"سِتَارَة","ru":"занавеска","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"سَجَّادَة","ru":"ковёр","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"مِصْبَاح","ru":"лампа","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"مِفْتَاح","ru":"ключ","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"تِلْفَاز","ru":"телевизор","c":"البيت ومكوناته","g":"m"},
-{"t":"n","ar":"ثَلَّاجَة","ru":"холодильник","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"غَسَّالَة","ru":"стиральная машина","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"مِكْوَاة","ru":"утюг","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"مِكْنَسَة","ru":"метла","c":"البيت ومكوناته","g":"f"},
-{"t":"n","ar":"مِنْشَفَة","ru":"полотенце","c":"البيت ومكوناته","g":"f"},
-{"t":"v","past":"سَكَنَ","pres":"يَسْكُنُ","ru":"жить","c":"أفعال البيت"},
-{"t":"v","past":"نَامَ","pres":"يَنَامُ","ru":"спать","c":"أفعال البيت"},
-{"t":"v","past":"اسْتَيْقَظَ","pres":"يَسْتَيْقِظُ","ru":"просыпаться","c":"أفعال البيت"},
-{"t":"v","past":"صَحَا","pres":"يَصْحُو","ru":"просыпаться","c":"أفعال البيت"},
-{"t":"v","past":"قَامَ","pres":"يَقُومُ","ru":"вставать","c":"أفعال البيت"},
-{"t":"v","past":"جَلَسَ","pres":"يَجْلِسُ","ru":"сидеть","c":"أفعال البيت"},
-{"t":"v","past":"طَبَخَ","pres":"يَطْبُخُ","ru":"готовить","c":"أفعال البيت"},
-{"t":"v","past":"أَكَلَ","pres":"يَأْكُلُ","ru":"есть","c":"أفعال البيت"},
-{"t":"v","past":"شَرِبَ","pres":"يَشْرَبُ","ru":"пить","c":"أفعال البيت"},
-{"t":"v","past":"غَسَلَ","pres":"يَغْسِلُ","ru":"мыть","c":"أفعال البيت"},
-{"t":"v","past":"نَظَّفَ","pres":"يُنَظِّفُ","ru":"убирать","c":"أفعال البيت"},
-{"t":"v","past":"كَنَسَ","pres":"يَكْنُسُ","ru":"подметать","c":"أفعال البيت"},
-{"t":"v","past":"مَسَحَ","pres":"يَمْسَحُ","ru":"вытирать","c":"أفعال البيت"},
-{"t":"v","past":"غَسَّلَ","pres":"يُغَسِّلُ","ru":"стирать","c":"أفعال البيت"},
-{"t":"v","past":"كَوَى","pres":"يَكْوِي","ru":"гладить","c":"أفعال البيت"},
-{"t":"v","past":"رَتَّبَ","pres":"يُرَتِّبُ","ru":"приводить в порядок","c":"أفعال البيت"},
-{"t":"v","past":"فَتَحَ","pres":"يَفْتَحُ","ru":"открывать","c":"أفعال البيت"},
-{"t":"v","past":"أَغْلَقَ","pres":"يُغْلِقُ","ru":"закрывать","c":"أفعال البيت"},
-{"t":"v","past":"خَرَجَ","pres":"يَخْرُجُ","ru":"выходить","c":"أفعال البيت"},
-{"t":"v","past":"دَخَلَ","pres":"يَدْخُلُ","ru":"входить","c":"أفعال البيت"},
-{"t":"v","past":"اسْتَحَمَّ","pres":"يَسْتَحِمُّ","ru":"принимать душ","c":"أفعال البيت"},
-{"t":"v","past":"لَبِسَ","pres":"يَلْبَسُ","ru":"надевать","c":"أفعال البيت"},
-{"t":"v","past":"خَلَعَ","pres":"يَخْلَعُ","ru":"снимать (одежду)","c":"أفعال البيت"},
-{"t":"v","past":"قَطَعَ","pres":"يَقْطَعُ","ru":"резать","c":"أفعال البيت"},
-{"t":"v","past":"سَخَّنَ","pres":"يُسَخِّنُ","ru":"подогревать","c":"أفعال البيت"},
-{"t":"v","past":"بَرَّدَ","pres":"يُبَرِّدُ","ru":"охлаждать","c":"أفعال البيت"},
-{"t":"v","past":"سَكَبَ","pres":"يَسْكُبُ","ru":"наливать","c":"أفعال البيت"},
-{"t":"v","past":"وَضَعَ","pres":"يَضَعُ","ru":"класть","c":"أفعال البيت"},
-{"t":"v","past":"حَمَلَ","pres":"يَحْمِلُ","ru":"нести","c":"أفعال البيت"},
-{"t":"v","past":"رَأَى","pres":"يَرَى","ru":"видеть","c":"أفعال البيت"},
-{"t":"v","past":"سَمِعَ","pres":"يَسْمَعُ","ru":"слышать","c":"أفعال البيت"},
-{"t":"v","past":"اسْتَرَاحَ","pres":"يَسْتَرِيحُ","ru":"отдыхать","c":"أفعال البيت"},
-{"t":"v","past":"زَرَعَ","pres":"يَزْرَعُ","ru":"сажать","c":"أفعال البيت"},
-{"t":"v","past":"سَاعَدَ","pres":"يُسَاعِدُ","ru":"помогать","c":"أفعال البيت"},
-{"t":"n","ar":"صَحْن","ru":"тарелка","c":"المطبخ","g":"m"},
-{"t":"n","ar":"طَبَق","ru":"блюдо","c":"المطبخ","g":"m"},
-{"t":"n","ar":"كُوب","ru":"стакан","c":"المطبخ","g":"m"},
-{"t":"n","ar":"كَأْس","ru":"бокал","c":"المطبخ","g":"m"},
-{"t":"n","ar":"فِنْجَان","ru":"чашка","c":"المطبخ","g":"m"},
-{"t":"n","ar":"مِلْعَقَة","ru":"ложка","c":"المطبخ","g":"f"},
-{"t":"n","ar":"شَوْكَة","ru":"вилка","c":"المطبخ","g":"f"},
-{"t":"n","ar":"سِكِّين","ru":"нож","c":"المطبخ","g":"m"},
-{"t":"n","ar":"قِدْر","ru":"кастрюля","c":"المطبخ","g":"m"},
-{"t":"n","ar":"مِقْلَاة","ru":"сковорода","c":"المطبخ","g":"f"},
-{"t":"n","ar":"إِبْرِيق","ru":"чайник","c":"المطبخ","g":"m"},
-{"t":"n","ar":"غَلَّايَة","ru":"электрочайник","c":"المطبخ","g":"f"},
-{"t":"n","ar":"فُرْن","ru":"печь, духовка","c":"المطبخ","g":"m"},
-{"t":"n","ar":"مِيكْرُووِيف","ru":"микроволновка","c":"المطبخ","g":"m"},
-{"t":"n","ar":"خَلَّاط","ru":"блендер","c":"المطبخ","g":"m"},
-{"t":"n","ar":"مِصْفَاة","ru":"сито","c":"المطبخ","g":"f"},
-{"t":"n","ar":"لَوْح التَّقْطِيع","ru":"разделочная доска","c":"المطبخ","g":"m"},
-{"t":"n","ar":"صَابُون","ru":"мыло","c":"المطبخ","g":"m"},
-{"t":"n","ar":"مَغْسَلَة","ru":"раковина","c":"المطبخ","g":"f"},
-{"t":"n","ar":"حَنَفِيَّة","ru":"кран","c":"المطبخ","g":"f"},
-{"t":"n","ar":"خِزَانَة المَطْبَخ","ru":"кухонный шкаф","c":"المطبخ","g":"f"},
-{"t":"n","ar":"مِنْشَفَة المَطْبَخ","ru":"кухонное полотенце","c":"المطبخ","g":"f"},
-{"t":"n","ar":"قُفَّاز","ru":"перчатка","c":"المطبخ","g":"m"},
-{"t":"n","ar":"طَعَام","ru":"еда","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"فَطُور","ru":"завтрак","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"غَدَاء","ru":"обед","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"عَشَاء","ru":"ужин","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"خُبْز","ru":"хлеб","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"خُبْز عَرَبِيّ","ru":"арабский хлеб","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"أَرُزّ","ru":"рис","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"مَكَرُونَة","ru":"макароны","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"شَعْرِيَّة","ru":"вермишель","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"عَجِين","ru":"тесто","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"حَسَاء","ru":"суп","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"شُورْبَة","ru":"суп","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"سَلَطَة","ru":"салат","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"سَنْدَوِيش","ru":"бутерброд","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"بَيْض","ru":"яйцо","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"زَيْتُون","ru":"оливки","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"زَيْت","ru":"растительное масло","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"زُبْدَة","ru":"сливочное масло","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"سُكَّر","ru":"сахар","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"مِلْح","ru":"соль","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"فِلْفِل","ru":"перец","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"تَوَابِل","ru":"специи","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"عَسَل","ru":"мёд","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"مُرَبَّى","ru":"варенье","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"حَلْوَى","ru":"сладости","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"كَعْك","ru":"пирог, торт","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"بِسْكُوِيت","ru":"печенье","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"شِيبْس","ru":"чипсы","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"مُكَسَّرَات","ru":"орехи","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"لَوْز","ru":"миндаль","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"جَوْز","ru":"грецкий орех","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"فُسْتُق","ru":"фисташки","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"بُنْدُق","ru":"фундук","c":"أنواع الطعام","g":"m"},
-{"t":"n","ar":"شُوكُولَاتَة","ru":"шоколад","c":"أنواع الطعام","g":"f"},
-{"t":"n","ar":"خُضَار","ru":"овощи","c":"الخضروات","g":"f"},
-{"t":"n","ar":"طَمَاطِم","ru":"помидор","c":"الخضروات","g":"f"},
-{"t":"n","ar":"خِيَار","ru":"огурец","c":"الخضروات","g":"m"},
-{"t":"n","ar":"بَصَل","ru":"лук","c":"الخضروات","g":"m"},
-{"t":"n","ar":"ثُوم","ru":"чеснок","c":"الخضروات","g":"m"},
-{"t":"n","ar":"جَزَر","ru":"морковь","c":"الخضروات","g":"m"},
-{"t":"n","ar":"بَطَاطِس","ru":"картофель","c":"الخضروات","g":"f"},
-{"t":"n","ar":"بَاذِنْجَان","ru":"баклажан","c":"الخضروات","g":"m"},
-{"t":"n","ar":"كُوسَا","ru":"кабачок","c":"الخضروات","g":"f"},
-{"t":"n","ar":"فِلْفِل رُومِيّ","ru":"болгарский перец","c":"الخضروات","g":"m"},
-{"t":"n","ar":"فِلْفِل حَارّ","ru":"острый перец","c":"الخضروات","g":"m"},
-{"t":"n","ar":"لِفْت","ru":"репа","c":"الخضروات","g":"m"},
-{"t":"n","ar":"شَمَنْدَر","ru":"свёкла","c":"الخضروات","g":"m"},
-{"t":"n","ar":"كُرُنْب","ru":"капуста","c":"الخضروات","g":"m"},
-{"t":"n","ar":"قَرْنَبِيط","ru":"цветная капуста","c":"الخضروات","g":"m"},
-{"t":"n","ar":"سَبَانِخ","ru":"шпинат","c":"الخضروات","g":"f"},
-{"t":"n","ar":"خَسّ","ru":"салат (листья)","c":"الخضروات","g":"m"},
-{"t":"n","ar":"بَقْدُونِس","ru":"петрушка","c":"الخضروات","g":"m"},
-{"t":"n","ar":"كُزْبَرَة","ru":"кориандр","c":"الخضروات","g":"f"},
-{"t":"n","ar":"نَعْنَاع","ru":"мята","c":"الخضروات","g":"m"},
-{"t":"n","ar":"بَامْيَة","ru":"бамия","c":"الخضروات","g":"f"},
-{"t":"n","ar":"فَاصُولْيَا","ru":"фасоль","c":"الخضروات","g":"f"},
-{"t":"n","ar":"بَازِلَّاء","ru":"горох","c":"الخضروات","g":"f"},
-{"t":"n","ar":"عَدَس","ru":"чечевица","c":"الخضروات","g":"m"},
-{"t":"n","ar":"ذُرَة","ru":"кукуруза","c":"الخضروات","g":"f"},
-{"t":"n","ar":"فُطْر","ru":"грибы","c":"الخضروات","g":"m"},
-{"t":"n","ar":"زَنْجَبِيل","ru":"имбирь","c":"الخضروات","g":"m"},
-{"t":"n","ar":"فَاكِهَة","ru":"фрукты","c":"الفواكه","g":"f"},
-{"t":"n","ar":"تُفَّاح","ru":"яблоко","c":"الفواكه","g":"m"},
-{"t":"n","ar":"مَوْز","ru":"банан","c":"الفواكه","g":"m"},
-{"t":"n","ar":"بُرْتُقَال","ru":"апельсин","c":"الفواكه","g":"m"},
-{"t":"n","ar":"لَيْمُون","ru":"лимон","c":"الفواكه","g":"m"},
-{"t":"n","ar":"عِنَب","ru":"виноград","c":"الفواكه","g":"m"},
-{"t":"n","ar":"تِين","ru":"инжир","c":"الفواكه","g":"m"},
-{"t":"n","ar":"رُمَّان","ru":"гранат","c":"الفواكه","g":"m"},
-{"t":"n","ar":"خَوْخ","ru":"персик","c":"الفواكه","g":"m"},
-{"t":"n","ar":"مِشْمِش","ru":"абрикос","c":"الفواكه","g":"m"},
-{"t":"n","ar":"كَرَز","ru":"черешня","c":"الفواكه","g":"m"},
-{"t":"n","ar":"بَطِيخ","ru":"арбуз","c":"الفواكه","g":"m"},
-{"t":"n","ar":"شَمَّام","ru":"дыня","c":"الفواكه","g":"m"},
-{"t":"n","ar":"فَرَاوِلَة","ru":"клубника","c":"الفواكه","g":"f"},
-{"t":"n","ar":"أَنَانَاس","ru":"ананас","c":"الفواكه","g":"m"},
-{"t":"n","ar":"كِيوِي","ru":"киви","c":"الفواكه","g":"m"},
-{"t":"n","ar":"مَانْجُو","ru":"манго","c":"الفواكه","g":"m"},
-{"t":"n","ar":"جَوْز الهِنْد","ru":"кокос","c":"الفواكه","g":"m"},
-{"t":"n","ar":"تَمْر","ru":"финики","c":"الفواكه","g":"m"},
-{"t":"n","ar":"إِجَّاص","ru":"груша","c":"الفواكه","g":"m"},
-{"t":"n","ar":"بَرْقُوق","ru":"слива","c":"الفواكه","g":"m"},
-{"t":"n","ar":"يُوسُفِيّ","ru":"мандарин","c":"الفواكه","g":"m"},
-{"t":"n","ar":"تُوت","ru":"ягоды, тутовник","c":"الفواكه","g":"m"},
-{"t":"n","ar":"حَلِيب","ru":"молоко","c":"الألبان","g":"m"},
-{"t":"n","ar":"لَبَن","ru":"кефир, йогурт","c":"الألبان","g":"m"},
-{"t":"n","ar":"زَبَادِي","ru":"йогурт","c":"الألبان","g":"m"},
-{"t":"n","ar":"جُبْن","ru":"сыр","c":"الألبان","g":"m"},
-{"t":"n","ar":"جُبْن أَبْيَض","ru":"белый сыр","c":"الألبان","g":"m"},
-{"t":"n","ar":"جُبْن رُومِيّ","ru":"твёрдый сыр","c":"الألبان","g":"m"},
-{"t":"n","ar":"قِشْدَة","ru":"сливки","c":"الألبان","g":"f"},
-{"t":"n","ar":"لَبَنَة","ru":"творожный сыр","c":"الألبان","g":"f"},
-{"t":"n","ar":"مَخِيض","ru":"пахта","c":"الألبان","g":"m"},
-{"t":"n","ar":"آيْس كِرِيم","ru":"мороженое","c":"الألبان","g":"m"},
-{"t":"n","ar":"مَاء","ru":"вода","c":"المشروبات","g":"m"},
-{"t":"n","ar":"مَاء بَارِد","ru":"холодная вода","c":"المشروبات","g":"m"},
-{"t":"n","ar":"مَاء سَاخِن","ru":"горячая вода","c":"المشروبات","g":"m"},
-{"t":"n","ar":"شَاي","ru":"чай","c":"المشروبات","g":"m"},
-{"t":"n","ar":"قَهْوَة","ru":"кофе","c":"المشروبات","g":"f"},
-{"t":"n","ar":"قَهْوَة بِالحَلِيب","ru":"кофе с молоком","c":"المشروبات","g":"f"},
-{"t":"n","ar":"عَصِير","ru":"сок","c":"المشروبات","g":"m"},
-{"t":"n","ar":"عَصِير بُرْتُقَال","ru":"апельсиновый сок","c":"المشروبات","g":"m"},
-{"t":"n","ar":"عَصِير تُفَّاح","ru":"яблочный сок","c":"المشروبات","g":"m"},
-{"t":"n","ar":"عَصِير لَيْمُون","ru":"лимонад","c":"المشروبات","g":"m"},
-{"t":"n","ar":"شَرَاب","ru":"напиток","c":"المشروبات","g":"m"},
-{"t":"n","ar":"مَشْرُوب","ru":"напиток","c":"المشروبات","g":"m"},
-{"t":"n","ar":"مَشْرُوب غَازِيّ","ru":"газированный напиток","c":"المشروبات","g":"m"},
-{"t":"n","ar":"مَاء مَعْدِنِيّ","ru":"минеральная вода","c":"المشروبات","g":"m"},
-{"t":"n","ar":"كُوكَا كُولَا","ru":"кока-кола","c":"المشروبات","g":"f"},
-{"t":"n","ar":"لَحْم","ru":"мясо","c":"اللحوم","g":"m"},
-{"t":"n","ar":"لَحْم بَقَرِيّ","ru":"говядина","c":"اللحوم","g":"m"},
-{"t":"n","ar":"لَحْم غَنَمِيّ","ru":"баранина","c":"اللحوم","g":"m"},
-{"t":"n","ar":"لَحْم دَجَاج","ru":"курятина","c":"اللحوم","g":"m"},
-{"t":"n","ar":"دَجَاج","ru":"курица","c":"اللحوم","g":"m"},
-{"t":"n","ar":"دَجَاجَة","ru":"курица (одна)","c":"اللحوم","g":"f"},
-{"t":"n","ar":"دِيك","ru":"петух","c":"اللحوم","g":"m"},
-{"t":"n","ar":"لَحْم مَفْرُوم","ru":"фарш","c":"اللحوم","g":"m"},
-{"t":"n","ar":"كَبْدَة","ru":"печень","c":"اللحوم","g":"f"},
-{"t":"n","ar":"كِبَاب","ru":"кебаб","c":"اللحوم","g":"m"},
-{"t":"n","ar":"كُفْتَة","ru":"тефтели","c":"اللحوم","g":"f"},
-{"t":"n","ar":"شَوَارْمَا","ru":"шаурма","c":"اللحوم","g":"f"},
-{"t":"n","ar":"نَقَانِق","ru":"сосиски","c":"اللحوم","g":"f"},
-{"t":"n","ar":"سُجُق","ru":"колбаса","c":"اللحوم","g":"m"},
-{"t":"n","ar":"سَمَك","ru":"рыба","c":"السمك","g":"m"},
-{"t":"n","ar":"سَمَكَة","ru":"рыба (одна)","c":"السمك","g":"f"},
-{"t":"n","ar":"سَمَك مَقْلِيّ","ru":"жареная рыба","c":"السمك","g":"m"},
-{"t":"n","ar":"سَمَك مَشْوِيّ","ru":"рыба на гриле","c":"السمك","g":"m"},
-{"t":"n","ar":"جَمْبَرِي","ru":"креветки","c":"السمك","g":"m"},
-{"t":"n","ar":"كَالِيمَارِي","ru":"кальмар","c":"السمك","g":"m"},
-{"t":"n","ar":"أُخْطُبُوط","ru":"осьминог","c":"السمك","g":"m"},
-{"t":"n","ar":"وَقْت","ru":"время","c":"الوقت","g":"m"},
-{"t":"n","ar":"لَحْظَة","ru":"момент","c":"الوقت","g":"f"},
-{"t":"n","ar":"دَقِيقَة","ru":"минута","c":"الوقت","g":"f"},
-{"t":"n","ar":"ثَانِيَة","ru":"секунда","c":"الوقت","g":"f"},
-{"t":"n","ar":"سَاعَة","ru":"час","c":"الوقت","g":"f"},
-{"t":"n","ar":"يَوْم","ru":"день","c":"الوقت","g":"m"},
-{"t":"n","ar":"أُسْبُوع","ru":"неделя","c":"الوقت","g":"m"},
-{"t":"n","ar":"شَهْر","ru":"месяц","c":"الوقت","g":"m"},
-{"t":"n","ar":"سَنَة","ru":"год","c":"الوقت","g":"f"},
-{"t":"n","ar":"عَام","ru":"год","c":"الوقت","g":"m"},
-{"t":"n","ar":"عَقْد","ru":"десятилетие","c":"الوقت","g":"m"},
-{"t":"n","ar":"قَرْن","ru":"век","c":"الوقت","g":"m"},
-{"t":"n","ar":"أَلْفِيَّة","ru":"тысячелетие","c":"الوقت","g":"f"},
-{"t":"n","ar":"فَتْرَة","ru":"период","c":"الوقت","g":"f"},
-{"t":"n","ar":"مُدَّة","ru":"срок","c":"الوقت","g":"f"},
-{"t":"n","ar":"بِدَايَة","ru":"начало","c":"الوقت","g":"f"},
-{"t":"n","ar":"نِهَايَة","ru":"конец","c":"الوقت","g":"f"},
-{"t":"n","ar":"تَارِيخ","ru":"дата","c":"الوقت","g":"m"},
-{"t":"n","ar":"تَقْوِيم","ru":"календарь","c":"الوقت","g":"m"},
-{"t":"n","ar":"سَاعَة يَد","ru":"наручные часы","c":"الوقت","g":"f"},
-{"t":"n","ar":"مُنَبِّه","ru":"будильник","c":"الوقت","g":"m"},
-{"t":"n","ar":"يَوْم عُطْلَة","ru":"выходной","c":"الوقت","g":"m"},
-{"t":"n","ar":"يَوْم عَمَل","ru":"рабочий день","c":"الوقت","g":"m"},
-{"t":"n","ar":"نِهَايَة الأُسْبُوع","ru":"выходные","c":"الوقت","g":"f"},
-{"t":"n","ar":"الفَجْر","ru":"рассвет","c":"الوقت","g":"m"},
-{"t":"n","ar":"الشُّرُوق","ru":"восход","c":"الوقت","g":"m"},
-{"t":"n","ar":"الصَّبَاح","ru":"утро","c":"الوقت","g":"m"},
-{"t":"n","ar":"الضُّحَى","ru":"позднее утро","c":"الوقت","g":"f"},
-{"t":"n","ar":"الظُّهْر","ru":"полдень","c":"الوقت","g":"m"},
-{"t":"n","ar":"العَصْر","ru":"послеполуденное время","c":"الوقت","g":"m"},
-{"t":"n","ar":"الغُرُوب","ru":"закат","c":"الوقت","g":"m"},
-{"t":"n","ar":"المَغْرِب","ru":"закат","c":"الوقت","g":"m"},
-{"t":"n","ar":"المَسَاء","ru":"вечер","c":"الوقت","g":"m"},
-{"t":"n","ar":"العِشَاء","ru":"поздний вечер","c":"الوقت","g":"m"},
-{"t":"n","ar":"اللَّيْل","ru":"ночь","c":"الوقت","g":"m"},
-{"t":"n","ar":"مُنْتَصَف اللَّيْل","ru":"полночь","c":"الوقت","g":"m"},
-{"t":"n","ar":"السَّبْت","ru":"суббота","c":"الوقت","g":"m"},
-{"t":"n","ar":"الأَحَد","ru":"воскресенье","c":"الوقت","g":"m"},
-{"t":"n","ar":"الِاثْنَيْن","ru":"понедельник","c":"الوقت","g":"m"},
-{"t":"n","ar":"الثُّلَاثَاء","ru":"вторник","c":"الوقت","g":"m"},
-{"t":"n","ar":"الأَرْبِعَاء","ru":"среда","c":"الوقت","g":"m"},
-{"t":"n","ar":"الخَمِيس","ru":"четверг","c":"الوقت","g":"m"},
-{"t":"n","ar":"الجُمْعَة","ru":"пятница","c":"الوقت","g":"f"},
-{"t":"n","ar":"يَنَايِر","ru":"январь","c":"الوقت","g":"m"},
-{"t":"n","ar":"فِبْرَايِر","ru":"февраль","c":"الوقت","g":"m"},
-{"t":"n","ar":"مَارِس","ru":"март","c":"الوقت","g":"m"},
-{"t":"n","ar":"أَبْرِيل","ru":"апрель","c":"الوقت","g":"m"},
-{"t":"n","ar":"مَايُو","ru":"май","c":"الوقت","g":"m"},
-{"t":"n","ar":"يُونْيُو","ru":"июнь","c":"الوقت","g":"m"},
-{"t":"n","ar":"يُولْيُو","ru":"июль","c":"الوقت","g":"m"},
-{"t":"n","ar":"أَغُسْطُس","ru":"август","c":"الوقت","g":"m"},
-{"t":"n","ar":"سِبْتَمْبِر","ru":"сентябрь","c":"الوقت","g":"m"},
-{"t":"n","ar":"أُكْتُوبِر","ru":"октябрь","c":"الوقت","g":"m"},
-{"t":"n","ar":"نُوفَمْبِر","ru":"ноябрь","c":"الوقت","g":"m"},
-{"t":"n","ar":"دِيسَمْبِر","ru":"декабрь","c":"الوقت","g":"m"},
-{"t":"n","ar":"مُحَرَّم","ru":"Мухаррам","c":"الوقت","g":"m"},
-{"t":"n","ar":"صَفَر","ru":"Сафар","c":"الوقت","g":"m"},
-{"t":"n","ar":"رَبِيع الأَوَّل","ru":"Раби аль-авваль","c":"الوقت","g":"m"},
-{"t":"n","ar":"رَبِيع الثَّانِي","ru":"Раби ас-сани","c":"الوقت","g":"m"},
-{"t":"n","ar":"جُمَادَى الأُولَى","ru":"Джумада аль-уля","c":"الوقت","g":"f"},
-{"t":"n","ar":"جُمَادَى الآخِرَة","ru":"Джумада ас-сания","c":"الوقت","g":"f"},
-{"t":"n","ar":"رَجَب","ru":"Раджаб","c":"الوقت","g":"m"},
-{"t":"n","ar":"شَعْبَان","ru":"Шаабан","c":"الوقت","g":"m"},
-{"t":"n","ar":"رَمَضَان","ru":"Рамадан","c":"الوقت","g":"m"},
-{"t":"n","ar":"شَوَّال","ru":"Шавваль","c":"الوقت","g":"m"},
-{"t":"n","ar":"ذُو القَعْدَة","ru":"Зуль-каада","c":"الوقت","g":"m"},
-{"t":"n","ar":"ذُو الحِجَّة","ru":"Зуль-хиджа","c":"الوقت","g":"m"},
-{"t":"n","ar":"الرَّبِيع","ru":"весна","c":"الوقت","g":"m"},
-{"t":"n","ar":"الصَّيْف","ru":"лето","c":"الوقت","g":"m"},
-{"t":"n","ar":"الخَرِيف","ru":"осень","c":"الوقت","g":"m"},
-{"t":"n","ar":"الشِّتَاء","ru":"зима","c":"الوقت","g":"m"},
-{"t":"n","ar":"الآن","ru":"сейчас","c":"الوقت","g":"m"},
-{"t":"n","ar":"اليَوْم","ru":"сегодня","c":"الوقت","g":"m"},
-{"t":"n","ar":"أَمْس","ru":"вчера","c":"الوقت","g":"m"},
-{"t":"n","ar":"غَدًا","ru":"завтра","c":"الوقت","g":"m"},
-{"t":"n","ar":"بَعْدَ غَد","ru":"послезавтра","c":"الوقت","g":"m"},
-{"t":"n","ar":"أَوَّل أَمْس","ru":"позавчера","c":"الوقت","g":"m"},
-{"t":"n","ar":"صَبَاحًا","ru":"утром","c":"الوقت","g":"m"},
-{"t":"n","ar":"مَسَاءً","ru":"вечером","c":"الوقت","g":"m"},
-{"t":"n","ar":"لَيْلًا","ru":"ночью","c":"الوقت","g":"m"},
-{"t":"n","ar":"قَبْلَ الظُّهْر","ru":"до полудня","c":"الوقت","g":"m"},
-{"t":"n","ar":"بَعْدَ الظُّهْر","ru":"после полудня","c":"الوقت","g":"m"},
-{"t":"n","ar":"فِي المُسْتَقْبَل","ru":"в будущем","c":"الوقت","g":"m"},
-{"t":"n","ar":"فِي المَاضِي","ru":"в прошлом","c":"الوقت","g":"m"},
-{"t":"n","ar":"فِي الوَقْت الحَالِيّ","ru":"в настоящее время","c":"الوقت","g":"m"},
-{"t":"n","ar":"هَذَا الأُسْبُوع","ru":"на этой неделе","c":"الوقت","g":"m"},
-{"t":"n","ar":"الأُسْبُوع القَادِم","ru":"на следующей неделе","c":"الوقت","g":"m"},
-{"t":"n","ar":"الأُسْبُوع المَاضِي","ru":"на прошлой неделе","c":"الوقت","g":"m"},
-{"t":"n","ar":"هَذَا الشَّهْر","ru":"в этом месяце","c":"الوقت","g":"m"},
-{"t":"n","ar":"الشَّهْر القَادِم","ru":"в следующем месяце","c":"الوقت","g":"m"},
-{"t":"n","ar":"الشَّهْر المَاضِي","ru":"в прошлом месяце","c":"الوقت","g":"m"},
-{"t":"n","ar":"هَذِهِ السَّنَة","ru":"в этом году","c":"الوقت","g":"f"},
-{"t":"n","ar":"السَّنَة القَادِمَة","ru":"в следующем году","c":"الوقت","g":"f"},
-{"t":"n","ar":"السَّنَة المَاضِيَة","ru":"в прошлом году","c":"الوقت","g":"f"},
-{"t":"n","ar":"مُبَكِّرًا","ru":"рано","c":"الوقت","g":"m"},
-{"t":"n","ar":"مُتَأَخِّرًا","ru":"поздно","c":"الوقت","g":"m"},
-{"t":"n","ar":"دَائِمًا","ru":"всегда","c":"الوقت","g":"m"},
-{"t":"n","ar":"أَبَدًا","ru":"никогда","c":"الوقت","g":"m"},
-{"t":"n","ar":"أَحْيَانًا","ru":"иногда","c":"الوقت","g":"m"},
-{"t":"n","ar":"غَالِبًا","ru":"часто","c":"الوقت","g":"m"},
-{"t":"n","ar":"نَادِرًا","ru":"редко","c":"الوقت","g":"m"},
-{"t":"n","ar":"عَادَةً","ru":"обычно","c":"الوقت","g":"f"},
-{"t":"n","ar":"مُؤَخَّرًا","ru":"недавно","c":"الوقت","g":"m"},
-{"t":"n","ar":"قَرِيبًا","ru":"скоро","c":"الوقت","g":"m"},
-{"t":"n","ar":"حَالًا","ru":"сразу","c":"الوقت","g":"m"},
-{"t":"n","ar":"فَوْرًا","ru":"немедленно","c":"الوقت","g":"m"},
-{"t":"n","ar":"بَعْدَ قَلِيل","ru":"через некоторое время","c":"الوقت","g":"m"},
-{"t":"n","ar":"كَم السَّاعَة؟","ru":"который час?","c":"الوقت","g":"f"},
-{"t":"n","ar":"مَتَى؟","ru":"когда?","c":"الوقت","g":"m"},
-{"t":"n","ar":"مَاذَا الوَقْت؟","ru":"сколько времени?","c":"الوقت","g":"m"}
+ {t:"n",ar:"مَدْرَسَة",ru:"школа",g:"f",c:"أماكن"},
+ {t:"n",ar:"جَامِعَة",ru:"университет",g:"f",c:"أماكن"},
+ {t:"n",ar:"مَكْتَبَة",ru:"библиотека",g:"f",c:"أماكن"},
+ {t:"n",ar:"بَيْت",ru:"дом",g:"m",c:"أماكن"},
+ {t:"n",ar:"سُوق",ru:"рынок",g:"m",c:"أماكن"},
+ {t:"n",ar:"مُسْتَشْفَى",ru:"больница",g:"m",c:"أماكن"},
+ {t:"n",ar:"مَطَار",ru:"аэропорт",g:"m",c:"أماكن"},
+ {t:"n",ar:"شَارِع",ru:"улица",g:"m",c:"أماكن"},
+ {t:"n",ar:"مَدِينَة",ru:"город",g:"f",c:"أماكن"},
+ {t:"n",ar:"قَرْيَة",ru:"деревня",g:"f",c:"أماكن"},
+ {t:"n",ar:"مَطْعَم",ru:"ресторан",g:"m",c:"أماكن"},
+ {t:"n",ar:"حَدِيقَة",ru:"сад, парк",g:"f",c:"أماكن"},
+ {t:"n",ar:"مَلْعَب",ru:"стадион",g:"m",c:"أماكن"},
+ {t:"n",ar:"غُرْفَة",ru:"комната",g:"f",c:"أماكن"},
+ {t:"n",ar:"مُدِير",ru:"директор (м.)",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُدِيرَة",ru:"директор (ж.)",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُعَلِّم",ru:"учитель",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُعَلِّمَة",ru:"учительница",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"طَالِب",ru:"студент",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"طَالِبَة",ru:"студентка",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"أُسْتَاذ",ru:"преподаватель",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُوَظَّف",ru:"служащий",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مُوَظَّفَة",ru:"служащая",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"زَمِيل",ru:"коллега, однокурсник",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"إِدَارَة",ru:"администрация",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"مَكْتَب",ru:"кабинет, стол",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"فَصْل",ru:"класс",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"دَرْس",ru:"урок",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"وَاجِب",ru:"домашнее задание",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"اِمْتِحَان",ru:"экзамен",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"جَدْوَل",ru:"расписание",g:"m",c:"المدرسة والإدارة"},
+ {t:"n",ar:"عُطْلَة",ru:"каникулы, отпуск",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"شَهَادَة",ru:"диплом, свидетельство",g:"f",c:"المدرسة والإدارة"},
+ {t:"n",ar:"كِتَاب",ru:"книга",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"دَفْتَر",ru:"тетрадь",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قَلَم",ru:"ручка, карандаш",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قِرَاءَة",ru:"чтение",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"كِتَابَة",ru:"письмо (процесс)",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"رِسَالَة",ru:"письмо (послание)",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"وَرَقَة",ru:"лист бумаги",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"صَفْحَة",ru:"страница",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"كَلِمَة",ru:"слово",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"جُمْلَة",ru:"предложение",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"حَرْف",ru:"буква",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"نَصّ",ru:"текст",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قَامُوس",ru:"словарь",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"مَجَلَّة",ru:"журнал",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"جَرِيدَة",ru:"газета",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"سَبُّورَة",ru:"доска",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"كِتَاب",ru:"книга",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"دَفْتَر",ru:"тетрадь",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قَلَم",ru:"ручка, карандаш",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قِرَاءَة",ru:"чтение",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"كِتَابَة",ru:"письмо (процесс)",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"رِسَالَة",ru:"письмо (послание)",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"وَرَقَة",ru:"лист бумаги",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"صَفْحَة",ru:"страница",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"كَلِمَة",ru:"слово",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"جُمْلَة",ru:"предложение",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"حَرْف",ru:"буква",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"نَصّ",ru:"текст",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"قَامُوس",ru:"словарь",g:"m",c:"القراءة والكتابة"},
+ {t:"n",ar:"مَجَلَّة",ru:"журнал",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"جَرِيدَة",ru:"газета",g:"f",c:"القراءة والكتابة"},
+ {t:"n",ar:"سَبُّورَة",ru:"доска",g:"f",c:"القراءة والكتابة"},
+ {t:"v",past:"كَتَبَ",pres:"يَكْتُبُ",ru:"писать",c:"أفعال"},
+ {t:"v",past:"قَرَأَ",pres:"يَقْرَأُ",ru:"читать",c:"أفعال"},
+ {t:"v",past:"دَرَسَ",pres:"يَدْرُسُ",ru:"учиться, изучать",c:"أفعال"},
+ {t:"v",past:"عَلَّمَ",pres:"يُعَلِّمُ",ru:"преподавать",c:"أفعال"},
+ {t:"v",past:"فَهِمَ",pres:"يَفْهَمُ",ru:"понимать",c:"أفعال"},
+ {t:"v",past:"سَأَلَ",pres:"يَسْأَلُ",ru:"спрашивать",c:"أفعال"},
+ {t:"v",past:"أَجَابَ",pres:"يُجِيبُ",ru:"отвечать",c:"أفعال"},
+ {t:"v",past:"تَكَلَّمَ",pres:"يَتَكَلَّمُ",ru:"говорить",c:"أفعال"},
+ {t:"v",past:"سَمِعَ",pres:"يَسْمَعُ",ru:"слышать, слушать",c:"أفعال"},
+ {t:"v",past:"شَاهَدَ",pres:"يُشَاهِدُ",ru:"смотреть",c:"أفعال"},
+ {t:"v",past:"ذَهَبَ",pres:"يَذْهَبُ",ru:"идти, ходить",c:"أفعال"},
+ {t:"v",past:"رَجَعَ",pres:"يَرْجِعُ",ru:"возвращаться",c:"أفعال"},
+ {t:"v",past:"خَرَجَ",pres:"يَخْرُجُ",ru:"выходить",c:"أفعال"},
+ {t:"v",past:"دَخَلَ",pres:"يَدْخُلُ",ru:"входить",c:"أفعال"},
+ {t:"v",past:"جَلَسَ",pres:"يَجْلِسُ",ru:"сидеть, садиться",c:"أفعال"},
+ {t:"v",past:"عَمِلَ",pres:"يَعْمَلُ",ru:"работать",c:"أفعال"},
+ {t:"v",past:"سَكَنَ",pres:"يَسْكُنُ",ru:"жить, проживать",c:"أفعال"},
+ {t:"v",past:"أَكَلَ",pres:"يَأْكُلُ",ru:"есть, кушать",c:"أفعال"},
+ {t:"v",past:"شَرِبَ",pres:"يَشْرَبُ",ru:"пить",c:"أفعال"},
+ {t:"v",past:"حَفِظَ",pres:"يَحْفَظُ",ru:"учить наизусть",c:"أفعال"},
+ {t:"v",past:"فَتَحَ",pres:"يَفْتَحُ",ru:"открывать",c:"أفعال"},
+ {t:"v",past:"نَسِيَ",pres:"يَنْسَى",ru:"забывать",c:"أفعال"},
+ {t:"v",past:"عَرَفَ",pres:"يَعْرِفُ",ru:"знать",c:"أفعال"},
+ {t:"v",past:"سَافَرَ",pres:"يُسَافِرُ",ru:"путешествовать",c:"أفعال"},
+ {t:"v",past:"وَصَلَ",pres:"يَصِلُ",ru:"прибывать",c:"أفعال"},
+ {t:"v",past:"بَدَأَ",pres:"يَبْدَأُ",ru:"начинать",c:"أفعال"},
+ {t:"v",past:"انْتَظَرَ",pres:"يَنْتَظِرُ",ru:"ждать",c:"أفعال"},
+ {t:"v",past:"أَسْرَعَ",pres:"يُسْرِعُ",ru:"спешить",c:"أفعال"},
+ {t:"v",past:"تَأَخَّرَ",pres:"يَتَأَخَّرُ",ru:"опаздывать",c:"أفعال"},
+ {t:"v",past:"عَادَ",pres:"يَعُودُ",ru:"возвращаться",c:"أفعال"},
+ {t:"v",past:"زَارَ",pres:"يَزُورُ",ru:"посещать",c:"أفعال"},
+ {t:"v",past:"قَابَلَ",pres:"يُقَابِلُ",ru:"встречать",c:"أفعال"},
+ {t:"v",past:"عَلِمَ",pres:"يَعْلَمُ",ru:"знать",c:"أفعال"},
+ {t:"v",past:"اعْتَقَدَ",pres:"يَعْتَقِدُ",ru:"полагать",c:"أفعال"},
+ {t:"v",past:"ظَنَّ",pres:"يَظُنُّ",ru:"думать, полагать",c:"أفعال"},
+ {t:"v",past:"أَرَادَ",pres:"يُرِيدُ",ru:"хотеть",c:"أفعال"},
+ {t:"v",past:"احْتَاجَ",pres:"يَحْتَاجُ",ru:"нуждаться",c:"أفعال"},
+ {t:"v",past:"اسْتَطَاعَ",pres:"يَسْتَطِيعُ",ru:"мочь",c:"أفعال"},
+ {t:"v",past:"قَدَرَ",pres:"يَقْدِرُ",ru:"быть в состоянии",c:"أفعال"}
 ];
+  const EXTRA_WORDS=[
+ {t:"n",ar:"بَيْت",ru:"дом",c:"البيت ومكوناته",g:"m"},
+ {t:"n",ar:"شَقَّة",ru:"квартира",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"غُرْفَة النَّوْم",ru:"спальня",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"غُرْفَة الجُلُوس",ru:"гостиная",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"غُرْفَة الطَّعَام",ru:"столовая",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"مَطْبَخ",ru:"кухня",c:"البيت ومكوناته",g:"m"},
+ {t:"n",ar:"حَمَّام",ru:"ванная",c:"البيت ومكوناته",g:"m"},
+ {t:"n",ar:"مِرْحَاض",ru:"туалет",c:"البيت ومكوناته",g:"m"},
+ {t:"n",ar:"شُرْفَة",ru:"балкон",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"مِرْآة",ru:"зеркало",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"سِتَارَة",ru:"занавеска",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"سَجَّادَة",ru:"ковёр",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"ثَلَّاجَة",ru:"холодильник",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"غَسَّالَة",ru:"стиральная машина",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"مِكْوَاة",ru:"утюг",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"مِكْنَسَة",ru:"метла",c:"البيت ومكوناته",g:"f"},
+ {t:"n",ar:"مِنْشَفَة",ru:"полотенце",c:"البيت ومكوناته",g:"f"},
+ {t:"v",past:"سَكَنَ",pres:"يَسْكُنُ",ru:"жить",c:"أفعال البيت"},
+ {t:"v",past:"نَامَ",pres:"يَنَامُ",ru:"спать",c:"أفعال البيت"},
+ {t:"v",past:"طَبَخَ",pres:"يَطْبُخُ",ru:"готовить",c:"أفعال البيت"},
+ {t:"v",past:"غَسَلَ",pres:"يَغْسِلُ",ru:"мыть",c:"أفعال البيت"},
+ {t:"v",past:"نَظَّفَ",pres:"يُنَظِّفُ",ru:"убирать",c:"أفعال البيت"},
+ {t:"v",past:"كَنَسَ",pres:"يَكْنُسُ",ru:"подметать",c:"أفعال البيت"},
+ {t:"v",past:"مَسَحَ",pres:"يَمْسَحُ",ru:"вытирать",c:"أفعال البيت"},
+ {t:"v",past:"رَتَّبَ",pres:"يُرَتِّبُ",ru:"приводить в порядок",c:"أفعال البيت"},
+ {t:"v",past:"أَغْلَقَ",pres:"يُغْلِقُ",ru:"закрывать",c:"أفعال البيت"},
+ {t:"v",past:"اسْتَحَمَّ",pres:"يَسْتَحِمُّ",ru:"принимать душ",c:"أفعال البيت"},
+ {t:"v",past:"لَبِسَ",pres:"يَلْبَسُ",ru:"надевать",c:"أفعال البيت"},
+ {t:"v",past:"خَلَعَ",pres:"يَخْلَعُ",ru:"снимать (одежду)",c:"أفعال البيت"},
+ {t:"v",past:"قَطَعَ",pres:"يَقْطَعُ",ru:"резать",c:"أفعال البيت"},
+ {t:"v",past:"سَخَّنَ",pres:"يُسَخِّنُ",ru:"подогревать",c:"أفعال البيت"},
+ {t:"v",past:"بَرَّدَ",pres:"يُبَرِّدُ",ru:"охлаждать",c:"أفعال البيت"},
+ {t:"v",past:"سَكَبَ",pres:"يَسْكُبُ",ru:"наливать",c:"أفعال البيت"},
+ {t:"v",past:"وَضَعَ",pres:"يَضَعُ",ru:"класть",c:"أفعال البيت"},
+ {t:"v",past:"حَمَلَ",pres:"يَحْمِلُ",ru:"нести",c:"أفعال البيت"},
+ {t:"v",past:"زَرَعَ",pres:"يَزْرَعُ",ru:"сажать",c:"أفعال البيت"},
+ {t:"v",past:"سَاعَدَ",pres:"يُسَاعِدُ",ru:"помогать",c:"أفعال البيت"},
+ {t:"n",ar:"صَحْن",ru:"тарелка",c:"المطبخ",g:"m"},
+ {t:"n",ar:"طَبَق",ru:"блюдо",c:"المطبخ",g:"m"},
+ {t:"n",ar:"كُوب",ru:"стакан",c:"المطبخ",g:"m"},
+ {t:"n",ar:"كَأْس",ru:"бокал",c:"المطبخ",g:"m"},
+ {t:"n",ar:"فِنْجَان",ru:"чашка",c:"المطبخ",g:"m"},
+ {t:"n",ar:"مِلْعَقَة",ru:"ложка",c:"المطبخ",g:"f"},
+ {t:"n",ar:"شَوْكَة",ru:"вилка",c:"المطبخ",g:"f"},
+ {t:"n",ar:"سِكِّين",ru:"нож",c:"المطبخ",g:"m"},
+ {t:"n",ar:"قِدْر",ru:"кастрюля",c:"المطبخ",g:"m"},
+ {t:"n",ar:"مِقْلَاة",ru:"сковорода",c:"المطبخ",g:"f"},
+ {t:"n",ar:"إِبْرِيق",ru:"чайник",c:"المطبخ",g:"m"},
+ {t:"n",ar:"غَلَّايَة",ru:"электрочайник",c:"المطبخ",g:"f"},
+ {t:"n",ar:"فُرْن",ru:"печь, духовка",c:"المطبخ",g:"m"},
+ {t:"n",ar:"مِيكْرُووِيف",ru:"микроволновка",c:"المطبخ",g:"m"},
+ {t:"n",ar:"خَلَّاط",ru:"блендер",c:"المطبخ",g:"m"},
+ {t:"n",ar:"مِصْفَاة",ru:"сито",c:"المطبخ",g:"f"},
+ {t:"n",ar:"لَوْح التَّقْطِيع",ru:"разделочная доска",c:"المطبخ",g:"m"},
+ {t:"n",ar:"صَابُون",ru:"мыло",c:"المطبخ",g:"m"},
+ {t:"n",ar:"مَغْسَلَة",ru:"раковина",c:"المطبخ",g:"f"},
+ {t:"n",ar:"حَنَفِيَّة",ru:"кран",c:"المطبخ",g:"f"},
+ {t:"n",ar:"خِزَانَة المَطْبَخ",ru:"кухонный шкаф",c:"المطبخ",g:"f"},
+ {t:"n",ar:"مِنْشَفَة المَطْبَخ",ru:"кухонное полотенце",c:"المطبخ",g:"f"},
+ {t:"n",ar:"قُفَّاز",ru:"перчатка",c:"المطبخ",g:"m"},
+ {t:"n",ar:"طَعَام",ru:"еда",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"فَطُور",ru:"завтрак",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"غَدَاء",ru:"обед",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"عَشَاء",ru:"ужин",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"خُبْز",ru:"хлеб",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"خُبْز عَرَبِيّ",ru:"арабский хлеб",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"أَرُزّ",ru:"рис",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"مَكَرُونَة",ru:"макароны",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"شَعْرِيَّة",ru:"вермишель",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"عَجِين",ru:"тесто",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"حَسَاء",ru:"суп",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"شُورْبَة",ru:"суп",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"سَلَطَة",ru:"салат",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"سَنْدَوِيش",ru:"бутерброд",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"بَيْض",ru:"яйцо",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"زَيْتُون",ru:"оливки",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"زَيْت",ru:"растительное масло",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"زُبْدَة",ru:"сливочное масло",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"سُكَّر",ru:"сахар",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"مِلْح",ru:"соль",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"فِلْفِل",ru:"перец",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"تَوَابِل",ru:"специи",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"عَسَل",ru:"мёд",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"مُرَبَّى",ru:"варенье",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"حَلْوَى",ru:"сладости",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"كَعْك",ru:"пирог, торт",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"بِسْكُوِيت",ru:"печенье",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"شِيبْس",ru:"чипсы",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"مُكَسَّرَات",ru:"орехи",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"لَوْز",ru:"миндаль",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"جَوْز",ru:"грецкий орех",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"فُسْتُق",ru:"фисташки",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"بُنْدُق",ru:"фундук",c:"أنواع الطعام",g:"m"},
+ {t:"n",ar:"شُوكُولَاتَة",ru:"шоколад",c:"أنواع الطعام",g:"f"},
+ {t:"n",ar:"خُضَار",ru:"овощи",c:"الخضروات",g:"f"},
+ {t:"n",ar:"طَمَاطِم",ru:"помидор",c:"الخضروات",g:"f"},
+ {t:"n",ar:"خِيَار",ru:"огурец",c:"الخضروات",g:"m"},
+ {t:"n",ar:"بَصَل",ru:"лук",c:"الخضروات",g:"m"},
+ {t:"n",ar:"ثُوم",ru:"чеснок",c:"الخضروات",g:"m"},
+ {t:"n",ar:"جَزَر",ru:"морковь",c:"الخضروات",g:"m"},
+ {t:"n",ar:"بَطَاطِس",ru:"картофель",c:"الخضروات",g:"f"},
+ {t:"n",ar:"بَاذِنْجَان",ru:"баклажан",c:"الخضروات",g:"m"},
+ {t:"n",ar:"كُوسَا",ru:"кабачок",c:"الخضروات",g:"f"},
+ {t:"n",ar:"فِلْفِل رُومِيّ",ru:"болгарский перец",c:"الخضروات",g:"m"},
+ {t:"n",ar:"فِلْفِل حَارّ",ru:"острый перец",c:"الخضروات",g:"m"},
+ {t:"n",ar:"لِفْت",ru:"репа",c:"الخضروات",g:"m"},
+ {t:"n",ar:"شَمَنْدَر",ru:"свёкла",c:"الخضروات",g:"m"},
+ {t:"n",ar:"كُرُنْب",ru:"капуста",c:"الخضروات",g:"m"},
+ {t:"n",ar:"قَرْنَبِيط",ru:"цветная капуста",c:"الخضروات",g:"m"},
+ {t:"n",ar:"سَبَانِخ",ru:"шпинат",c:"الخضروات",g:"f"},
+ {t:"n",ar:"خَسّ",ru:"салат (листья)",c:"الخضروات",g:"m"},
+ {t:"n",ar:"بَقْدُونِس",ru:"петрушка",c:"الخضروات",g:"m"},
+ {t:"n",ar:"كُزْبَرَة",ru:"кориандр",c:"الخضروات",g:"f"},
+ {t:"n",ar:"نَعْنَاع",ru:"мята",c:"الخضروات",g:"m"},
+ {t:"n",ar:"بَامْيَة",ru:"бамия",c:"الخضروات",g:"f"},
+ {t:"n",ar:"فَاصُولْيَا",ru:"фасоль",c:"الخضروات",g:"f"},
+ {t:"n",ar:"بَازِلَّاء",ru:"горох",c:"الخضروات",g:"f"},
+ {t:"n",ar:"عَدَس",ru:"чечевица",c:"الخضروات",g:"m"},
+ {t:"n",ar:"ذُرَة",ru:"кукуруза",c:"الخضروات",g:"f"},
+ {t:"n",ar:"فُطْر",ru:"грибы",c:"الخضروات",g:"m"},
+ {t:"n",ar:"زَنْجَبِيل",ru:"имбирь",c:"الخضروات",g:"m"},
+ {t:"n",ar:"فَاكِهَة",ru:"фрукты",c:"الفواكه",g:"f"},
+ {t:"n",ar:"تُفَّاح",ru:"яблоко",c:"الفواكه",g:"m"},
+ {t:"n",ar:"مَوْز",ru:"банан",c:"الفواكه",g:"m"},
+ {t:"n",ar:"بُرْتُقَال",ru:"апельсин",c:"الفواكه",g:"m"},
+ {t:"n",ar:"لَيْمُون",ru:"лимон",c:"الفواكه",g:"m"},
+ {t:"n",ar:"عِنَب",ru:"виноград",c:"الفواكه",g:"m"},
+ {t:"n",ar:"تِين",ru:"инжир",c:"الفواكه",g:"m"},
+ {t:"n",ar:"رُمَّان",ru:"гранат",c:"الفواكه",g:"m"},
+ {t:"n",ar:"خَوْخ",ru:"персик",c:"الفواكه",g:"m"},
+ {t:"n",ar:"مِشْمِش",ru:"абрикос",c:"الفواكه",g:"m"},
+ {t:"n",ar:"كَرَز",ru:"черешня",c:"الفواكه",g:"m"},
+ {t:"n",ar:"بَطِيخ",ru:"арбуз",c:"الفواكه",g:"m"},
+ {t:"n",ar:"شَمَّام",ru:"дыня",c:"الفواكه",g:"m"},
+ {t:"n",ar:"فَرَاوِلَة",ru:"клубника",c:"الفواكه",g:"f"},
+ {t:"n",ar:"أَنَانَاس",ru:"ананас",c:"الفواكه",g:"m"},
+ {t:"n",ar:"كِيوِي",ru:"киви",c:"الفواكه",g:"m"},
+ {t:"n",ar:"مَانْجُو",ru:"манго",c:"الفواكه",g:"m"},
+ {t:"n",ar:"جَوْز الهِنْد",ru:"кокос",c:"الفواكه",g:"m"},
+ {t:"n",ar:"تَمْر",ru:"финики",c:"الفواكه",g:"m"},
+ {t:"n",ar:"إِجَّاص",ru:"груша",c:"الفواكه",g:"m"},
+ {t:"n",ar:"بَرْقُوق",ru:"слива",c:"الفواكه",g:"m"},
+ {t:"n",ar:"يُوسُفِيّ",ru:"мандарин",c:"الفواكه",g:"m"},
+ {t:"n",ar:"تُوت",ru:"ягоды, тутовник",c:"الفواكه",g:"m"},
+ {t:"n",ar:"حَلِيب",ru:"молоко",c:"الألبان",g:"m"},
+ {t:"n",ar:"لَبَن",ru:"кефир, йогурт",c:"الألبان",g:"m"},
+ {t:"n",ar:"زَبَادِي",ru:"йогурт",c:"الألبان",g:"m"},
+ {t:"n",ar:"جُبْن",ru:"сыр",c:"الألبان",g:"m"},
+ {t:"n",ar:"جُبْن أَبْيَض",ru:"белый сыр",c:"الألبان",g:"m"},
+ {t:"n",ar:"جُبْن رُومِيّ",ru:"твёрдый сыр",c:"الألبان",g:"m"},
+ {t:"n",ar:"قِشْدَة",ru:"сливки",c:"الألبان",g:"f"},
+ {t:"n",ar:"لَبَنَة",ru:"творожный сыр",c:"الألبان",g:"f"},
+ {t:"n",ar:"مَخِيض",ru:"пахта",c:"الألبان",g:"m"},
+ {t:"n",ar:"آيْس كِرِيم",ru:"мороженое",c:"الألبان",g:"m"},
+ {t:"n",ar:"مَاء",ru:"вода",c:"المشروبات",g:"m"},
+ {t:"n",ar:"شَاي",ru:"чай",c:"المشروبات",g:"m"},
+ {t:"n",ar:"قَهْوَة",ru:"кофе",c:"المشروبات",g:"f"},
+ {t:"n",ar:"عَصِير",ru:"сок",c:"المشروبات",g:"m"},
+ {t:"n",ar:"لَحْم",ru:"мясо",c:"اللحوم",g:"m"},
+ {t:"n",ar:"دَجَاج",ru:"курица",c:"اللحوم",g:"m"},
+ {t:"n",ar:"سَمَك",ru:"рыба",c:"السمك",g:"m"}
+];
+
+// دمج الكلمات الإضافية
+const ALL_WORDS = DEFAULT_WORDS.concat(EXTRA_WORDS);
+
 const TYPES={
-  mcq_ar_ru:{ar:"اختيار من متعدد (عربي ← روسي)",ru:"Выбор перевода"},
-  mcq_ru_ar:{ar:"اختيار من متعدد (روسي ← عربي)",ru:"Выбор арабского слова"},
-  match:{ar:"توصيل الكلمة بترجمتها",ru:"Соедини пары"},
+  mcq_ar_ru:{ar:"اختيار (عربي ← روسي)",ru:"Выбор перевода"},
+  mcq_ru_ar:{ar:"اختيار (روسي ← عربي)",ru:"Выбор арабского"},
+  match:{ar:"توصيل",ru:"Соедини пары"},
   scramble:{ar:"ترتيب الحروف",ru:"Составь слово"},
-  listen:{ar:"الاستماع واختيار الكلمة",ru:"Слушай и выбирай"},
-  quick:{ar:"سؤال سريع (صح / خطأ)",ru:"Быстрый вопрос"}
+  listen:{ar:"استماع",ru:"Слушай"},
+  quick:{ar:"صح / خطأ",ru:"Быстрый вопрос"}
 };
 const COLORS=["#ff6b6b","#4ab8ff","#2ecc71","#ffd24a","#ff7ad5","#a78bfa"];
-const EMOJIS=["🦁","🦅","🐯","🐬","🐼","🦊","🐝","🚀","⭐","🔥","🌙","⚽","🐪","🌴"];
+const EMOJIS=["🦁","🦅","🐯","🐬","🐼","🦊","🐝","🚀","⭐","🔥","🌙","⚽"];
 
-/* ===================== STATE ===================== */
 let words=[];
 let teams=[];
-let settings={time:25,total:14,wheel:true,duel:true,showRu:true,sound:true,
-  types:Object.keys(TYPES),cats:Object.keys(CATS)};
-const S={qIndex:0,teamIdx:0,word:null,type:null,timer:null,timeLeft:0,total:0,answered:false,mult:1,
-  pairs:[],sel:null,matched:0,built:"",target:"",stage:null,steal:false};
+let settings={time:25,total:14,wheel:true,duel:true,showRu:true,sound:true,types:Object.keys(TYPES),cats:[]};
+const S={qIndex:0,teamIdx:0,word:null,type:null,timer:null,timeLeft:0,total:0,answered:false,mult:1,pairs:[],sel:null,matched:0,built:"",target:"",stage:null,steal:false};
 
-/* ===================== UTIL ===================== */
 const $=id=>document.getElementById(id);
 const rnd=a=>a[Math.floor(Math.random()*a.length)];
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-const strip=s=>s.replace(/[\u064B-\u0652\u0670\u0640]/g,"");
 const disp=w=>w.t==="v"?`${w.past} – ${w.pres}`:w.ar;
-const plain=w=>strip(w.t==="v"?w.past:w.ar).replace(/\s/g,"");
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function toast(msg){const d=document.createElement("div");d.className="toast";d.innerHTML=msg;document.body.appendChild(d);
-  setTimeout(()=>{d.style.opacity=0;d.style.transition=".4s";setTimeout(()=>d.remove(),400)},1300)}
+function toast(msg){const d=document.createElement("div");d.className="toast";d.innerHTML=msg;document.body.appendChild(d);setTimeout(()=>{d.style.opacity=0;d.style.transition=".4s";setTimeout(()=>d.remove(),400)},1300)}
 
-/* ===================== AUDIO ===================== */
 let actx=null;
 function ac(){if(!actx){try{actx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}return actx}
 function tone(f,dur,type="sine",vol=.18,delay=0){
@@ -984,46 +589,23 @@ const sTick=()=>tone(1100,.05,"square",.05);
 const sBuzz=()=>{tone(880,.1,"square",.12);tone(1320,.14,"square",.12,.1)};
 const sSpin=()=>{for(let i=0;i<14;i++)tone(500+i*25,.05,"square",.06,i*.13)};
 const sWin=()=>[523,659,784,1047,784,1047,1319].forEach((f,i)=>tone(f,.35,"triangle",.2,i*.16));
-function speak(w){
-  if(!("speechSynthesis"in window))return false;
-  try{
-    speechSynthesis.cancel();
-    const txt=w.t==="v"?`${w.past} ، ${w.pres}`:w.ar;
-    const u=new SpeechSynthesisUtterance(txt);u.lang="ar-SA";u.rate=.75;
-    const v=speechSynthesis.getVoices().find(x=>/^ar/i.test(x.lang));if(v)u.voice=v;
-    speechSynthesis.speak(u);return true;
-  }catch(e){return false}
-}
+function speak(txt){if(!("speechSynthesis"in window))return false;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang="ar-SA";u.rate=.8;const v=speechSynthesis.getVoices().find(x=>/^ar/i.test(x.lang));if(v)u.voice=v;speechSynthesis.speak(u);return true;}catch(e){return false}}
 
-/* ===================== CONFETTI ===================== */
 const fx=$("fx"),ctx=fx.getContext("2d");let parts=[],fxOn=false;
 function resize(){fx.width=innerWidth;fx.height=innerHeight}resize();addEventListener("resize",resize);
-function confetti(n=70){
-  for(let i=0;i<n;i++)parts.push({x:Math.random()*fx.width,y:-20-Math.random()*120,vx:(Math.random()-.5)*4,
-    vy:2+Math.random()*4,s:5+Math.random()*9,c:rnd(COLORS),r:Math.random()*6,vr:(Math.random()-.5)*.3});
-  if(!fxOn){fxOn=true;loopFx()}
-}
-function loopFx(){
-  ctx.clearRect(0,0,fx.width,fx.height);
-  parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.r+=p.vr;
-    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);ctx.restore()});
-  parts=parts.filter(p=>p.y<fx.height+40);
-  if(parts.length)requestAnimationFrame(loopFx);else{fxOn=false;ctx.clearRect(0,0,fx.width,fx.height)}
-}
+function confetti(n=70){for(let i=0;i<n;i++)parts.push({x:Math.random()*fx.width,y:-20-Math.random()*120,vx:(Math.random()-.5)*4,vy:2+Math.random()*4,s:5+Math.random()*9,c:rnd(COLORS),r:Math.random()*6,vr:(Math.random()-.5)*.3});if(!fxOn){fxOn=true;loopFx()}}
+function loopFx(){ctx.clearRect(0,0,fx.width,fx.height);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.r+=p.vr;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.6);ctx.restore()});parts=parts.filter(p=>p.y<fx.height+40);if(parts.length)requestAnimationFrame(loopFx);else{fxOn=false;ctx.clearRect(0,0,fx.width,fx.height)}}
 
-/* ===================== STORAGE ===================== */
 function loadAll(){
-  try{const w=localStorage.getItem("arru_words");words=w?JSON.parse(w):DEFAULT_WORDS.slice()}catch(e){words=DEFAULT_WORDS.slice()}
+  try{const w=localStorage.getItem("arru_words");words=w?JSON.parse(w):ALL_WORDS.slice()}catch(e){words=ALL_WORDS.slice()}
   try{const s=localStorage.getItem("arru_set");if(s)settings=Object.assign(settings,JSON.parse(s))}catch(e){}
   try{const t=localStorage.getItem("arru_teams");teams=t?JSON.parse(t):null}catch(e){teams=null}
-  if(!teams||!teams.length)teams=[{name:"فريق الأسود",ru:"Львы",em:"🦁",col:COLORS[0],score:0},
-                                  {name:"فريق الصقور",ru:"Соколы",em:"🦅",col:COLORS[1],score:0}];
+  if(!teams||!teams.length)teams=[{name:"فريق الأسود",ru:"Львы",em:"🦁",col:COLORS[0],score:0},{name:"فريق الصقور",ru:"Соколы",em:"🦅",col:COLORS[1],score:0}];
 }
 const saveWords=()=>localStorage.setItem("arru_words",JSON.stringify(words));
 const saveSet=()=>localStorage.setItem("arru_set",JSON.stringify(settings));
 const saveTeams=()=>localStorage.setItem("arru_teams",JSON.stringify(teams));
-
-/* ===================== SETUP UI ===================== */
+  /* ===================== SETUP UI ===================== */
 function renderTeams(){
   const b=$("teamsBox");b.innerHTML="";
   teams.forEach((t,i)=>{
@@ -1047,14 +629,20 @@ function renderSettings(){
   $("sWheel").checked=settings.wheel;$("sDuel").checked=settings.duel;
   $("typesBox").innerHTML=Object.keys(TYPES).map(k=>
     `<label class="pill ${settings.types.includes(k)?'on':''}"><input type="checkbox" data-t="${k}" ${settings.types.includes(k)?"checked":""}>${TYPES[k].ar}<span class="ru">${TYPES[k].ru}</span></label>`).join("");
-  $("catsBox").innerHTML=Object.keys(CATS).map(k=>
-    `<label class="pill ${settings.cats.includes(k)?'on':''}"><input type="checkbox" data-c="${k}" ${settings.cats.includes(k)?"checked":""}>${CATS[k].ar}<span class="ru">${CATS[k].ru}</span></label>`).join("");
+  if(Object.keys(CATS).length===0){
+    $("catsBox").innerHTML=`<div style="padding:14px;background:rgba(255,90,110,.2);border-radius:12px;border:1px solid #ff5a6e;margin:8px 0">⚠️ لا توجد فئات. اذهب إلى تبويب <b>📚 الكلمات</b> واستورد كلماتك أولاً.</div>`;
+  } else {
+    $("catsBox").innerHTML=Object.keys(CATS).map(k=>{
+      const cnt=words.filter(w=>w.c===k).length;
+      return `<label class="pill ${settings.cats.includes(k)?'on':''}"><input type="checkbox" data-c="${k}" ${settings.cats.includes(k)?"checked":""}>${CATS[k].ar} <span style="opacity:.7;font-size:.85em">(${cnt})</span><span class="ru">${CATS[k].ru}</span></label>`;
+    }).join("");
+  }
   $("typesBox").querySelectorAll("input").forEach(i=>i.onchange=()=>{
     const k=i.dataset.t;settings.types=i.checked?[...new Set([...settings.types,k])]:settings.types.filter(x=>x!==k);
     if(!settings.types.length)settings.types=["mcq_ar_ru"];saveSet();renderSettings()});
   $("catsBox").querySelectorAll("input").forEach(i=>i.onchange=()=>{
     const k=i.dataset.c;settings.cats=i.checked?[...new Set([...settings.cats,k])]:settings.cats.filter(x=>x!==k);
-    if(!settings.cats.length)settings.cats=Object.keys(CATS);saveSet();renderSettings()});
+    if(!settings.cats.length)settings.cats=[k];saveSet();renderSettings()});
 }
 function renderWordUI(){
   const opts=Object.keys(CATS).map(k=>`<option value="${k}">${CATS[k].ar}</option>`).join("");
@@ -1075,10 +663,9 @@ function renderWordList(){
       ${w.g?`<span class="badge ${w.g}">${w.g==="f"?"مؤنث ж.р.":"مذكر м.р."}</span>`:""}
       <span class="badge">${CATS[w.c]?CATS[w.c].ar:""}</span>
       <button class="del" data-i="${o.i}">🗑</button></div>`}).join("")||"<p style='padding:14px'>لا توجد كلمات</p>";
-  $("wordList").querySelectorAll(".del").forEach(b=>b.onclick=()=>{words.splice(+b.dataset.i,1);saveWords();renderWordList();sClick()});
+  $("wordList").querySelectorAll(".del").forEach(b=>b.onclick=()=>{words.splice(+b.dataset.i,1);saveWords();renderWordList();renderSettings();sClick()});
 }
 
-/* ===================== SETUP EVENTS ===================== */
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
   document.querySelectorAll(".tabpane").forEach(x=>x.classList.remove("active"));
@@ -1091,28 +678,41 @@ $("sTime").oninput=e=>{settings.time=+e.target.value;$("sTimeV").textContent=set
 $("sQ").oninput=e=>{settings.total=+e.target.value;$("sQV").textContent=settings.total;saveSet()};
 $("sWheel").onchange=e=>{settings.wheel=e.target.checked;saveSet()};
 $("sDuel").onchange=e=>{settings.duel=e.target.checked;saveSet()};
+$("catsAll").onclick=()=>{settings.cats=Object.keys(CATS);saveSet();renderSettings();sClick()};
+$("catsNone").onclick=()=>{settings.cats=[];saveSet();renderSettings();sClick()};
+
 $("wType").onchange=e=>{
   const v=e.target.value==="v";
   $("wAr").classList.toggle("hidden",v);$("wGen").classList.toggle("hidden",v);
   $("wPast").classList.toggle("hidden",!v);$("wPres").classList.toggle("hidden",!v);
-  if(v)$("wCat").value="verbs";
+  if(v){const vc=words.find(w=>w.t==="v");$("wCat").value=vc?vc.c:(Object.keys(CATS)[0]||"")}
 };
 $("addWord").onclick=()=>{
   const t=$("wType").value,ru=$("wRu").value.trim(),c=$("wCat").value;
   if(!ru)return toast("أدخل الترجمة الروسية ❗");
+  if(!c)return toast("اختر فئة ❗");
   if(t==="v"){const p=$("wPast").value.trim(),pr=$("wPres").value.trim();
-    if(!p||!pr)return toast("أدخل الماضي والمضارع ❗ (كتب – يكتب)");
+    if(!p||!pr)return toast("أدخل الماضي والمضارع ❗");
     words.push({t:"v",past:p,pres:pr,ru,c});$("wPast").value="";$("wPres").value="";
   }else{const ar=$("wAr").value.trim();if(!ar)return toast("أدخل الاسم ❗");
     words.push({t:"n",ar,ru,g:$("wGen").value,c});$("wAr").value="";}
-  $("wRu").value="";saveWords();renderWordList();sCorrect();toast("✅ تمت الإضافة / Добавлено");
+  $("wRu").value="";saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();sCorrect();toast("✅ تمت الإضافة");
 };
 $("filterCat").onchange=renderWordList;
-$("resetWords").onclick=()=>{if(confirm("استعادة قائمة الكلمات الافتراضية؟")){words=DEFAULT_WORDS.slice();saveWords();renderWordList()}};
+$("resetWords").onclick=()=>{if(confirm("استعادة قائمة الكلمات الافتراضية؟")){
+  words=ALL_WORDS.slice();saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();toast("✅ تمت الاستعادة")}};
 $("exportBtn").onclick=()=>{const b=$("ioBox");b.classList.remove("hidden");b.value=JSON.stringify(words,null,1);b.select()};
 $("importBtn").onclick=()=>{const b=$("ioBox");
-  if(b.classList.contains("hidden")){b.classList.remove("hidden");b.value="";b.focus();toast("الصق JSON ثم اضغط استيراد مرة أخرى")}
-  else{try{const a=JSON.parse(b.value);if(Array.isArray(a)&&a.length){words=a;saveWords();renderWordList();b.classList.add("hidden");toast("✅ تم الاستيراد")}}catch(e){toast("JSON غير صالح ❗")}}};
+  if(b.classList.contains("hidden")){b.classList.remove("hidden");b.value="";b.focus();toast("الصق JSON ثم اضغط استيراد")}
+  else{try{
+    const a=JSON.parse(b.value);
+    if(Array.isArray(a)&&a.length){
+      const norm=a.map(normalizeWord).filter(Boolean);
+      if(!norm.length){toast("❌ لا توجد كلمات صالحة");return}
+      words=norm;saveWords();rebuildCATS();syncCats();renderWordUI();renderSettings();
+      b.classList.add("hidden");toast(`✅ تم الاستيراد (${norm.length} كلمة)`);
+    } else toast("الملف فارغ ❗");
+  }catch(e){toast("JSON غير صالح ❗")}}};
 $("ruToggle").onclick=()=>{settings.showRu=!settings.showRu;saveSet();applyRu();sClick()};
 function applyRu(){document.body.classList.toggle("hide-ru",!settings.showRu);
   $("ruToggle").innerHTML=settings.showRu?"🇷🇺 الترجمة الروسية: ظاهرة":"🇷🇺 الترجمة الروسية: مخفية";
@@ -1150,19 +750,16 @@ function nextTurn(){
   if(duelTurn)return startDuel();
   startQuestion(rnd(settings.types));
 }
-/* ---------- WHEEL ---------- */
-const WSEG=[{k:"mcq_ar_ru",l:"🎯 اختيار",c:"#ff6b6b"},{k:"scramble",l:"🔀 ترتيب حروف",c:"#4ab8ff"},
- {k:"listen",l:"🔊 استماع",c:"#2ecc71"},{k:"quick",l:"⚡ سؤال سريع",c:"#ffd24a"},
- {k:"match",l:"🔗 توصيل",c:"#ff7ad5"},{k:"x2",l:"✖️2 نقاط مضاعفة",c:"#a78bfa"}];
+const WSEG=[{k:"mcq_ar_ru",l:"🎯 اختيار",c:"#ff6b6b"},{k:"scramble",l:"🔀 حروف",c:"#4ab8ff"},{k:"listen",l:"🔊 استماع",c:"#2ecc71"},{k:"quick",l:"⚡ سريع",c:"#ffd24a"},{k:"match",l:"🔗 توصيل",c:"#ff7ad5"},{k:"x2",l:"✖️2 نقاط",c:"#a78bfa"}];
 function showWheel(){
   stopTimer();$("timerBar").style.width="100%";$("timerText").textContent="🎡";
-  $("turnBanner").innerHTML=`${teams[S.teamIdx].em} دور ${esc(teams[S.teamIdx].name)} — أدِر العجلة!<span class="ru">Крутите колесо!</span>`;
+  $("turnBanner").innerHTML=`${teams[S.teamIdx].em} دور ${esc(teams[S.teamIdx].name)} — أدِر العجلة!`;
   const n=WSEG.length,step=360/n;
   const grad=WSEG.map((s,i)=>`${s.c} ${i*step}deg ${(i+1)*step}deg`).join(",");
   $("qCard").innerHTML=`<div class="wheel-box"><div class="wheel-outer"><div class="pointer">🔻</div>
     <div class="wheel" id="wheel" style="background:conic-gradient(${grad})">
     ${WSEG.map((s,i)=>`<div class="wseg" style="transform:rotate(${i*step+step/2}deg)"><span>${s.l}</span></div>`).join("")}
-    </div></div><button class="btn" id="spinBtn">🎡 أدِر العجلة<span class="ru">Крутить</span></button></div>`;
+    </div></div><button class="btn" id="spinBtn">🎡 أدِر العجلة</button></div>`;
   $("answerArea").innerHTML="";
   $("spinBtn").onclick=()=>{
     $("spinBtn").disabled=true;sSpin();
@@ -1170,12 +767,11 @@ function showWheel(){
     $("wheel").style.transform=`rotate(${target}deg)`;
     setTimeout(()=>{
       const seg=WSEG[i];confetti(35);sBuzz();
-      if(seg.k==="x2"){S.mult=2;toast("✖️2 نقاط مضاعفة! / Двойные очки!");startQuestion(rnd(settings.types))}
+      if(seg.k==="x2"){S.mult=2;toast("✖️2 نقاط مضاعفة!");startQuestion(rnd(settings.types))}
       else{toast(seg.l);startQuestion(settings.types.includes(seg.k)?seg.k:rnd(settings.types))}
     },4400);
   };
 }
-/* ---------- TIMER ---------- */
 function startTimer(sec){
   stopTimer();S.total=sec;S.timeLeft=sec;updTimer();
   S.timer=setInterval(()=>{
@@ -1193,11 +789,10 @@ function updTimer(){
 }
 function timeUp(){if(!S.answered)finish(false,"⏰ انتهى الوقت!","Время вышло!")}
 
-/* ---------- QUESTION BUILDERS ---------- */
 function startQuestion(type){
   S.type=type;S.answered=false;
   const t=teams[S.teamIdx];
-  $("turnBanner").innerHTML=`${t.em} دور فريق: <span style="color:${t.col}">${esc(t.name)}</span><span class="ru">Ход команды</span>`;
+  $("turnBanner").innerHTML=`${t.em} دور فريق: <span style="color:${t.col}">${esc(t.name)}</span>`;
   const sec=type==="quick"?12:type==="match"?settings.time+15:settings.time;
   const head=`<div class="qtype">${TYPES[type].ar}<span class="ru">${TYPES[type].ru}</span></div>`;
   if(type==="mcq_ar_ru"||type==="mcq_ru_ar")buildMCQ(type,head);
@@ -1230,12 +825,10 @@ function buildMCQ(mode,head){
   const opts=shuffle([w,...distractors(w,3)]);
   const ci=opts.indexOf(w);
   if(mode==="mcq_ar_ru"){
-    $("qCard").innerHTML=head+`<div class="prompt-ar">${esc(disp(w))}</div>
-      <div class="sub">ما معناها بالروسية؟<span class="ru">Что это значит по-русски?</span></div>`;
+    $("qCard").innerHTML=head+`<div class="prompt-ar">${esc(disp(w))}</div><div class="sub">ما معناها بالروسية؟</div>`;
     $("answerArea").innerHTML=optionsHTML(opts.map(o=>o.ru),true);
   }else{
-    $("qCard").innerHTML=head+`<div class="prompt-ru">${esc(w.ru)}</div>
-      <div class="sub">اختر الكلمة العربية الصحيحة<span class="ru">Выберите правильное арабское слово</span></div>`;
+    $("qCard").innerHTML=head+`<div class="prompt-ru">${esc(w.ru)}</div><div class="sub">اختر الكلمة العربية الصحيحة</div>`;
     $("answerArea").innerHTML=optionsHTML(opts.map(o=>disp(o)),false);
   }
   bindOpts(ci);
@@ -1244,14 +837,14 @@ function buildListen(head){
   const w=rnd(pool());S.word=w;
   const opts=shuffle([w,...distractors(w,3)]);const ci=opts.indexOf(w);
   $("qCard").innerHTML=head+`<div style="font-size:70px">🔊</div>
-    <button class="btn sec" id="playSnd">▶ استمع مرة أخرى<span class="ru">Слушать ещё раз</span></button>
-    <div class="sub" style="margin-top:8px">اختر الكلمة التي سمعتها<span class="ru">Выберите услышанное слово</span></div>
-    <div><button class="icon-btn" id="showWord" style="margin-top:8px">👁 لا يوجد صوت؟ اعرض الكلمة للمعلم</button></div>`;
+    <button class="btn sec" id="playSnd">▶ استمع مرة أخرى</button>
+    <div class="sub" style="margin-top:8px">اختر الكلمة التي سمعتها</div>
+    <div><button class="icon-btn" id="showWord" style="margin-top:8px">👁 اعرض الكلمة للمعلم</button></div>`;
   $("answerArea").innerHTML=optionsHTML(opts.map(o=>disp(o)),false);
-  const ok=speak(w);
-  $("playSnd").onclick=()=>{if(!speak(w))toast("المتصفح لا يدعم النطق — استخدم «اعرض الكلمة»")};
+  const txt=w.t==="v"?`${w.past} ، ${w.pres}`:w.ar;
+  speak(txt);
+  $("playSnd").onclick=()=>{if(!speak(txt))toast("المتصفح لا يدعم النطق")};
   $("showWord").onclick=()=>{$("showWord").outerHTML=`<div class="prompt-ar" style="font-size:34px">${esc(disp(w))}</div>`};
-  if(!ok)setTimeout(()=>toast("لا يوجد نطق عربي — استخدم زر «اعرض الكلمة»"),500);
   bindOpts(ci);
 }
 function buildQuick(head){
@@ -1261,22 +854,21 @@ function buildQuick(head){
   const shown=trueQ?w.ru:other.ru;
   $("qCard").innerHTML=head+`<div class="prompt-ar">${esc(disp(w))}</div>
     <div class="prompt-ru" style="font-size:clamp(20px,4.6vw,34px)">= ${esc(shown)} ?</div>
-    <div class="sub">صح أم خطأ؟ (١٢ ثانية)<span class="ru">Верно или неверно? (12 сек)</span></div>`;
+    <div class="sub">صح أم خطأ؟</div>`;
   $("answerArea").innerHTML=`<div class="opts">
-    <button class="opt" data-i="0">✅ صحيح<span class="ru">Верно</span></button>
-    <button class="opt" data-i="1">❌ خطأ<span class="ru">Неверно</span></button></div>`;
+    <button class="opt" data-i="0">✅ صحيح</button>
+    <button class="opt" data-i="1">❌ خطأ</button></div>`;
   bindOpts(trueQ?0:1);
 }
 function buildScramble(head){
   const w=rnd(pool());S.word=w;
-  S.target=plain(w);S.built="";
-  let letters=shuffle(Array.from(S.target));
-  if(letters.join("")===S.target&&S.target.length>2)letters=shuffle(letters);
+  S.target=w.t==="v"?w.past:w.ar;S.built="";
+  let letters=shuffle(Array.from(S.target.replace(/\s/g,"")));
   $("qCard").innerHTML=head+`<div class="prompt-ru">${esc(w.ru)}</div>
-    <div class="sub">رتّب الحروف لتكوين الكلمة العربية${w.t==="v"?" (صيغة الماضي)":""}<span class="ru">Составьте арабское слово из букв</span></div>`;
+    <div class="sub">رتّب الحروف لتكوين الكلمة</div>`;
   $("answerArea").innerHTML=`<div class="scram-slot" id="slot" dir="rtl"></div>
     <div class="letters" id="lets">${letters.map((l,i)=>`<button class="letter" data-i="${i}">${l}</button>`).join("")}</div>
-    <div style="text-align:center;margin-top:10px"><button class="icon-btn" id="undo">⌫ تراجع<span class="ru">Удалить</span></button></div>`;
+    <div style="text-align:center;margin-top:10px"><button class="icon-btn" id="undo">⌫ تراجع</button></div>`;
   const upd=()=>{$("slot").textContent=S.built||"";
     if(S.built.length===S.target.length){
       const ok=S.built===S.target;
@@ -1296,8 +888,7 @@ function buildScramble(head){
 function buildMatch(head){
   const p=shuffle(pool()).slice(0,4);S.pairs=p;S.word=p[0];S.sel=null;S.matched=0;
   const L=shuffle(p),R=shuffle(p);
-  $("qCard").innerHTML=head+`<div class="sub" style="font-size:clamp(16px,3vw,22px)">صِل كل كلمة عربية بترجمتها الروسية (٤ أزواج)
-    <span class="ru">Соедините арабские слова с русским переводом</span></div>`;
+  $("qCard").innerHTML=head+`<div class="sub" style="font-size:clamp(16px,3vw,22px)">صِل كل كلمة عربية بترجمتها الروسية</div>`;
   $("answerArea").innerHTML=`<div class="match-wrap">
     <div class="match-col">${L.map(w=>`<button class="mcard" data-k="${esc(w.ru)}">${esc(disp(w))}</button>`).join("")}</div>
     <div class="match-col">${R.map(w=>`<button class="mcard lat" data-k="${esc(w.ru)}" data-side="r">${esc(w.ru)}</button>`).join("")}</div></div>`;
@@ -1316,16 +907,15 @@ function buildMatch(head){
     }
   });
 }
-/* ---------- DUEL ---------- */
 function startDuel(){
   S.type="duel";S.answered=false;S.steal=false;S.stage="buzz";
   const w=rnd(pool());S.word=w;
   const opts=shuffle([w,...distractors(w,3)]);S.duelOpts=opts;S.duelCi=opts.indexOf(w);
-  $("turnBanner").innerHTML=`⚔️ تحدي بين الفرق!<span class="ru">Дуэль команд!</span>`;
-  $("qCard").innerHTML=`<div class="qtype">⚔️ تحدي بين فريقين<span class="ru">Дуэль</span></div>
+  $("turnBanner").innerHTML=`⚔️ تحدي بين الفرق!`;
+  $("qCard").innerHTML=`<div class="qtype">⚔️ تحدي</div>
     <div class="prompt-ar">${esc(disp(w))}</div>
-    <div class="sub">مَن يعرف المعنى؟ اضغط زر فريقك أولاً!<span class="ru">Кто знает перевод? Нажмите кнопку своей команды!</span></div>
-    <div class="sub">إجابة صحيحة = +15 نقطة<span class="ru">Правильный ответ = +15</span></div>`;
+    <div class="sub">مَن يعرف المعنى؟ اضغط زر فريقك أولاً!</div>
+    <div class="sub">إجابة صحيحة = +15 نقطة</div>`;
   $("answerArea").innerHTML=`<div class="buzz-grid">${teams.map((t,i)=>
     `<button class="buzz" data-i="${i}" style="background:${t.col}">${t.em} ${esc(t.name)}</button>`).join("")}</div>`;
   $("answerArea").querySelectorAll(".buzz").forEach(b=>b.onclick=()=>{
@@ -1335,7 +925,7 @@ function startDuel(){
 function duelAnswer(isSteal){
   S.steal=isSteal;S.stage="answer";
   const t=teams[S.teamIdx];
-  $("turnBanner").innerHTML=`${t.em} <span style="color:${t.col}">${esc(t.name)}</span> ${isSteal?"— فرصة السرقة!":"— أجب الآن!"}<span class="ru">${isSteal?"Шанс перехвата":"Отвечайте!"}</span>`;
+  $("turnBanner").innerHTML=`${t.em} <span style="color:${t.col}">${esc(t.name)}</span> ${isSteal?"— فرصة السرقة!":"— أجب الآن!"}`;
   $("answerArea").innerHTML=optionsHTML(S.duelOpts.map(o=>o.ru),true);
   bindOpts(S.duelCi,ok=>{
     if(ok){finish(true)}
@@ -1344,7 +934,7 @@ function duelAnswer(isSteal){
         sWrong();stopTimer();
         const others=teams.map((t,i)=>i).filter(i=>i!==S.teamIdx);
         $("answerArea").insertAdjacentHTML("beforeend",`<div style="text-align:center;margin-top:12px">
-          <div class="sub" style="font-size:20px">إجابة خاطئة! الفرصة للفريق الآخر 🔁<span class="ru">Неверно! Шанс другой команде</span></div>
+          <div class="sub" style="font-size:20px">إجابة خاطئة! الفرصة للفريق الآخر 🔁</div>
           <div class="buzz-grid" id="stealBox" style="margin-top:8px">${others.map(i=>
             `<button class="buzz" data-i="${i}" style="background:${teams[i].col}">${teams[i].em} ${esc(teams[i].name)}</button>`).join("")}</div></div>`);
         $("stealBox").querySelectorAll(".buzz").forEach(b=>b.onclick=()=>{
@@ -1354,7 +944,6 @@ function duelAnswer(isSteal){
   });
   startTimer(isSteal?12:15);
 }
-/* ---------- FINISH / REVEAL ---------- */
 function finish(ok,msgAr,msgRu){
   if(S.answered)return;S.answered=true;stopTimer();
   const t=teams[S.teamIdx];let pts=0,speed=false;
@@ -1372,27 +961,23 @@ function finish(ok,msgAr,msgRu){
       <span class="ans-ru" style="font-size:clamp(16px,3vw,24px)"> = ${esc(p.ru)}</span></div>`).join("");
   }else{
     const g=w.g?`<span class="badge ${w.g}">${w.g==="f"?"مؤنث / ж.р.":"مذكر / м.р."}</span>`:"";
-    const vn=w.t==="v"?`<div class="sub">الصيغة: (الماضي – المضارع)<span class="ru">Форма: прош. – наст. время</span></div>`:"";
     ansHTML=`<div class="ans-ar">${esc(disp(w))}</div><div class="ans-ru">= ${esc(w.ru)}</div>
-      <div style="margin-top:6px">${g} <span class="badge">${CATS[w.c]?CATS[w.c].ar:""}</span></div>${vn}`;
+      <div style="margin-top:6px">${g} <span class="badge">${CATS[w.c]?CATS[w.c].ar:""}</span></div>`;
   }
   const r=$("reveal");r.className="reveal "+(ok?"ok":"no");
-  r.innerHTML=`<div class="res">${ok?"🎉 إجابة صحيحة!":"❌ "+(msgAr||"إجابة غير صحيحة")}
-      <span class="ru">${ok?"Правильно!":(msgRu||"Неверно")}</span></div>
+  r.innerHTML=`<div class="res">${ok?"🎉 إجابة صحيحة!":"❌ "+(msgAr||"إجابة غير صحيحة")}</div>
     ${ansHTML}
-    <div class="pts">${ok?`${t.em} ${esc(t.name)} +${pts} نقطة ${speed?"⚡ مكافأة سرعة +5":""} ${S.mult>1?"✖️2":""}`:"0 نقطة"}
-      <span class="ru">${ok?"очков":"очков"}</span></div>`;
+    <div class="pts">${ok?`${t.em} ${esc(t.name)} +${pts} نقطة ${speed?"⚡ +5 سرعة":""} ${S.mult>1?"✖️2":""}`:"0 نقطة"}</div>`;
   r.classList.remove("hidden");
   $("nextBtn").classList.remove("hidden");
   $("nextBtn").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-/* ---------- END ---------- */
 function endGame(){
   stopTimer();show("screen-end");sWin();confetti(180);
   const sorted=teams.map((t,i)=>t).slice().sort((a,b)=>b.score-a.score);
   const top=sorted[0],tie=sorted.filter(t=>t.score===top.score).length>1;
-  $("winTitle").innerHTML=tie?`🤝 تعادل! أحسنتم جميعًا<span class="ru">Ничья! Молодцы!</span>`
-    :`🏆 الفائز: ${top.em} ${esc(top.name)}<span class="ru">Победитель!</span>`;
+  $("winTitle").innerHTML=tie?`🤝 تعادل! أحسنتم جميعًا`
+    :`🏆 الفائز: ${top.em} ${esc(top.name)}`;
   const h=[150,115,90,75,60,50];
   $("podium").innerHTML=sorted.map((t,i)=>
     `<div class="pod" style="background:${t.col};height:${h[i]||50}px;animation-delay:${i*.12}s">
@@ -1402,8 +987,13 @@ function endGame(){
     `<div style="display:flex;justify-content:space-between;background:rgba(255,255,255,.08);margin:6px auto;max-width:430px;padding:10px 16px;border-radius:14px;border-right:6px solid ${t.col}">
       <span>${["🥇","🥈","🥉"][i]||"🎖"} ${t.em} ${esc(t.name)}</span><b>${t.score}</b></div>`).join("")}</div>`;
 }
+
 /* ===================== INIT ===================== */
-loadAll();applyRu();renderTeams();renderSettings();renderWordUI();
+loadAll();
+rebuildCATS();
+syncCats();
+saveWords();
+applyRu();renderTeams();renderSettings();renderWordUI();
 $("sndToggle").innerHTML=settings.sound?"🔊 الصوت":"🔇 الصوت";
 if("speechSynthesis"in window){speechSynthesis.onvoiceschanged=()=>{}}
 document.addEventListener("keydown",e=>{
